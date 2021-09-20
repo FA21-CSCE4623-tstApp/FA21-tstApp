@@ -1,0 +1,29 @@
+
+do at some point...
+
+// TODO: 1. add play button back to video on home screen
+// TODO: 2. add functionality to click on pic and have it expand
+// TODO: 3. ask about admin functionality?
+// TODO: 4. set up login functionality
+// TODO: 5. finish adding facebook pictures/links
+// TODO: TEST: if pictures stay up longterm. Possibly have Peaches add pictures she wants in and upload to firebase
+
+
+
+// TODO: access 5-10 pics from first 10 albums
+
+working on now...
+11-5
+// TODO: TEST: if pictures stay up longterm. Possibly have Peaches add pictures she wants in and upload to firebase
+// TODO: 3. ask about admin functionality?
+    a. sketch out teacher/generic user use case
+    b. sketch out logged in vs logged out functionality
+// TODO: 4. set up login functionality
+    a. see above
+
+16-5
+- implement login (draw out)
+    * email verification
+    * sign in
+    * forgot pwd
+- create admin and user level
