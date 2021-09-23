@@ -1,11 +1,13 @@
 // import 'dart:html';
 // import 'dart:io';
 
+
+// TODO: REIMPLEMENT
 import 'package:flutter/material.dart';
 import 'package:tst_app/home/home_screen.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:async';
+// import 'package:webview_flutter/webview_flutter.dart';
+// import 'dart:async';
 
 String _title;
 String _url;
@@ -18,8 +20,8 @@ class AppWebView extends StatelessWidget {
   Widget build(BuildContext context) {
     isPageLoaded = false;
 
-    final Completer<WebViewController> _controller =
-        Completer<WebViewController>();
+    // final Completer<WebViewController> _controller =
+    //     Completer<WebViewController>();
     // final screenWidth = MediaQuery.of(context).size.width;
     // final screenHeight = MediaQuery.of(context).size.height;
 
@@ -27,7 +29,7 @@ class AppWebView extends StatelessWidget {
       child: ExternalWebViews(
         title: _title,
         initialURL: _url,
-        con: _controller,
+        con: "",
       ),
     );
   }
@@ -38,11 +40,12 @@ class ExternalWebViews extends StatefulWidget {
       {@required this.title, @required this.initialURL, @required this.con});
   final String title;
   final String initialURL;
-  final Completer<WebViewController> con;
+  final String con; // fix later
 
   @override
   _ExternalWebViewsState createState() => _ExternalWebViewsState();
 }
+
 
 class _ExternalWebViewsState extends State<ExternalWebViews> {
   @override
@@ -61,26 +64,28 @@ class _ExternalWebViewsState extends State<ExternalWebViews> {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child:
-                isPageLoaded ? WebNavControls(widget.con.future) : Container(),
+                isPageLoaded ? false : Container(),
           ),
         ],
       ),
-      body: WebView(
-        initialUrl: _url,
-        onWebViewCreated: (WebViewController webViewController) {
-          widget.con.complete(webViewController);
-        },
-        javascriptMode: JavascriptMode.unrestricted,
-        onPageFinished: (String data) {
-          setState(() {
-            print('page loaded');
-            isPageLoaded = true;
-          });
-        },
-      ),
+      body: Container(),
+      // body: WebView(
+      //   initialUrl: _url,
+      //   onWebViewCreated: (WebViewController webViewController) {
+      //     widget.con.complete(webViewController);
+      //   },
+      //   javascriptMode: JavascriptMode.unrestricted,
+      //   onPageFinished: (String data) {
+      //     setState(() {
+      //       print('page loaded');
+      //       isPageLoaded = true;
+      //     });
+      //   },
+      // ),
     );
   }
 }
+
 
 void setPageInfo(String title, String url) {
   print('set page info called');
@@ -89,10 +94,10 @@ void setPageInfo(String title, String url) {
 }
 
 class WebNavControls extends StatefulWidget {
-  const WebNavControls(this._controllerFuture)
-      : assert(_controllerFuture != null);
+   // WebNavControls(this._controllerFuture)
+   //    : assert(_controllerFuture != null);
 
-  final Future<WebViewController> _controllerFuture;
+  // final String _controllerFuture = "";
 
   @override
   _WebNavControlsState createState() => _WebNavControlsState();
@@ -110,6 +115,8 @@ class _WebNavControlsState extends State<WebNavControls> {
 
   @override
   Widget build(BuildContext context) {
+    return Container();
+    /*
     return FutureBuilder<WebViewController>(
       future: widget._controllerFuture,
       builder:
@@ -191,6 +198,8 @@ class _WebNavControlsState extends State<WebNavControls> {
       },
     );
   }
+
+     */
 }
 
 // class ShowLinearProgress extends StatefulWidget {
@@ -208,4 +217,4 @@ class _WebNavControlsState extends State<WebNavControls> {
 //   Widget build(BuildContext context) {
 //     return Future<WebViewController>();
 //   }
-// }
+}

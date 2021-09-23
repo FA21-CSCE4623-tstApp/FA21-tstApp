@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:tst_app/give/give_screen.dart';
 // import 'package:tst_app/resources/resources_screen.dart';
 import 'package:tst_app/shared_pages/login_page.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:table_calendar/table_calendar.dart';
 // import 'home_screen.dart';
 
@@ -58,17 +58,17 @@ class CustomAppBar extends StatelessWidget {
 
 
 //about us video
-//FIX upload video to teacher.spprt.teachers@gmail.com and use id link
+//TODO: FIX upload video to teacher.spprt.teachers@gmail.com and use id link
 class AboutUsVideo extends StatelessWidget {
 
-  final YoutubePlayerController _controller = YoutubePlayerController(
-    initialVideoId: 'y4SRd7paKOI',
-    flags: YoutubePlayerFlags(
-      mute: false,
-      loop: true,
-      autoPlay: false,
-    ),
-  );
+  // final YoutubePlayerController _controller = YoutubePlayerController(
+  //   initialVideoId: 'y4SRd7paKOI',
+  //   flags: YoutubePlayerFlags(
+  //     mute: false,
+  //     loop: true,
+  //     autoPlay: false,
+  //   ),
+  // );
 
   void listener() {
   }
@@ -76,14 +76,15 @@ class AboutUsVideo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayer(
-      controller: _controller,
-      showVideoProgressIndicator: true,
-      progressColors: ProgressBarColors(handleColor: Colors.white, playedColor: Colors.black12),
-      onReady: () {
-    _controller.addListener(listener);
-      },
-    );
+    return Container();
+    // return YoutubePlayer(
+    //   controller: _controller,
+    //   showVideoProgressIndicator: true,
+    //   progressColors: ProgressBarColors(handleColor: Colors.white, playedColor: Colors.black12),
+    //   onReady: () {
+    // _controller.addListener(listener);
+    //   },
+    // );
   }
 }
 
@@ -94,36 +95,24 @@ class MonthlyCalendar extends StatefulWidget {
 }
 
 class _MonthlyCalendarState extends State<MonthlyCalendar> {
-  CalendarController _calendarController;
-  @override
-  void initState() {
-    _calendarController = CalendarController();
-    super.initState();
-  }
 
-  @override
-  void dispose() {
-    _calendarController.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
-      calendarController: _calendarController,
       calendarStyle: CalendarStyle(
-        weekendStyle: TextStyle(
+        weekendTextStyle: TextStyle(
           color: Colors.black,
         ),
-        weekdayStyle: TextStyle(
+        defaultTextStyle: TextStyle(
           color: Colors.black,
         ),
-        selectedColor: Colors.deepOrange[300],
-        markersColor: Colors.deepOrange[50],
-        todayColor: Colors.deepOrangeAccent,
       ),
       availableCalendarFormats: {CalendarFormat.month: 'Month'},
       weekendDays: [],
+      lastDay: DateTime.utc(2030, 12, 31),
+      focusedDay: DateTime.now(),
+      firstDay: DateTime.utc(2020, 1, 1),
     );
   }
 }

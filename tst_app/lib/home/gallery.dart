@@ -12,7 +12,7 @@ final Color placeholderColor = Colors.amber[100];
 
 
 Future fetchHTTP(String url) async {
-  var result = await http.get(url);
+  var result = await http.get(Uri.parse(url));
   try {
     return await json.decode(result.body);
   } catch (e) {
