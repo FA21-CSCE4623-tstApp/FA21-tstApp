@@ -29,8 +29,42 @@ class TeacherBulletin extends StatelessWidget {
           fallbackWidth: 100.0,
           fallbackHeight: 200.0,
           color: Colors.indigo
-        )
+        ),
+      SizedBox(height: 30.0,),
+      Placeholder(
+          fallbackWidth: 100.0,
+          fallbackHeight: 200.0,
+          color: Colors.indigo
+      ),
+      SizedBox(height: 30.0,),
+      Placeholder(
+          fallbackWidth: 100.0,
+          fallbackHeight: 40.0,
+          color: Colors.indigo
+      ),
+      SizedBox(height: 30.0,),
+      Row(
+        children: [
+          Placeholder(
+              fallbackWidth: 200.0,
+              fallbackHeight: 200.0,
+              color: Colors.indigo
+          ),
+          SizedBox(width: 10.0,),
+          Placeholder(
+              fallbackWidth: 100.0,
+              fallbackHeight: 40.0,
+              color: Colors.indigo
+          ),
+        ],),
+      SizedBox(height: 30.0,),
+      Placeholder(
+          fallbackWidth: 100.0,
+          fallbackHeight: 200.0,
+          color: Colors.indigo
+      ),
           ],
+
             ),),
           ],
         ),
