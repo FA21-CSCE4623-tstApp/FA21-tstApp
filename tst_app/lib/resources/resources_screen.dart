@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:tst_app/home/home_screen.dart';
-// import 'package:tst_app/home/calendar.dart';
-// import 'package:tst_app/home/gallery.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:tst_app/home/calendar.dart';
 import 'package:tst_app/home/page_components.dart';
 import 'package:tst_app/resources/articles.dart';
-import 'package:tst_app/resources/past_events.dart';
+import 'package:tst_app/resources/past_events.dart'; // TODO: change name to match 'ALL EVENTS'
+import 'package:tst_app/resources/teacher_bulletin.dart';
 import 'package:tst_app/resources/teacher_hacks.dart';
+// TODO: create a file to house digital resources
 
-// final Color placeholderColor = Colors.amber[100];
+// TODO: move to another file (e.g. style_components)
 final Color textColor = Colors.black54;
 final Color _accentColor = Color(0xFFe6ba53);
 // final Color textColor2 = Colors.amber[40];
@@ -20,14 +18,18 @@ class ResourcesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
-    // final screenHeight = MediaQuery.of(context).size.height;
+    // TODO: use this fcn to navigate to pages
+    void navigateTo(String route){
+      Navigator.pushNamed(context, route);
+    }
 
+    // TODO: define a function for navigation
     return Scaffold(
-      backgroundColor: Color(0xFFFFFBEF),
+      backgroundColor: Color(0xFFFFFBEF), // TODO: define in style_components
       body: CustomScrollView(
         slivers: <Widget>[
           CustomAppBar(
-            appbarColor: Colors.deepPurple[200],
+            appbarColor: Colors.deepPurple[200], // use this as part of secondary color set (e.g. indigo)
             appbarTitle: 'Resources',
           ),
           SliverList(
@@ -58,7 +60,7 @@ class ResourcesScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, Articles.route);
+
                         },
                         child: Row(
                           children: <Widget>[
@@ -142,58 +144,63 @@ class ResourcesScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      color: Color(0xfff352f41),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 40.0, horizontal: 18.0),
-                        child: Container(
-                            child: Image.asset(
-                          'assets/images/bulletin-board.png',
-                        )),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.pushNamed(context, TeacherBulletin.route);
+                  },
+                  child: Stack(
+                    children: [
+                      Container(
+                        color: Color(0xfff352f41),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 40.0, horizontal: 18.0),
+                          child: Container(
+                              child: Image.asset(
+                            'assets/images/bulletin-board.png',
+                          )),
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      top: 65.0,
-                      left: 40.0,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Teacher\'s Bulletin',
-                            style: TextStyle(
-                              color: textColor,
-                              fontSize: 37.0,
-                            ),
-                          ),
-                          SizedBox(height: 25.0,),
-                          Container(
-                            width: 200.0,
-                            child: Text(
-                              'Learn and ask questions with other educators',
+                      Positioned(
+                        top: 65.0,
+                        left: 40.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Teacher\'s Bulletin',
                               style: TextStyle(
                                 color: textColor,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w600
+                                fontSize: 37.0,
                               ),
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 25.0,),
+                            Container(
+                              width: 200.0,
+                              child: Text(
+                                'Learn and ask questions with other educators',
+                                style: TextStyle(
+                                  color: textColor,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.w600
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 80.0,
-                      right: 40.0,
-                      child: Row(
-                        children: [
-                          Text('see how', style: TextStyle(color: textColor)),
-                          SizedBox(width: 5.0),
-                          Icon(Icons.arrow_forward_ios, size: 10.0, color: textColor,)
-                        ],
-                      ),),
-                  ],
+                      Positioned(
+                        bottom: 80.0,
+                        right: 40.0,
+                        child: Row(
+                          children: [
+                            Text('see how', style: TextStyle(color: textColor)),
+                            SizedBox(width: 5.0),
+                            Icon(Icons.arrow_forward_ios, size: 10.0, color: textColor,)
+                          ],
+                        ),),
+                    ],
+                  ),
                 ),
                 // shows the user TST's videos/event info
                 Column(

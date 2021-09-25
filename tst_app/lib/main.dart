@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tst_app/internet_stuff/gallery_photos.dart';
+import 'package:tst_app/resources/teacher_bulletin.dart';
 import 'package:tst_app/test.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:tst_app/home/page_components.dart';
@@ -48,7 +49,7 @@ class _TSTAppState extends State<TSTApp> {
     return ChangeNotifierProvider(
       create: (_) => GalleryPhotos(),
       child: MaterialApp(
-        initialRoute: '/',
+        initialRoute: ResourcesScreen.route,
         routes: {
           HomeScreen.route: (context) => HomeScreen(),
           LoginRegister.route: (context) => LoginRegister(),
@@ -66,6 +67,8 @@ class _TSTAppState extends State<TSTApp> {
           Articles.route: (context) => Articles(),
           TeacherHacks.route: (context) => TeacherHacks(),
           PastEvents.route: (context) => PastEvents(),
+          TeacherBulletin.route: (context) => TeacherBulletin(),
+
           Test.route: (context) => Test(),
         },
         home: Scaffold(
