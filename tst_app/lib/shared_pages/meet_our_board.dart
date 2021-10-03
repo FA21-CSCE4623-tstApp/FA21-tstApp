@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/home/home_screen.dart';
 
 const Color textColor = Colors.black87;
@@ -24,13 +25,13 @@ class MeetOurBoard extends StatelessWidget {
     // final maxWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       body: Padding(
         padding: const EdgeInsets.only(bottom: 80.0),
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              backgroundColor: backgroundColor,
+              backgroundColor: appBackground,
               elevation: 0.0,
               pinned: true,
               expandedHeight: 120.0,

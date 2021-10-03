@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tst_app/home/home_screen.dart';
+import 'package:tst_app/styles.dart';
 
 
-final Color backgroundColor = Color(0xFFFFFBEF);
-
-class PastEvents extends StatelessWidget {
-  static const route = 'past_events_screen';
+class AllEvents extends StatelessWidget {
+  static const route = 'all_events_screen';
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     // final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.black38),
         elevation: 1.0,
-        backgroundColor: backgroundColor,
+        backgroundColor: appBackground,
         title: Text(
           'All Events',
           style: TextStyle(fontSize: 20.0, color: Colors.black),
@@ -93,7 +92,7 @@ class PastEvents extends StatelessWidget {
                             child: Container(
                               height: 1.0,
                               width: screenWidth,
-                              color: accentColor,
+                              color: lightPurple,
                             ),
                           )
                         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/home/home_screen.dart';
 
 
@@ -92,7 +93,7 @@ class TeacherHacks extends StatelessWidget {
                             child: Container(
                               height: 1.0,
                               width: screenWidth,
-                              color: accentColor,
+                              color: lightPurple,
                             ),
                           )
                         ],

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tst_app/internet_stuff/gallery_photos.dart';
 import 'package:tst_app/resources/teacher_bulletin.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/test.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 // import 'package:tst_app/home/page_components.dart';
@@ -20,7 +21,7 @@ import 'shared_pages/donation_page.dart';
 import 'give/donation_history.dart';
 import 'shared_pages/in_app_web.dart';
 import 'resources/articles.dart';
-import 'resources/past_events.dart';
+import 'resources/all_events.dart';
 import 'resources/teacher_hacks.dart';
 import 'package:firebase_core/firebase_core.dart';
 // import 'home/page_components.dart';
@@ -49,7 +50,7 @@ class _TSTAppState extends State<TSTApp> {
     return ChangeNotifierProvider(
       create: (_) => GalleryPhotos(),
       child: MaterialApp(
-        initialRoute: ResourcesScreen.route,
+        initialRoute: '/',
         routes: {
           HomeScreen.route: (context) => HomeScreen(),
           LoginRegister.route: (context) => LoginRegister(),
@@ -66,7 +67,7 @@ class _TSTAppState extends State<TSTApp> {
           AppWebView.route: (context) => AppWebView(),
           Articles.route: (context) => Articles(),
           TeacherHacks.route: (context) => TeacherHacks(),
-          PastEvents.route: (context) => PastEvents(),
+          AllEvents.route: (context) => AllEvents(),
           TeacherBulletin.route: (context) => TeacherBulletin(),
 
           Test.route: (context) => Test(),
@@ -75,7 +76,7 @@ class _TSTAppState extends State<TSTApp> {
           body: selectedPage[_selectedIndex],
           bottomNavigationBar: BottomNavigationBar(
             elevation: 15.0,
-            backgroundColor: Color(0xFFFFFBEF),
+            backgroundColor: appBackground,
             currentIndex: _selectedIndex,
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
@@ -92,7 +93,8 @@ class _TSTAppState extends State<TSTApp> {
                 label: 'Resources',
               ),
             ],
-            selectedItemColor: Colors.deepOrange[300],
+            unselectedItemColor: Colors.black26,
+            selectedItemColor: accentColor,
             onTap: (int index) {
               setState(() {
                 _selectedIndex = index;

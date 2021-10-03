@@ -8,12 +8,13 @@ import 'package:tst_app/home/page_components.dart';
 import 'package:tst_app/home/quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tst_app/shared_pages/donation_page.dart';
+import 'package:tst_app/styles.dart';
 
-final Color backgroundColor = Color(0xFFFFFBEF);
-final Color textColor = Colors.black54;
-final Color accentColor = Colors.deepOrange[300];
-final Color placeholderColor = Colors.yellow[100];
-final Color pageColor = Colors.green[200];
+// final Color backgroundColor = Color(0xFFFFFBEF);
+// final Color textColor = Colors.black54;
+// final Color accentColor = Colors.deepOrange[300];
+// final Color placeholderColor = Colors.yellow[100];
+// final Color pageColor = Colors.green[200];
 
 class GiveScreen extends StatelessWidget {
   static String route = 'give_screen';
@@ -21,11 +22,11 @@ class GiveScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Color(0xFFFFFBEF),
+      backgroundColor: appBackground,
       body: CustomScrollView(
         slivers: <Widget>[
           CustomAppBar(
-            appbarColor: pageColor,
+            appbarColor: lightBrown,
             appbarTitle: 'Give',
           ),
           SliverList(
@@ -51,7 +52,7 @@ class GiveScreen extends StatelessWidget {
                         Container(
                           height: 230.0,
                           width: double.infinity,
-                          color: Colors.black38,
+                          color: Colors.black54,
                         ),
                         Positioned(
                           bottom: 40.0,
@@ -60,7 +61,7 @@ class GiveScreen extends StatelessWidget {
                             'Donate',
                             style: TextStyle(
                               fontSize: 60.0,
-                              color: Colors.white,
+                              color: lightTextColor,
                               fontWeight: FontWeight.w200,
                             ),
                           ),
@@ -75,7 +76,7 @@ class GiveScreen extends StatelessWidget {
                               'Your donations allow us to support educators in your community',
                               style: TextStyle(
                                 fontSize: 17.0,
-                                color: Colors.white,
+                                color: lightTextColor,
                                 fontWeight: FontWeight.w300,
                                 fontStyle: FontStyle.italic,
                               ),
@@ -97,7 +98,7 @@ class GiveScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(5.0),
-                        color: pageColor,
+                        color: lightBrown,
                       ),
                       height: 65.0,
                       child: Row(
@@ -105,7 +106,7 @@ class GiveScreen extends StatelessWidget {
                           SizedBox(width: 30.0),
                           Icon(
                             FontAwesomeIcons.donate,
-                            color: textColor,
+                            color: defaultTextColor,
                             size: 20.0,
                           ),
                           SizedBox(width: 30.0),
@@ -114,7 +115,7 @@ class GiveScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.w300,
-                              color: textColor,
+                              color: defaultTextColor,
                             ),
                           ),
                         ],
@@ -132,14 +133,14 @@ class GiveScreen extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(3.0),
-                        color: pageColor,
+                        color: lightBrown,
                       ),
                       child: Row(
                         children: <Widget>[
                           SizedBox(width: 30.0),
                           Icon(
                             FontAwesomeIcons.receipt,
-                            color: textColor,
+                            color: defaultTextColor,
                             size: 20.0,
                           ),
                           SizedBox(width: 30.0),
@@ -148,7 +149,7 @@ class GiveScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 22.0,
                               fontWeight: FontWeight.w300,
-                              color: textColor,
+                              color: defaultTextColor,
                             ),
                           ),
                         ],
@@ -169,7 +170,7 @@ class GiveScreen extends StatelessWidget {
                       ),
                       child: Text(
                         'Event of the Month',
-                        style: TextStyle(color: textColor, fontSize: 23.0),
+                        style: TextStyle(color: defaultTextColor, fontSize: 23.0),
                       ),
                     ),
                     Padding(
@@ -410,7 +411,7 @@ class Testimonial extends StatelessWidget {
             'Testimonial',
             style: TextStyle(
               fontSize: 38.0,
-              color: textColor,
+              color: defaultTextColor,
               fontWeight: FontWeight.w300,
             ),
           ),
@@ -420,7 +421,7 @@ class Testimonial extends StatelessWidget {
             child: Text(
               '"I became a teacher because I didn\'t like school growing up. I knew it could be fun! I knew it could be hands on and I knew I could involve art and science."',
               style: TextStyle(
-                color: textColor,
+                color: defaultTextColor,
                 fontSize: 20.0,
                 height: 2.0,
                 fontStyle: FontStyle.italic,
@@ -435,7 +436,7 @@ class Testimonial extends StatelessWidget {
               '-Karen Cherry-McDowell',
               style: TextStyle(
                   fontSize: 16.0,
-                  color: textColor,
+                  color: defaultTextColor,
                   fontWeight: FontWeight.w300),
             ),
           ),

@@ -3,6 +3,7 @@ import 'package:tst_app/home/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tst_app/shared_pages/in_app_web.dart';
 import 'package:intl/intl.dart';
+import 'package:tst_app/styles.dart';
 
 class MonthlyEvent extends StatelessWidget {
   static const route = 'monthlyEvent_screen';
@@ -14,7 +15,7 @@ class MonthlyEvent extends StatelessWidget {
     var dateInfo = DateTime.now();
     var currentMonth = DateFormat.MMMM().format(dateInfo);
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: screenHeight - 100),
         child: Container(
@@ -28,7 +29,7 @@ class MonthlyEvent extends StatelessWidget {
               FontAwesomeIcons.times,
               size: 15.0,
             ),
-            backgroundColor: textColor,
+            backgroundColor: defaultTextColor,
           ),
         ),
       ),
@@ -52,7 +53,7 @@ class MonthlyEvent extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 38.0,
                       fontWeight: FontWeight.w300,
-                      color: textColor,
+                      color: defaultTextColor,
                     ),
                   ),
                 ),
@@ -63,7 +64,7 @@ class MonthlyEvent extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18.0,
                       fontWeight: FontWeight.w300,
-                      color: textColor,
+                      color: defaultTextColor,
                     ),
                   ),
                 ),
@@ -101,7 +102,7 @@ class MonthlyEvent extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 23.0,
                               fontWeight: FontWeight.w300,
-                              color: textColor,
+                              color: defaultTextColor,
                             ),),
                            ),
                         //    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

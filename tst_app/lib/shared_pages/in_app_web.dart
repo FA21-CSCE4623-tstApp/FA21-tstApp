@@ -4,6 +4,7 @@
 
 // TODO: REIMPLEMENT
 import 'package:flutter/material.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/home/home_screen.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
@@ -53,7 +54,7 @@ class _ExternalWebViewsState extends State<ExternalWebViews> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(

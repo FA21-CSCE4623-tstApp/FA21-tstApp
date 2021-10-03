@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/home/home_screen.dart';
 // import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:tst_app/shared_pages/in_app_web.dart';
@@ -14,7 +15,7 @@ class DonationPage extends StatelessWidget {
     // var dateInfo = DateTime.now();
     // var currentMonth = DateFormat.MMMM().format(dateInfo);
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text('Donate Now'),

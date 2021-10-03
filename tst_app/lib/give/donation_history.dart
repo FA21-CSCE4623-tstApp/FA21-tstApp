@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tst_app/styles.dart';
 import 'package:tst_app/home/home_screen.dart';
 
 
@@ -10,9 +11,9 @@ class DonationHistory extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     // final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       appBar: AppBar(
-          backgroundColor: backgroundColor,
+          backgroundColor: lightBrown,
           elevation: 1.0,
           iconTheme: IconThemeData(color: Colors.black),
           title: Text(
@@ -121,14 +122,14 @@ class DonationHistory extends StatelessWidget {
                                           'Total',
                                           style: TextStyle(
                                               fontSize: 13.0,
-                                              color: backgroundColor,
+                                              color: appBackground,
                                               fontWeight: FontWeight.w600),
                                         ),
                                         SizedBox(width: 10.0),
                                         Text(
                                           '\$23.00',
                                           style: TextStyle(
-                                              color: backgroundColor,
+                                              color: appBackground,
                                               fontSize: 35.0,
                                               fontWeight: FontWeight.w200),
                                         ),

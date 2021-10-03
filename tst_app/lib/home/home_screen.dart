@@ -9,13 +9,14 @@ import 'package:tst_app/shared_pages/learn_more.dart';
 import 'package:tst_app/shared_pages/meet_our_board.dart';
 import 'quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tst_app/styles.dart';
 
-final Color placeholderColor = Colors.amber[100];
-final Color textColor = Colors.black54;
-final Color accentColor = Colors.deepOrange[300];
-// final Color textColor = Colors.black87;
-final Color backgroundColor = Color(0xFFFFFBEF);
-final Color contactUsColor = Colors.deepOrange[50];
+// final Color placeholderColor = Colors.amber[100];
+// final Color textColor = Colors.black54;
+// final Color accentColor = Colors.deepOrange[300];
+// // final Color textColor = Colors.black87;
+// final Color backgroundColor = Color(0xFFFFFBEF);
+// final Color contactUsColor = Colors.deepOrange[50];
 
 class HomeScreen extends StatefulWidget {
   static const route = 'home_screen';
@@ -29,11 +30,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       body: CustomScrollView(
         slivers: <Widget>[
           CustomAppBar(
-            appbarColor: Color(0xFFEBB6AF),
+            appbarColor: lightBrown,
             appbarTitle: 'Home',
           ),
           SliverToBoxAdapter(
@@ -55,7 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         'Quote of the Day',
                         style: TextStyle(
                           fontSize: 38.0,
-                          color: textColor,
+                          color: defaultTextColor,
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -67,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Text(
                           '"The best teachers are those who show your where to look, but don\'t tell you what to see"',
                           style: TextStyle(
-                            color: textColor,
+                            color: defaultTextColor,
                             fontSize: 20.0,
                             height: 2.0,
                             fontStyle: FontStyle.italic,
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           '-Alexandra K. Trenfor',
                           style: TextStyle(
                               fontSize: 16.0,
-                              color: textColor,
+                              color: defaultTextColor,
                               fontWeight: FontWeight.w300),
                         ),
                       ),
@@ -142,7 +143,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             'Our Story',
                             style: TextStyle(
-                                color: textColor,
+                                color: defaultTextColor,
                                 fontSize: 38.0,
                                 fontWeight: FontWeight.w300),
                           ),
@@ -152,7 +153,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: Text(
                               '"We started with teachers in mind. Our hope is to uplift the hearts and minds of teachers and paraprofessionals."',
                               style: TextStyle(
-                                color: textColor,
+                                color: defaultTextColor,
                                 fontSize: 20.0,
                                 height: 2.0,
                                 fontStyle: FontStyle.italic,
@@ -169,14 +170,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                   'Juanita Harris',
                                   style: TextStyle(
                                       fontSize: 16.0,
-                                      color: textColor,
+                                      color: defaultTextColor,
                                       fontWeight: FontWeight.w300),
                                 ),
                                 SizedBox(height: 8.0),
                                 Text(
                                   'founder',
                                   style: TextStyle(
-                                      color: textColor,
+                                      color: defaultTextColor,
                                       fontWeight: FontWeight.w300),
                                 )
                               ],
@@ -198,7 +199,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               Icon(
                                 FontAwesomeIcons.users,
-                                color: textColor,
+                                color: defaultTextColor,
                                 size: 20.0,
                               ),
                               SizedBox(
@@ -209,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 style: TextStyle(
                                   fontSize: 18.0,
                                   fontWeight: FontWeight.w300,
-                                  color: textColor,
+                                  color: defaultTextColor,
                                 ),
                               ),
                               Expanded(
@@ -218,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Icon(
                                 Icons.arrow_forward_ios,
                                 size: 20.0,
-                                color: accentColor,
+                                color: lightPurple,
                               )
                             ],
                           ),
@@ -250,7 +251,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: <Widget>[
                                 Icon(
                                   FontAwesomeIcons.question,
-                                  color: textColor,
+                                  color: defaultTextColor,
                                   size: 20.0,
                                 ),
                                 SizedBox(width: 30.0),
@@ -259,13 +260,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: TextStyle(
                                     fontSize: 18.0,
                                     fontWeight: FontWeight.w300,
-                                    color: textColor,
+                                    color: defaultTextColor,
                                   ),
                                 ),
                                 Expanded(
                                   child: Container(),
                                 ),
-                                Icon(Icons.arrow_forward_ios, size: 20.0, color: accentColor)
+                                Icon(Icons.arrow_forward_ios, size: 20.0, color: lightPurple)
                               ],
                             ),
                           ),
@@ -388,95 +389,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 //social/contact information
-                Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
-                  child: Container(
-                    color: accentColor,
-                    height: 230.0,
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 10.0),
-                          child: Text(
-                            'Contact Us',
-                            style: TextStyle(
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w300,
-                              color: contactUsColor,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 30.0),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                          child: Container(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  Icons.email,
-                                  size: 30.0,
-                                  color: contactUsColor,
-                                ),
-                                SizedBox(
-                                  width: 40.0,
-                                ),
-                                Text(
-                                  'teacher.spprt.teachers@gmail.com',
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w300,
-                                    color: contactUsColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20.0,
-                            vertical: 20.0,
-                          ),
-                          child: Center(
-                            child: Container(
-                              color: contactUsColor,
-                              width: 340.0,
-                              height: 0.3,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 40.0),
-                          child: Container(
-                            child: Row(
-                              children: <Widget>[
-                                Icon(
-                                  FontAwesomeIcons.facebook,
-                                  color: contactUsColor,
-                                  size: 30.0,
-                                ),
-                                SizedBox(
-                                  width: 40.0,
-                                ),
-                                Text(
-                                  '@TeachersSupportTeachers2019',
-                                  style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.w300,
-                                    color: contactUsColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                ContactWidget(),
               ],
             ),
           )
@@ -492,3 +405,5 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // TODO - re-design homescreen w new color scheme, new gallery setup
 }
+
+
