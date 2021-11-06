@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tst_app/styles.dart';
-import 'package:tst_app/home/home_screen.dart';
+import '../styles.dart';
+import '../home/home_screen.dart';
 
 
 final Color backgroundColor = Color(0xFFFFFBEF);

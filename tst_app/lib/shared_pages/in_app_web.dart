@@ -1,25 +1,18 @@
-// import 'dart:html';
-// import 'dart:io';
-
-
 // TODO: REIMPLEMENT
 import 'package:flutter/material.dart';
-import 'package:tst_app/styles.dart';
-import 'package:tst_app/home/home_screen.dart';
-// import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-// import 'package:webview_flutter/webview_flutter.dart';
-// import 'dart:async';
+import '../styles.dart';
 
-String _title;
-String _url;
-bool isPageLoaded;
+
+String _title = "";
+String _url = "";
+bool _isPageLoaded = false;
 
 class AppWebView extends StatelessWidget {
   static const route = 'web_view_screen';
 
   @override
   Widget build(BuildContext context) {
-    isPageLoaded = false;
+    _isPageLoaded = false;
 
     // final Completer<WebViewController> _controller =
     //     Completer<WebViewController>();
@@ -38,7 +31,7 @@ class AppWebView extends StatelessWidget {
 
 class ExternalWebViews extends StatefulWidget {
   ExternalWebViews(
-      {@required this.title, @required this.initialURL, @required this.con});
+      {this.title = "",this.initialURL = "", this.con = ""});
   final String title;
   final String initialURL;
   final String con; // fix later
@@ -65,7 +58,7 @@ class _ExternalWebViewsState extends State<ExternalWebViews> {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child:
-                isPageLoaded ? false : Container(),
+                _isPageLoaded ? Container() : Container(),
           ),
         ],
       ),
@@ -105,12 +98,12 @@ class WebNavControls extends StatefulWidget {
 }
 
 class _WebNavControlsState extends State<WebNavControls> {
-  bool isLButtonDisabled;
-  bool isRButtonDisabled;
+  bool _isLButtonDisabled = false;
+  bool _isRButtonDisabled = false;
   @override
   void initState() {
-    isLButtonDisabled = true;
-    isRButtonDisabled = true;
+    _isLButtonDisabled = true;
+    _isRButtonDisabled = true;
     super.initState();
   }
 

@@ -60,3 +60,11 @@ things:
     - public posts in forum
   - SQLite
     - try to save data in 
+
+***
+#### 22-10
+- update photo functionality
+- save photos and keep a boolean marking when to update
+
+next steps:
+- save xcode and try running...

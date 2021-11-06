@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tst_app/home/page_components.dart';
-import 'package:tst_app/resources/all_events.dart';
-import 'package:tst_app/resources/teacher_bulletin.dart';
-import 'package:tst_app/resources/teacher_hacks.dart';
-import 'package:tst_app/styles.dart';
+import '../home/page_components.dart';
+import '../resources/all_events.dart';
+import 'TeacherBulletin/teacher_bulletin.dart';
+import '../resources/teacher_hacks.dart';
+import '../styles.dart';
 // TODO: create a file to house inspire me section
 
 class ResourcesScreen extends StatelessWidget {
@@ -154,14 +154,14 @@ class ResourcesScreen extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
+                            const Text(
                               'Teacher\'s Bulletin',
                               style: TextStyle(
                                 color: defaultTextColor,
                                 fontSize: 37.0,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 25.0,
                             ),
                             Container(

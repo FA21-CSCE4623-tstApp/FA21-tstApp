@@ -2,13 +2,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:tst_app/give/donation_history.dart';
-import 'package:tst_app/give/monthly_event.dart';
-import 'package:tst_app/home/page_components.dart';
-import 'package:tst_app/home/quotes.dart';
+import 'donation_history.dart';
+import 'monthly_event.dart';
+import '../home/page_components.dart';
+import '../home/quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tst_app/shared_pages/donation_page.dart';
-import 'package:tst_app/styles.dart';
+import '../shared_pages/donation_page.dart';
+import '../styles.dart';
 
 // final Color backgroundColor = Color(0xFFFFFBEF);
 // final Color textColor = Colors.black54;
@@ -262,7 +262,7 @@ class GiveScreen extends StatelessWidget {
 
 class Receipts extends StatelessWidget {
   const Receipts({
-    Key key,
+    required Key key,
   }) : super(key: key);
 
   @override
@@ -394,7 +394,7 @@ class Receipts extends StatelessWidget {
 
 class Testimonial extends StatelessWidget {
   const Testimonial({
-    Key key,
+     Key? key,
   }) : super(key: key);
 
   @override

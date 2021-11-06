@@ -11,8 +11,8 @@ class LoginRegister extends StatefulWidget {
 class _LoginRegisterState extends State<LoginRegister> {
   final _controllerUsername = TextEditingController();
   final _controllerpassword = TextEditingController();
-  String _username;
-  String _password;
+  String _username = "";
+  String _password = "";
   Color loginColor = Colors.black;
   Color backgroundColor = Color(0xFFFFFBEF);
 

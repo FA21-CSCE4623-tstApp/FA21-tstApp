@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 // import 'package:tst_app/home/home_screen.dart';
-import 'package:tst_app/internet_stuff/gallery_photos.dart';
+import '../data/gallery_photos.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 const Color backgroundColor = Color(0xFFFFFBEF);
 const Color textColor = Colors.black87;
-final Color placeholderColor = Colors.amber[100];
+final Color? placeholderColor = Colors.amber[100];
 
 
 Future fetchHTTP(String url) async {
@@ -94,7 +94,7 @@ class Gallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<Gallery> {
-  Future<GalleryPhotos> futureAlbum;
+  // Future<GalleryPhotos> futureAlbum;
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tst_app/home/gallery.dart';
+import 'package:tst_app/styles.dart';
+
 
 class LearnMore extends StatelessWidget {
   static const route = 'learn_more_screen';
@@ -10,7 +11,7 @@ class LearnMore extends StatelessWidget {
     // final double width = MediaQuery.of(context).size.width - 80.0;
     final double height = MediaQuery.of(context).size.height - 120.0;
     return Scaffold(
-      backgroundColor: backgroundColor,
+      backgroundColor: appBackground,
       floatingActionButton: Padding(
         padding: EdgeInsets.only(bottom: height),
         child: Container(
@@ -20,7 +21,7 @@ class LearnMore extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            backgroundColor: textColor,
+            backgroundColor: defaultTextColor,
             child: Icon(
               FontAwesomeIcons.times,
               size: 15.0,
@@ -36,7 +37,7 @@ class LearnMore extends StatelessWidget {
             Text(
               'Learn more description',
               style: TextStyle(
-                color: textColor,
+                color: defaultTextColor,
                 fontSize: 23.0,
               ),
             ),

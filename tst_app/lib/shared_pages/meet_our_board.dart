@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tst_app/styles.dart';
-import 'package:tst_app/home/home_screen.dart';
+import '../styles.dart';
+import '../home/home_screen.dart';
 
 const Color textColor = Colors.black87;
 
@@ -96,7 +96,7 @@ class MeetOurBoard extends StatelessWidget {
 }
 
 class Pictures extends StatelessWidget {
-  Pictures({@required this.imageName});
+  Pictures({this.imageName = ""});
   final String imageName;
 
   @override
@@ -121,7 +121,7 @@ class Pictures extends StatelessWidget {
 }
 
 class Description extends StatelessWidget {
-  Description({this.title, this.description});
+  Description({this.title = "", this.description = ""});
   final String title;
   final String description;
 

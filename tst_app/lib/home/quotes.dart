@@ -10,7 +10,7 @@ class Quotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var quote = new Quote(1);
+    var quote = new Quote(); //TODO: add quotes to main home screen later
     print(quote.quotesList());
 
     final double height = MediaQuery.of(context).size.height - 120.0;
@@ -63,14 +63,10 @@ class Quotes extends StatelessWidget {
 
 
 class Quote {
-String author;
-String quote;
-Map quotes;
 
-Quote(int day){
-  //use day to grab a quote
-
-}
+String author = "";
+String quote = "";
+Map quotes = {};
 
 // grab names from text file
 Future<String> quotesList(){ 

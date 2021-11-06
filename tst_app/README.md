@@ -1,16 +1,11 @@
-# tst_app
+# tst_app_archive
 
-A new Flutter project.
+This project is for a local organization - Teachers Suport Teachers (TST)
 
-## Getting Started
+## About
 
-This project is a starting point for a Flutter application.
+This is a partial codebase of the project for TST. They are a local organization that supports educators/education professionals. This app intends to expand on the events they host and any other activity. 
 
-A few resources to get you started if this is your first Flutter project:
+email me at carter.r.buckner@gmail.com for more info!
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

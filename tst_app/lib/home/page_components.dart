@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-// import 'package:tst_app/give/give_screen.dart';
-// import 'package:tst_app/resources/resources_screen.dart';
-import 'package:tst_app/shared_pages/login_page.dart';
-// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import '../shared_pages/login_page.dart';
 import 'package:table_calendar/table_calendar.dart';
-// import 'home_screen.dart';
-import 'package:tst_app/styles.dart';
+import '../styles.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-
-// const Color placeholderColor = Colors.amber[100];
-// final Color textColor = Colors.black54;
-// const Color accentColor = Colors.deepOrange[300];
-// final Color textColor = Colors.black87;
-// final Color backgroundColor = Color(0xFFFFFBEF);
 
 
 //top app bar
 class CustomAppBar extends StatelessWidget {
-  CustomAppBar({@required this.appbarColor, @required this.appbarTitle});
+  CustomAppBar({this.appbarColor = appBackground, this.appbarTitle = ""});
   final Color appbarColor;
   final String appbarTitle;
 
@@ -122,7 +110,7 @@ class _MonthlyCalendarState extends State<MonthlyCalendar> {
 
 class ContactWidget extends StatelessWidget {
   const ContactWidget({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

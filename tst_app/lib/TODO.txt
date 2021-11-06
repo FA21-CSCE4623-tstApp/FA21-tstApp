@@ -27,3 +27,6 @@ working on now...
     * sign in
     * forgot pwd
 - create admin and user level
+
+23-10
+- figure out better Provider setup?

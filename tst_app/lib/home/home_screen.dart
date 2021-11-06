@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 // import 'package:tst_app/home/calendar.dart';
 // import 'package:tst_app/shared_pages/learn_more.dart';
 // import 'package:tst_app/shared_pages/meet_our_board.dart';
-import 'package:tst_app/home/page_components.dart';
-import 'package:tst_app/home/gallery.dart';
-import 'package:tst_app/shared_pages/learn_more.dart';
-import 'package:tst_app/shared_pages/meet_our_board.dart';
+import '../home/page_components.dart';
+import '../home/gallery.dart';
+import '../shared_pages/learn_more.dart';
+import '../shared_pages/meet_our_board.dart';
 import 'quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:tst_app/styles.dart';
+import '../styles.dart';
 
 // final Color placeholderColor = Colors.amber[100];
 // final Color textColor = Colors.black54;
