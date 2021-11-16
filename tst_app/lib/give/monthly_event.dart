@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../home/home_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../shared_pages/in_app_web.dart';
+import '../shared_components/in_app_web.dart';
 import 'package:intl/intl.dart';
 import '../styles.dart';
 
@@ -80,31 +80,35 @@ class MonthlyEvent extends StatelessWidget {
                       //   height: 50.0,
                       //   width: 180.0,
                       //   child: Center(
-                          // child: Text(
-                          //   'Register Now',
-                          //   style: TextStyle(
-                          //     fontSize: 23.0,
-                          //     fontWeight: FontWeight.w300,
-                          //     color: textColor,
-                          //   ),
+                      // child: Text(
+                      //   'Register Now',
+                      //   style: TextStyle(
+                      //     fontSize: 23.0,
+                      //     fontWeight: FontWeight.w300,
+                      //     color: textColor,
+                      //   ),
                       //     ),
                       //   ),
                       // ),
                       GestureDetector(
                         onTap: () {
-                           Navigator.pushNamed(context, AppWebView.route);
-                           setPageInfo('Register', 'https://www.eventbrite.com/');
-                           },
-                           child: Container(
-                             decoration: BoxDecoration(color: accentColor, borderRadius: BorderRadius.circular(10.0)),
-                             child: Text(
+                          Navigator.pushNamed(context, AppWebView.route);
+                          setPageInfo(
+                              'Register', 'https://www.eventbrite.com/');
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: accentColor,
+                              borderRadius: BorderRadius.circular(10.0)),
+                          child: Text(
                             'Register Now',
                             style: TextStyle(
                               fontSize: 23.0,
                               fontWeight: FontWeight.w300,
                               color: defaultTextColor,
-                            ),),
-                           ),
+                            ),
+                          ),
+                        ),
                         //    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                         // color: accentColor,
                         // padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 60.0),

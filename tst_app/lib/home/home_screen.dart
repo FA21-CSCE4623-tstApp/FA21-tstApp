@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 // import 'package:tst_app/give/give_screen.dart';
 // import 'package:tst_app/home/calendar.dart';
-// import 'package:tst_app/shared_pages/learn_more.dart';
-// import 'package:tst_app/shared_pages/meet_our_board.dart';
+// import 'package:tst_app/shared_components/learn_more.dart';
+// import 'package:tst_app/shared_components/meet_our_board.dart';
 import '../home/page_components.dart';
 import '../home/gallery.dart';
-import '../shared_pages/learn_more.dart';
-import '../shared_pages/meet_our_board.dart';
+import '../shared_components/learn_more.dart';
+import '../shared_components/meet_our_board.dart';
 import 'quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../styles.dart';
@@ -266,7 +266,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                 Expanded(
                                   child: Container(),
                                 ),
-                                Icon(Icons.arrow_forward_ios, size: 20.0, color: lightPurple)
+                                Icon(Icons.arrow_forward_ios,
+                                    size: 20.0, color: lightPurple)
                               ],
                             ),
                           ),
@@ -310,7 +311,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                       fontWeight: FontWeight.w300,
                                       color: Colors.white),
                                 ),
-                                Icon(Icons.arrow_forward_ios_rounded, color: Colors.white, size: 35.0,),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  color: Colors.white,
+                                  size: 35.0,
+                                ),
                               ],
                             ),
                           ),
@@ -405,5 +410,3 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // TODO - re-design homescreen w new color scheme, new gallery setup
 }
-
-

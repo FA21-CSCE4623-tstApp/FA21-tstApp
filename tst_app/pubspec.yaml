@@ -38,11 +38,12 @@ dependencies:
   #  youtube_player_flutter: ^8.0.0
   table_calendar: ^3.0.2
   font_awesome_flutter: ^9.1.0
-  intl: ^0.17.0 #for grabbing Date info (i.e. date format)
+  intl: ^0.17.0 # for grabbing Date info (i.e. date format)
   http: ^0.13.3
   provider: ^6.0.0
   firebase_core: ^1.8.0
   cloud_firestore: ^2.5.4
+  basic_utils: ^3.8.2 # currently used for string formatting
 
 dev_dependencies:
   flutter_test:

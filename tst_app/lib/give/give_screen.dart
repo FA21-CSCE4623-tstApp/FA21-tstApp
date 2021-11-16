@@ -7,7 +7,7 @@ import 'monthly_event.dart';
 import '../home/page_components.dart';
 import '../home/quotes.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../shared_pages/donation_page.dart';
+import '../shared_components/donation_page.dart';
 import '../styles.dart';
 
 // final Color backgroundColor = Color(0xFFFFFBEF);
@@ -170,7 +170,8 @@ class GiveScreen extends StatelessWidget {
                       ),
                       child: Text(
                         'Event of the Month',
-                        style: TextStyle(color: defaultTextColor, fontSize: 23.0),
+                        style:
+                            TextStyle(color: defaultTextColor, fontSize: 23.0),
                       ),
                     ),
                     Padding(
@@ -394,7 +395,7 @@ class Receipts extends StatelessWidget {
 
 class Testimonial extends StatelessWidget {
   const Testimonial({
-     Key? key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -448,5 +449,3 @@ class Testimonial extends StatelessWidget {
   // TODO - add donate now
   // TODO - add
 }
-
-

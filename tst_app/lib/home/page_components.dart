@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import '../shared_pages/login_page.dart';
+import '../shared_components/login_page.dart';
 import 'package:table_calendar/table_calendar.dart';
 import '../styles.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 
 //top app bar
 class CustomAppBar extends StatelessWidget {
@@ -28,29 +27,26 @@ class CustomAppBar extends StatelessWidget {
             onTap: () {
               Navigator.pushNamed(context, LoginRegister.route);
             },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 15.0),
-                child: Center(
-                  child: Text(
-                    'log in',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFFFFFBEF),
-                    ),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 15.0),
+              child: Center(
+                child: Text(
+                  'log in',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: Color(0xFFFFFBEF),
                   ),
                 ),
               ),
-
+            ),
           ),
         ]);
   }
 }
 
-
 //about us video
 //TODO: FIX upload video to teacher.spprt.teachers@gmail.com and use id link
 class AboutUsVideo extends StatelessWidget {
-
   // final YoutubePlayerController _controller = YoutubePlayerController(
   //   initialVideoId: 'y4SRd7paKOI',
   //   flags: YoutubePlayerFlags(
@@ -60,9 +56,7 @@ class AboutUsVideo extends StatelessWidget {
   //   ),
   // );
 
-  void listener() {
-  }
-
+  void listener() {}
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +79,12 @@ class MonthlyCalendar extends StatefulWidget {
 }
 
 class _MonthlyCalendarState extends State<MonthlyCalendar> {
-
-
   @override
   Widget build(BuildContext context) {
     return TableCalendar(
       calendarStyle: CalendarStyle(
-        todayDecoration: BoxDecoration(color: accentColor, shape: BoxShape.circle),
+        todayDecoration:
+            BoxDecoration(color: accentColor, shape: BoxShape.circle),
         weekendTextStyle: TextStyle(
           color: Colors.black,
         ),
@@ -125,8 +118,8 @@ class ContactWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 20.0, vertical: 10.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               child: Text(
                 'Contact Us',
                 style: TextStyle(

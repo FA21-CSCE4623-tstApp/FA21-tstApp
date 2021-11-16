@@ -30,3 +30,12 @@ working on now...
 
 23-10
 - figure out better Provider setup?
+
+11-11
+TODO: make posts clickable (grab from Victor's page)
+TODO: get information from firebase
+
+12-11
+- TODO: cache information
+- TODO: create an "on first run"
+

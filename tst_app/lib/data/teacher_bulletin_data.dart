@@ -10,30 +10,44 @@ class TBData extends ChangeNotifier {
         FirebaseFirestore.instance.collection('Posts');
 
     //return default value if error
-    List<Map> emptyPostData = [
-      {
-        'title': 'default title',
-        'body': 'default body',
-        'created_time': 0,
-        'tags': ['no tags'],
-        'username': 'example user'
-      }
-    ];
 
     try {
       var docSnapshot = await collectionReference.get();
       if (docSnapshot.docs.isNotEmpty) {
         List postListData = [];
         docSnapshot.docs.forEach((doc) => {postListData.add(doc.data())});
-        // print("Post List Data $postListData");
         return postListData;
       }
     } catch (e) {
+      List emptyPostData = [
+        {
+          'title': 'default title',
+          'body': 'default body',
+          'created_time': 0,
+          'tags': ['no tags'],
+          'username': 'example user'
+        }
+      ];
       print("ERROR: $e");
       return emptyPostData;
     }
   }
 
+  bool choice = false;
+  bool getShowScreen() {
+    return choice;
+  }
+
+  // used to display information on post dialog that pops up
+  Color postBackgroundColor = Colors.transparent; // used to show post image
+  String postImagePath =
+      "assets/images/teacher_bulletin/pencil_crayon.png"; // used to show post image
+
   //  getters and setters
   Future get postData => _getBlogPosts();
+  bool get showScreen => getShowScreen();
+  void set setShowScreen(bool show) {
+    choice = show;
+    notifyListeners();
+  }
 }

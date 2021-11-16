@@ -36,7 +36,7 @@ class ResourcesScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text(
+                      const Text(
                         'Helpful Info',
                         style: TextStyle(
                           fontSize: 33.0,
@@ -44,7 +44,7 @@ class ResourcesScreen extends StatelessWidget {
                           fontWeight: FontWeight.w300,
                         ),
                       ),
-                      SizedBox(height: 20.0),
+                      const SizedBox(height: 20.0),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15.0),
                         child: Container(
@@ -57,15 +57,16 @@ class ResourcesScreen extends StatelessWidget {
                         onTap: () => navigateTo(AllEvents.route),
                         child: Row(
                           children: <Widget>[
-                            Icon(FontAwesomeIcons.laptopCode,
+                            const Icon(FontAwesomeIcons.laptopCode,
                                 color: defaultIconColor, size: 21.0),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
-                            Text('Digital Resources',
-                                style: TextStyle(fontSize: 18.0, color: defaultTextColor)),
+                            const Text('Digital Resources',
+                                style: TextStyle(
+                                    fontSize: 18.0, color: defaultTextColor)),
                             Expanded(child: Container()),
-                            Icon(Icons.arrow_forward_ios,
+                            const Icon(Icons.arrow_forward_ios,
                                 color: defaultIconColor, size: 18.0)
                           ],
                         ),
@@ -82,15 +83,16 @@ class ResourcesScreen extends StatelessWidget {
                         onTap: () => navigateTo(AllEvents.route),
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.event_note,
+                            const Icon(Icons.event_note,
                                 color: defaultIconColor, size: 23.0),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
-                            Text('All Events',
-                                style: TextStyle(fontSize: 18.0, color: defaultTextColor)),
+                            const Text('All Events',
+                                style: TextStyle(
+                                    fontSize: 18.0, color: defaultTextColor)),
                             Expanded(child: Container()),
-                            Icon(Icons.arrow_forward_ios,
+                            const Icon(Icons.arrow_forward_ios,
                                 color: defaultIconColor, size: 18.0)
                           ],
                         ),
@@ -107,16 +109,16 @@ class ResourcesScreen extends StatelessWidget {
                         onTap: () => navigateTo(TeacherHacks.route),
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.lightbulb_outline,
+                            const Icon(Icons.lightbulb_outline,
                                 color: defaultIconColor, size: 23.0),
-                            SizedBox(
+                            const SizedBox(
                               width: 15.0,
                             ),
-                            Text('#TeacherHacks',
+                            const Text('#TeacherHacks',
                                 style: TextStyle(
                                     fontSize: 18.0, color: defaultTextColor)),
                             Expanded(child: Container()),
-                            Icon(Icons.arrow_forward_ios,
+                            const Icon(Icons.arrow_forward_ios,
                                 color: defaultIconColor, size: 18.0)
                           ],
                         ),
@@ -153,18 +155,18 @@ class ResourcesScreen extends StatelessWidget {
                         left: 40.0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
+                          children: const [
+                            Text(
                               'Teacher\'s Bulletin',
                               style: TextStyle(
                                 color: defaultTextColor,
                                 fontSize: 37.0,
                               ),
                             ),
-                            const SizedBox(
+                            SizedBox(
                               height: 25.0,
                             ),
-                            Container(
+                            SizedBox(
                               width: 200.0,
                               child: Text(
                                 'Learn and ask questions with other educators',
@@ -181,7 +183,7 @@ class ResourcesScreen extends StatelessWidget {
                         bottom: 80.0,
                         right: 40.0,
                         child: Row(
-                          children: [
+                          children: const [
                             Text('see how',
                                 style: TextStyle(color: defaultTextColor)),
                             SizedBox(width: 5.0),
@@ -200,9 +202,9 @@ class ResourcesScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          left: 20.0, bottom: 40.0, top: 20.0),
+                    const Padding(
+                      padding:
+                          EdgeInsets.only(left: 20.0, bottom: 40.0, top: 20.0),
                       child: Text(
                         'Featured',
                         style:
