@@ -17,8 +17,6 @@ class TeacherBulletin extends StatefulWidget {
   State<TeacherBulletin> createState() => _TeacherBulletinState();
 }
 
-bool showScreen = false;
-
 class _TeacherBulletinState extends State<TeacherBulletin> {
   @override
   Widget build(BuildContext context) {
@@ -168,7 +166,6 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
               ),
             ),
           ),
-          info.showScreen ? DialogScreen() : Container(), // show dialog screen
         ],
       );
     });
@@ -224,7 +221,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                                   posts[widget.index]["body"]);
                               info.postTitle =
                                   formatTitle(posts[widget.index]["title"]);
-                              info.setShowScreen = true;
+                              Navigator.pushNamed(context, DialogScreen.route);
                             });
                           },
                           child: Row(
@@ -319,7 +316,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                                   posts[widget.index]["body"]);
                               info.postTitle =
                                   formatTitle(posts[widget.index]["title"]);
-                              info.setShowScreen = true;
+                              Navigator.pushNamed(context, DialogScreen.route);
                             });
                           },
                           child: Row(

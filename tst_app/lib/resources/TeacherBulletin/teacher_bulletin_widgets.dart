@@ -375,3 +375,18 @@ class _BlogPostsState extends State<BlogPosts> {
     });
   }
 }
+
+Widget backNavigationWidget() {
+  return Container(
+    width: 40.0,
+    height: 40.0,
+    decoration: BoxDecoration(
+      color: mediumBrown,
+      borderRadius: BorderRadius.circular(10.0),
+    ),
+    child: const Padding(
+      padding: EdgeInsets.all(5.0),
+      child: Icon(Icons.arrow_back, color: Colors.white70),
+    ),
+  );
+}
