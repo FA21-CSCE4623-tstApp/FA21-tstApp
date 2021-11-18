@@ -43,11 +43,23 @@ class TBData extends ChangeNotifier {
   String postImagePath =
       "assets/images/teacher_bulletin/pencil_crayon.png"; // used to show post image
 
+  String postTitle = "";
+  String postBody = "";
+  String postAuthor = "";
+  String postDate = "";
+  List postTags = [];
+  bool areRelevantPostsLoaded = false;
+
   //  getters and setters
   Future get postData => _getBlogPosts();
   bool get showScreen => getShowScreen();
   void set setShowScreen(bool show) {
     choice = show;
     notifyListeners();
+  }
+
+  Future onRefreshTeacherBulletin() async {
+    //TODO: implement this
+    const Duration(seconds: 5);
   }
 }

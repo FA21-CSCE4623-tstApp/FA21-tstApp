@@ -1,191 +1,158 @@
 import 'package:flutter/material.dart';
-import 'package:tst_app/data/teacher_bulletin_data.dart';
-import '../../styles.dart';
+import 'package:tst_app/styles.dart';
 import 'package:provider/provider.dart';
+import '../../data/teacher_bulletin_data.dart';
+import 'helper_functions.dart';
 import '../../shared_components/widgets.dart';
 
-import 'teacher_bulletin_widgets.dart';
-
-import 'post_dialog.dart';
-import 'helper_functions.dart';
-
-class TeacherBulletin extends StatefulWidget {
-  static String route = 'teacher_bulletin_screen';
-  TeacherBulletin({Key? key}) : super(key: key);
-
-  @override
-  State<TeacherBulletin> createState() => _TeacherBulletinState();
+Widget likePostWidget({bool selected = false}) {
+  Color iconColor = Colors.white54;
+  Color backgroundColor = Colors.black54;
+  if (selected) {
+    iconColor = Colors.black;
+    backgroundColor = Colors.white;
+  } else {
+    iconColor = Colors.white54;
+    backgroundColor = Colors.black54;
+  }
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Icon(
+          Icons.thumb_up,
+          color: iconColor,
+          size: 15.0,
+        ),
+      ),
+    ),
+  );
 }
 
-bool showScreen = false;
+Widget dislikePostWidget({bool selected = false}) {
+  Color iconColor = Colors.white54;
+  Color backgroundColor = Colors.black54;
+  if (selected) {
+    iconColor = Colors.black;
+    backgroundColor = Colors.white;
+  } else {
+    iconColor = Colors.white54;
+    backgroundColor = Colors.black54;
+  }
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Icon(
+          Icons.thumb_down,
+          color: iconColor,
+          size: 15.0,
+        ),
+      ),
+    ),
+  );
+}
 
-class _TeacherBulletinState extends State<TeacherBulletin> {
+Widget sharePostWidget({bool selected = false}) {
+  Color iconColor = Colors.white54;
+  Color backgroundColor = Colors.black54;
+  if (selected) {
+    iconColor = Colors.black;
+    backgroundColor = Colors.white;
+  } else {
+    iconColor = Colors.white54;
+    backgroundColor = Colors.black54;
+  }
+
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Icon(
+          Icons.share,
+          color: iconColor,
+          size: 15.0,
+        ),
+      ),
+    ),
+  );
+}
+
+Widget reportPostWidget({bool selected = false}) {
+  Color iconColor = Colors.white54;
+  Color backgroundColor = Colors.black54;
+  if (selected) {
+    iconColor = Colors.black;
+    backgroundColor = Colors.white;
+  } else {
+    iconColor = Colors.white54;
+    backgroundColor = Colors.black54;
+  }
+
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Icon(
+          Icons.flag,
+          color: iconColor,
+          size: 15.0,
+        ),
+      ),
+    ),
+  );
+}
+
+class RelevantBlogPostsSection extends StatefulWidget {
+  const RelevantBlogPostsSection({Key? key}) : super(key: key);
+
+  @override
+  _RelevantBlogPostsSectionState createState() =>
+      _RelevantBlogPostsSectionState();
+}
+
+class _RelevantBlogPostsSectionState extends State<RelevantBlogPostsSection> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
-      bool showScreen = info.showScreen;
-
-      print("info.showScreen ${info.showScreen}");
-
-      return Stack(
-        children: [
-          Scaffold(
-            backgroundColor: appBackground,
-            appBar: AppBar(
-              elevation: 1.0,
-              iconTheme: const IconThemeData(color: Colors.black38),
-              backgroundColor: lightBrown,
-              title: const Text(
-                'Teacher\'s Bulletin',
-                style: TextStyle(fontSize: 20.0, color: defaultTextColor),
-              ),
-            ),
-            body: Padding(
-              padding: defaultScreenPadding,
-              child: CustomScrollView(
-                slivers: <Widget>[
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        const Padding(
-                          padding: EdgeInsets.only(bottom: 40.0),
-                          child: Text(
-                            "Change What You See",
-                            style: defaultWidgetTextStyle,
-                          ),
-                        ),
-
-                        // 1st column ... "I want to focus on..."
-                        const Text("I want blogs that focus on..."),
-                        const SizedBox(height: 10.0),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Chip(
-                            backgroundColor: lightPurple,
-                            label: Text(
-                              "Educators",
-                              style: defaultChipTextStyle,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        // 2nd row "I want to see blogs that..."
-                        const Text("I want to see blogs that..."),
-                        const SizedBox(width: 1.0),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Chip(
-                            backgroundColor: lightPurple,
-                            label: Text(
-                              "K4",
-                              style: defaultChipTextStyle,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        // 3rd row "I would like to see posts that... "
-                        const Text("I want blogs that focus on..."),
-                        const SizedBox(width: 10.0),
-                        SizedBox(
-                            height: 50.0,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 2,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List tags = ["Inspiration", "K5"];
-                                  return Chip(
-                                    backgroundColor: lightPurple,
-                                    label: Text(
-                                      tags[index],
-                                      style: defaultChipTextStyle,
-                                    ),
-                                  );
-                                })),
-
-                        Padding(
-                          padding: defaultSectionPadding,
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Container(
-                                    color: defaultTextColor, height: 0.5),
-                              ),
-                              Row(
-                                children: [
-                                  const Text("Add a Post",
-                                      style: TextStyle(
-                                          fontSize: 25.0,
-                                          color: defaultTextColor)),
-                                  const Expanded(child: SizedBox(width: 10.0)),
-                                  Container(
-                                    decoration: defaultRoundedCorners(),
-                                    child: const Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "add",
-                                        style: TextStyle(
-                                          color: lightTextColor,
-                                          fontSize: 20.0,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 20.0),
-                                child: Container(
-                                    color: defaultTextColor, height: 0.5),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: defaultSectionPadding,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Text(
-                                  "Relevant",
-                                  style: defaultWidgetTextStyle,
-                                ),
-                              ),
-                              Column(
-                                  children: List.generate(
-                                      2,
-                                      (index) => RelevantBlogPostSection(
-                                          index: index))),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          info.showScreen ? DialogScreen() : Container(), // show dialog screen
-        ],
-      );
+      return info.areRelevantPostsLoaded
+          ? Column(
+              children: List.generate(2, (index) => BlogPosts(index: index)))
+          : smallLoadingIndicator();
     });
   }
 }
 
-class RelevantBlogPostSection extends StatefulWidget {
+class BlogPosts extends StatefulWidget {
   final int index;
 
-  const RelevantBlogPostSection({this.index = 0});
+  const BlogPosts({this.index = 0});
 
   @override
-  State<RelevantBlogPostSection> createState() =>
-      _RelevantBlogPostSectionState();
+  State<BlogPosts> createState() => _BlogPostsState();
 }
 
-class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
+class _BlogPostsState extends State<BlogPosts> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
@@ -193,6 +160,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
           future: info.postData,
           builder: (context, db) {
             if (db.hasData) {
+              info.areRelevantPostsLoaded = true;
               List posts = (db.data as List).cast();
               // track post background color/image
               List<Color> backgroundColors = [
@@ -211,19 +179,20 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                       ? GestureDetector(
                           onTap: () {
                             setState(() {
-                              print("show dialog screen");
+                              // set info to show on post dialog
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
+                              info.postImagePath = images[widget.index];
+                              info.postTitle =
+                                  formatTitle(posts[widget.index]["title"]);
                               info.postTags = posts[widget.index]["tags"];
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
+                              info.postDate = timestampToDateFormat(
+                                  posts[widget.index]["created_date"]);
                               info.setShowScreen = true;
                             });
                           },
@@ -243,7 +212,8 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                               const SizedBox(width: 20.0),
                               Expanded(
                                 child: Column(children: [
-                                  Text(posts[widget.index]["title"],
+                                  Text(
+                                      formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           fontWeight: FontWeight.w600)),
@@ -306,19 +276,19 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                       : GestureDetector(
                           onTap: () {
                             setState(() {
-                              print("show dialog screen");
+                              // set info to show on post dialog
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
+                              info.postTitle =
+                                  formatTitle(posts[widget.index]["title"]);
                               info.postTags = posts[widget.index]["tags"];
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
+                              info.postDate = timestampToDateFormat(
+                                  posts[widget.index]["created_date"]);
                               info.setShowScreen = true;
                             });
                           },
@@ -326,7 +296,8 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                             children: [
                               Expanded(
                                 child: Column(children: [
-                                  Text(posts[widget.index]["title"],
+                                  Text(
+                                      formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           fontWeight: FontWeight.w600)),
@@ -397,7 +368,8 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                           ),
                         ));
             } else {
-              return smallLoadingIndicator();
+              info.areRelevantPostsLoaded = false;
+              return Container();
             }
           });
     });

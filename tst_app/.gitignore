@@ -47,4 +47,7 @@ app.*.map.json
 
 
 # added by Carter
+
+.fake
+.ionide
 TODO.txt

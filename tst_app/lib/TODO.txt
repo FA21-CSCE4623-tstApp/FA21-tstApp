@@ -26,6 +26,9 @@ working on now...
     * email verification
     * sign in
     * forgot pwd
+
+- create admin and user level
+
 - create admin and user level
 
 23-10
@@ -38,4 +41,14 @@ TODO: get information from firebase
 12-11
 - TODO: cache information
 - TODO: create an "on first run"
+
+
+15-11
+- TODO: create an "on first run"
+- TODO: add a tutorial to Teacher's Bulletin
+
+18-11
+- talk to Tristan/Victor about..
+   - creating landing screen logo (just needs to be set up)
+   -
 
