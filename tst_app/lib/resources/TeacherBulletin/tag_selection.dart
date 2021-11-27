@@ -1,9 +1,6 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_chips_input/flutter_chips_input.dart';
-
 import '../../styles.dart';
 
 class TagSelectionScreen extends StatefulWidget {
