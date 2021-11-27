@@ -12,18 +12,18 @@ import '../../shared_components/widgets.dart';
 
 // TODO: start here. create a popup dialog
 
-class DialogScreenExample extends StatefulWidget {
+class BlogScreen extends StatefulWidget {
   static String route = 'dialog_screen';
 
   // bool show;
-  DialogScreenExample({Key? key}) : super(key: key);
+  BlogScreen({Key? key}) : super(key: key);
   final int index = 0;
 
   @override
-  _DialogScreenExampleState createState() => _DialogScreenExampleState();
+  _BlogScreenState createState() => _BlogScreenState();
 }
 
-class _DialogScreenExampleState extends State<DialogScreenExample> {
+class _BlogScreenState extends State<BlogScreen> {
   @override
   Widget build(BuildContext buildContext) {
     final TBData data = new TBData();
