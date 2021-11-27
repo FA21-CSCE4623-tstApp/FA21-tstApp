@@ -5,6 +5,8 @@ import '../resources/all_events.dart';
 import 'TeacherBulletin/teacher_bulletin.dart';
 import '../resources/teacher_hacks.dart';
 import '../styles.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 // TODO: create a file to house inspire me section
 
 class ResourcesScreen extends StatelessWidget {
@@ -32,7 +34,7 @@ class ResourcesScreen extends StatelessWidget {
               [
                 Padding(
                   padding:
-                      const EdgeInsets.only(left: 20.0, top: 20.0, right: 20.0),
+                  const EdgeInsets.only(left: 20.0, top: 20.0, right: 20.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -146,8 +148,8 @@ class ResourcesScreen extends StatelessWidget {
                               vertical: 40.0, horizontal: 18.0),
                           child: Container(
                               child: Image.asset(
-                            'assets/images/bulletin-board.png',
-                          )),
+                                'assets/images/bulletin-board.png',
+                              )),
                         ),
                       ),
                       Positioned(
@@ -204,11 +206,11 @@ class ResourcesScreen extends StatelessWidget {
                   children: <Widget>[
                     const Padding(
                       padding:
-                          EdgeInsets.only(left: 20.0, bottom: 40.0, top: 20.0),
+                      EdgeInsets.only(left: 20.0, bottom: 40.0, top: 20.0),
                       child: Text(
                         'Featured',
                         style:
-                            TextStyle(fontSize: 23.0, color: defaultTextColor),
+                        TextStyle(fontSize: 23.0, color: defaultTextColor),
                       ),
                     ),
                     Container(
@@ -237,12 +239,18 @@ class ResourcesScreen extends StatelessWidget {
                   ],
                 ),
                 //shows the user TST photos/posts
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 80.0),
-                  child: Container(
-                      color: Colors.blue,
-                      height: 230.0,
-                      width: double.infinity),
+                GestureDetector(
+                  onTap: () {
+                    const url = 'https://wesupportteachers.com/contact-us';
+                    launch(url);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50.0),
+                    child: Image.asset('assets/images/ConnectWithUs.JPG'),
+                    //color: appBackground,
+                    //height: 230.0,
+                    //width: double.infinity),
+                  ),
                 ),
                 ContactWidget(),
               ],
