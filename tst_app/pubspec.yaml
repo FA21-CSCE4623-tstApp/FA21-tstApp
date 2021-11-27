@@ -74,6 +74,7 @@ flutter:
    - assets/quotes.txt
    - assets/images/board/
    - assets/images/teacher_bulletin/
+   - assets/images/ConnectWithUs.JPG
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
