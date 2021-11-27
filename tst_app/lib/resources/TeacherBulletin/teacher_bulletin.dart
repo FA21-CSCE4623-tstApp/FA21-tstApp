@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tst_app/data/teacher_bulletin_data.dart';
+import 'package:tst_app/resources/TeacherBulletin/blog_screen.dart';
 import '../../styles.dart';
 import 'package:provider/provider.dart';
 import '../../shared_components/widgets.dart';
@@ -22,6 +24,10 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
       bool showScreen = info.showScreen;
+      var curDate = new DateTime.now();
+      var formatDate = new DateFormat('yMd');
+      String formattedDate = formatDate.format(curDate);
+
 
       print("info.showScreen ${info.showScreen}");
 
@@ -38,7 +44,8 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                 style: TextStyle(fontSize: 20.0, color: defaultTextColor),
               ),
             ),
-            body: Padding(
+            body:
+            Padding(
               padding: defaultScreenPadding,
               child: CustomScrollView(
                 slivers: <Widget>[
@@ -105,7 +112,8 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                           child: Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
+                                padding:
+                                const EdgeInsets.only(bottom: 20.0),
                                 child: Container(
                                     color: defaultTextColor, height: 0.5),
                               ),
@@ -115,16 +123,22 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                       style: TextStyle(
                                           fontSize: 25.0,
                                           color: defaultTextColor)),
-                                  const Expanded(child: SizedBox(width: 10.0)),
-                                  Container(
-                                    decoration: defaultRoundedCorners(),
-                                    child: const Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "add",
-                                        style: TextStyle(
-                                          color: lightTextColor,
-                                          fontSize: 20.0,
+                                  const Expanded(
+                                      child: SizedBox(width: 20.0)),
+                                  GestureDetector(
+                                    onTap: () => setState(() {
+                                      info.setShowScreen = true;
+                                    }),
+                                    child: Container(
+                                      decoration: defaultRoundedCorners(),
+                                      child: const Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "add",
+                                          style: TextStyle(
+                                            color: lightTextColor,
+                                            fontSize: 20.0,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -154,7 +168,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                               Column(
                                   children: List.generate(
                                       2,
-                                      (index) => RelevantBlogPostSection(
+                                          (index) => RelevantBlogPostSection(
                                           index: index))),
                             ],
                           ),
@@ -166,6 +180,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
               ),
             ),
           ),
+          BlogScreen(),
         ],
       );
     });
@@ -206,193 +221,193 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                   padding: const EdgeInsets.symmetric(vertical: 40.0),
                   child: (widget.index % 2) == 0
                       ? GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              print("show dialog screen");
-                              info.postBackgroundColor =
-                                  backgroundColors[widget.index];
-                              info.postImagePath = images[widget.index];
-                              info.postTags = posts[widget.index]["tags"];
-                              info.postAuthor =
-                                  formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
-                              info.postBody = formatTextWithParagraphs(
-                                  posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
-                              Navigator.pushNamed(context, DialogScreen.route);
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                    height: 100.0,
-                                    child: Image.asset(
-                                      images[widget.index],
-                                      fit: BoxFit.cover,
-                                    ),
-                                    decoration: defaultRoundedCorners(
-                                        background:
-                                            backgroundColors[widget.index])),
+                    onTap: () {
+                      setState(() {
+                        print("show dialog screen");
+                        info.postBackgroundColor =
+                        backgroundColors[widget.index];
+                        info.postImagePath = images[widget.index];
+                        info.postTags = posts[widget.index]["tags"];
+                        info.postAuthor =
+                            formatName(posts[widget.index]["author"]);
+                        info.postDate = timestampToDateFormat(
+                            posts[widget.index]["created_date"]);
+                        info.postBody = formatTextWithParagraphs(
+                            posts[widget.index]["body"]);
+                        info.postTitle =
+                            formatTitle(posts[widget.index]["title"]);
+                        Navigator.pushNamed(context, DialogScreen.route);
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                              height: 100.0,
+                              child: Image.asset(
+                                images[widget.index],
+                                fit: BoxFit.cover,
                               ),
-                              const SizedBox(width: 20.0),
-                              Expanded(
-                                child: Column(children: [
-                                  Text(posts[widget.index]["title"],
-                                      style: const TextStyle(
-                                          fontSize: 17.0,
-                                          fontWeight: FontWeight.w600)),
-                                  const SizedBox(height: 10.0),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 10.0,
-                                        width: 10.0,
-                                        decoration: defaultRoundedCorners(),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      const Expanded(
-                                        flex: 5,
-                                        child: Text(
-                                          "submitted by: ",
-                                          style: TextStyle(
-                                              fontSize: 10.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Text(
-                                            formatName(
-                                                posts[widget.index]["author"]),
-                                            style: const TextStyle(
-                                                fontSize: 10.0)),
-                                      ),
-                                    ],
+                              decoration: defaultRoundedCorners(
+                                  background:
+                                  backgroundColors[widget.index])),
+                        ),
+                        const SizedBox(width: 20.0),
+                        Expanded(
+                          child: Column(children: [
+                            Text(posts[widget.index]["title"],
+                                style: const TextStyle(
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.w600)),
+                            const SizedBox(height: 10.0),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 10.0,
+                                  width: 10.0,
+                                  decoration: defaultRoundedCorners(),
+                                ),
+                                const SizedBox(width: 10.0),
+                                const Expanded(
+                                  flex: 5,
+                                  child: Text(
+                                    "submitted by: ",
+                                    style: TextStyle(
+                                        fontSize: 10.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  const SizedBox(height: 10.0),
-                                  SizedBox(
-                                      height: 30.0,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: (posts[widget.index]
-                                                  ["tags"])
-                                              .length,
-                                          itemBuilder: (context, tagIndex) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10.0),
-                                              child: Chip(
-                                                backgroundColor: lightPurple,
-                                                label: Text(
-                                                  posts[widget.index]["tags"]
-                                                      [tagIndex],
-                                                  style: defaultChipTextStyle,
-                                                ),
-                                              ),
-                                            );
-                                          })),
-                                ]),
-                              ),
-                            ],
-                          ),
-                        )
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: Text(
+                                      formatName(
+                                          posts[widget.index]["author"]),
+                                      style: const TextStyle(
+                                          fontSize: 10.0)),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10.0),
+                            SizedBox(
+                                height: 30.0,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: (posts[widget.index]
+                                    ["tags"])
+                                        .length,
+                                    itemBuilder: (context, tagIndex) {
+                                      return Padding(
+                                        padding:
+                                        const EdgeInsets.symmetric(
+                                            horizontal: 10.0),
+                                        child: Chip(
+                                          backgroundColor: lightPurple,
+                                          label: Text(
+                                            posts[widget.index]["tags"]
+                                            [tagIndex],
+                                            style: defaultChipTextStyle,
+                                          ),
+                                        ),
+                                      );
+                                    })),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  )
                       : GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              print("show dialog screen");
-                              info.postBackgroundColor =
-                                  backgroundColors[widget.index];
-                              info.postImagePath = images[widget.index];
-                              info.postTags = posts[widget.index]["tags"];
-                              info.postAuthor =
-                                  formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
-                              info.postBody = formatTextWithParagraphs(
-                                  posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
-                              Navigator.pushNamed(context, DialogScreen.route);
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Column(children: [
-                                  Text(posts[widget.index]["title"],
-                                      style: const TextStyle(
-                                          fontSize: 17.0,
-                                          fontWeight: FontWeight.w600)),
-                                  const SizedBox(height: 10.0),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 10.0,
-                                        width: 10.0,
-                                        decoration: defaultRoundedCorners(),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      const Expanded(
-                                        flex: 5,
-                                        child: Text(
-                                          "submitted by: ",
-                                          style: TextStyle(
-                                              fontSize: 10.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Text(
-                                            formatName(
-                                                posts[widget.index]["author"]),
-                                            style: const TextStyle(
-                                                fontSize: 10.0)),
-                                      ),
-                                    ],
+                    onTap: () {
+                      setState(() {
+                        print("show dialog screen");
+                        info.postBackgroundColor =
+                        backgroundColors[widget.index];
+                        info.postImagePath = images[widget.index];
+                        info.postTags = posts[widget.index]["tags"];
+                        info.postAuthor =
+                            formatName(posts[widget.index]["author"]);
+                        info.postDate = timestampToDateFormat(
+                            posts[widget.index]["created_date"]);
+                        info.postBody = formatTextWithParagraphs(
+                            posts[widget.index]["body"]);
+                        info.postTitle =
+                            formatTitle(posts[widget.index]["title"]);
+                        Navigator.pushNamed(context, DialogScreen.route);
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(children: [
+                            Text(posts[widget.index]["title"],
+                                style: const TextStyle(
+                                    fontSize: 17.0,
+                                    fontWeight: FontWeight.w600)),
+                            const SizedBox(height: 10.0),
+                            Row(
+                              children: [
+                                Container(
+                                  height: 10.0,
+                                  width: 10.0,
+                                  decoration: defaultRoundedCorners(),
+                                ),
+                                const SizedBox(width: 10.0),
+                                const Expanded(
+                                  flex: 5,
+                                  child: Text(
+                                    "submitted by: ",
+                                    style: TextStyle(
+                                        fontSize: 10.0,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  const SizedBox(height: 10.0),
-                                  SizedBox(
-                                      height: 30.0,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: (posts[widget.index]
-                                                  ["tags"])
-                                              .length,
-                                          itemBuilder: (context, tagIndex) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5.0),
-                                              child: Chip(
-                                                backgroundColor: lightPurple,
-                                                label: Text(
-                                                  posts[widget.index]["tags"]
-                                                      [tagIndex],
-                                                  style: defaultChipTextStyle,
-                                                ),
-                                              ),
-                                            );
-                                          })),
-                                ]),
-                              ),
-                              const SizedBox(width: 20.0),
-                              Expanded(
-                                child: Container(
-                                    height: 100.0,
-                                    decoration: defaultRoundedCorners(
-                                        background:
-                                            backgroundColors[widget.index]),
-                                    child: Image.asset(images[widget.index],
-                                        fit: BoxFit.cover)),
-                              ),
-                            ],
-                          ),
-                        ));
+                                ),
+                                Expanded(
+                                  flex: 4,
+                                  child: Text(
+                                      formatName(
+                                          posts[widget.index]["author"]),
+                                      style: const TextStyle(
+                                          fontSize: 10.0)),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 10.0),
+                            SizedBox(
+                                height: 30.0,
+                                child: ListView.builder(
+                                    scrollDirection: Axis.horizontal,
+                                    itemCount: (posts[widget.index]
+                                    ["tags"])
+                                        .length,
+                                    itemBuilder: (context, tagIndex) {
+                                      return Padding(
+                                        padding:
+                                        const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        child: Chip(
+                                          backgroundColor: lightPurple,
+                                          label: Text(
+                                            posts[widget.index]["tags"]
+                                            [tagIndex],
+                                            style: defaultChipTextStyle,
+                                          ),
+                                        ),
+                                      );
+                                    })),
+                          ]),
+                        ),
+                        const SizedBox(width: 20.0),
+                        Expanded(
+                          child: Container(
+                              height: 100.0,
+                              decoration: defaultRoundedCorners(
+                                  background:
+                                  backgroundColors[widget.index]),
+                              child: Image.asset(images[widget.index],
+                                  fit: BoxFit.cover)),
+                        ),
+                      ],
+                    ),
+                  ));
             } else {
               return smallLoadingIndicator();
             }
