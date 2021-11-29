@@ -4,15 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:http/http.dart' as http;
 
 class TBData extends ChangeNotifier {
+  final CollectionReference post =
+  FirebaseFirestore.instance.collection('Posts');
   Future _getBlogPosts() async {
     // get document from firebase
-    CollectionReference collectionReference =
-        FirebaseFirestore.instance.collection('Posts');
-
     //return default value if error
 
     try {
-      var docSnapshot = await collectionReference.get();
+      var docSnapshot = await post.get();
       if (docSnapshot.docs.isNotEmpty) {
         List postListData = [];
         docSnapshot.docs.forEach((doc) => {postListData.add(doc.data())});
@@ -25,7 +24,7 @@ class TBData extends ChangeNotifier {
           'body': 'default body',
           'created_time': 0,
           'tags': ['no tags'],
-          'username': 'example user'
+          'author': 'example user'
         }
       ];
       print("ERROR: $e");
@@ -33,10 +32,67 @@ class TBData extends ChangeNotifier {
     }
   }
 
+
+
+  Future createBlogPosts() async{
+    List postData = [{
+      'title': 'default title',
+      'body': 'default body',
+      'created_time': 0,
+      'tags': ['no tags'],
+      'author': 'example user'
+    }];
+    print(postData);
+    print('button clicked');
+    return post
+        .doc()
+        .set({
+      'title': 'default title',
+      'body': 'default body',
+      'created_time': 0,
+      'tags': ['no tags'],
+      'author': 'example user'
+    })
+        .then((value) => print("Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
+
   bool choice = false;
   bool getShowScreen() {
     return choice;
   }
+
+
+  List<String> userTags = [];
+  List<String> getTags(){
+
+    return userTags;
+  }
+
+  void set setTags(String choice){
+   // userTags.add(choice);
+    isDuplicate(choice);
+    notifyListeners();
+  }
+
+  void clearTags(){
+    userTags.clear();
+    notifyListeners();
+  }
+
+  void clearTag(String choice){
+    userTags.remove(choice);
+    // userTags.removeAt(index);
+    notifyListeners();
+  }
+
+  void isDuplicate(String choice){
+    if(!userTags.contains(choice)){
+      userTags.add(choice);
+    }
+  }
+
 
   // used to display information on post dialog that pops up
   Color postBackgroundColor = Colors.transparent; // used to show post image
@@ -53,6 +109,8 @@ class TBData extends ChangeNotifier {
   //  getters and setters
   Future get postData => _getBlogPosts();
   bool get showScreen => getShowScreen();
+  List<String> get postTag => getTags();
+
   void set setShowScreen(bool show) {
     choice = show;
     notifyListeners();
