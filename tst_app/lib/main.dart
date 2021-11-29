@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tst_app/data/teacher_bulletin_data.dart';
 import '../resources/TeacherBulletin/post_dialog.dart';
-import '../data/gallery_photos.dart';
 import '../resources/TeacherBulletin/teacher_bulletin.dart';
 import '../styles.dart';
 import '../test.dart';
+import 'data/events_data.dart';
 import 'home/home_screen.dart';
 import 'shared_components/learn_more.dart';
 import 'shared_components/login_page.dart';
@@ -84,6 +84,7 @@ class _TSTAppState extends State<TSTApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => TBData()),
+        ChangeNotifierProvider(create: (_) => AEData()),
       ],
       child: MaterialApp(
         theme: ThemeData(
