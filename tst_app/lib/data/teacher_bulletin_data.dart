@@ -48,7 +48,14 @@ class TBData extends ChangeNotifier {
   String postAuthor = "";
   String postDate = "";
   List postTags = [];
-  bool areRelevantPostsLoaded = false;
+  bool arePostsLoaded = false;
+  bool get getAreRelevantPostsLoaded => arePostsLoaded;
+  void set setAreRelevantPostsLoaded(bool postsLoaded) {
+    arePostsLoaded = postsLoaded;
+    notifyListeners();
+  }
+
+  bool isFirstRun = false; // used to show "on first run"
 
   //  getters and setters
   Future get postData => _getBlogPosts();

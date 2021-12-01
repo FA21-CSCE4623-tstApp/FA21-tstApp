@@ -43,7 +43,6 @@ String formatTextWithParagraphs(String text) {
     }
   }
 
-  print(text);
   return text;
 }
 

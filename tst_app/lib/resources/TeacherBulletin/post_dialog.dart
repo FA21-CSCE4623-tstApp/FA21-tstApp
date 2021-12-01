@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tst_app/resources/TeacherBulletin/teacher_bulletin_widgets.dart';
 
 import '../../data/teacher_bulletin_data.dart';
-import 'helper_functions.dart';
+import '../../helper_functions.dart';
 import '../../styles.dart';
 import '../../shared_components/widgets.dart';
 
@@ -22,7 +22,7 @@ class DialogScreen extends StatefulWidget {
 
 // buttons on screen
 bool isLike = false;
-bool isDislike = false;
+bool isBookmark = false;
 bool isShare = false;
 bool isFlag = false;
 
@@ -54,26 +54,15 @@ class _DialogScreenState extends State<DialogScreen> {
                 Positioned(
                   bottom: 10.0,
                   left: 10.0,
-                  child: Row(
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isLike == false ? isLike = true : isLike = false;
-                            });
-                          },
-                          child: likePostWidget(selected: isLike)),
-                      GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isDislike == false
-                                  ? isDislike = true
-                                  : isDislike = false;
-                            });
-                          },
-                          child: dislikePostWidget(selected: isDislike)),
-                    ],
-                  ),
+                  child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isBookmark == false
+                              ? isBookmark = true
+                              : isBookmark = false;
+                        });
+                      },
+                      child: bookmarkPostWidget(selected: isBookmark)),
                 ),
                 Positioned(
                   bottom: 10.0,
@@ -158,9 +147,11 @@ class _DialogScreenState extends State<DialogScreen> {
                           child: const Icon(Icons.person, color: appBackground),
                         ),
                         SizedBox(width: 5.0),
-                        Text(info.postAuthor),
+                        Text(info.postAuthor,
+                            style: const TextStyle(color: defaultTextColor)),
                         Expanded(child: SizedBox(width: 5.0)),
-                        Text(info.postDate),
+                        Text(info.postDate,
+                            style: const TextStyle(color: defaultTextColor)),
                       ],
                     ),
                   ),

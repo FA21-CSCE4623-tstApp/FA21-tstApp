@@ -44,6 +44,7 @@ dependencies:
   firebase_core: ^1.8.0
   cloud_firestore: ^2.5.4
   basic_utils: ^3.8.2 # currently used for string formatting
+  shared_preferences: ^2.0.8 # used to check if app run is the first run
 
 dev_dependencies:
   flutter_test:

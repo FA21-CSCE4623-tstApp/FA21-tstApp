@@ -7,7 +7,7 @@ import '../../shared_components/widgets.dart';
 import 'teacher_bulletin_widgets.dart';
 
 import 'post_dialog.dart';
-import 'helper_functions.dart';
+import '../../helper_functions.dart';
 
 class TeacherBulletin extends StatefulWidget {
   static String route = 'teacher_bulletin_screen';
@@ -17,14 +17,14 @@ class TeacherBulletin extends StatefulWidget {
   State<TeacherBulletin> createState() => _TeacherBulletinState();
 }
 
+// these bools are used for tab selection at bottom of screen
+bool isSavedTabSelected = true;
+bool isLikedTabSelected = false;
+
 class _TeacherBulletinState extends State<TeacherBulletin> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
-      bool showScreen = info.showScreen;
-
-      print("info.showScreen ${info.showScreen}");
-
       return Stack(
         children: [
           Scaffold(
@@ -49,7 +49,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                           padding: EdgeInsets.only(bottom: 40.0),
                           child: Text(
                             "Change What You See",
-                            style: defaultWidgetTextStyle,
+                            style: unselectedTabTextStyle,
                           ),
                         ),
 
@@ -59,7 +59,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         const Align(
                           alignment: Alignment.topLeft,
                           child: Chip(
-                            backgroundColor: lightPurple,
+                            backgroundColor: purpleAccent,
                             label: Text(
                               "Educators",
                               style: defaultChipTextStyle,
@@ -73,7 +73,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         const Align(
                           alignment: Alignment.topLeft,
                           child: Chip(
-                            backgroundColor: lightPurple,
+                            backgroundColor: purpleAccent,
                             label: Text(
                               "K4",
                               style: defaultChipTextStyle,
@@ -92,7 +92,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                 itemBuilder: (BuildContext context, int index) {
                                   List tags = ["Inspiration", "K5"];
                                   return Chip(
-                                    backgroundColor: lightPurple,
+                                    backgroundColor: purpleAccent,
                                     label: Text(
                                       tags[index],
                                       style: defaultChipTextStyle,
@@ -144,18 +144,43 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Text(
-                                  "Relevant",
-                                  style: defaultWidgetTextStyle,
+                              Padding(
+                                padding: EdgeInsets.only(bottom: 20.0),
+                                child: Row(
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          isLikedTabSelected = false;
+                                          isSavedTabSelected = true;
+                                        });
+                                      },
+                                      child: Text(
+                                        "Recent",
+                                        style: isSavedTabSelected
+                                            ? selectedTabTextStyle
+                                            : unselectedTabTextStyle,
+                                      ),
+                                    ),
+                                    const SizedBox(width: 20.0),
+                                    GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          isSavedTabSelected = false;
+                                          isLikedTabSelected = true;
+                                        });
+                                      },
+                                      child: Text(
+                                        "Saved",
+                                        style: isLikedTabSelected
+                                            ? selectedTabTextStyle
+                                            : unselectedTabTextStyle,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              Column(
-                                  children: List.generate(
-                                      2,
-                                      (index) => RelevantBlogPostSection(
-                                          index: index))),
+                              BlogPosts(),
                             ],
                           ),
                         )
@@ -172,17 +197,33 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
   }
 }
 
-class RelevantBlogPostSection extends StatefulWidget {
-  final int index;
-
-  const RelevantBlogPostSection({this.index = 0});
+class BlogPosts extends StatefulWidget {
+  const BlogPosts({Key? key}) : super(key: key);
 
   @override
-  State<RelevantBlogPostSection> createState() =>
-      _RelevantBlogPostSectionState();
+  _BlogPostsState createState() => _BlogPostsState();
 }
 
-class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
+class _BlogPostsState extends State<BlogPosts> {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<TBData>(builder: (context, info, child) {
+      return Column(
+          children: List.generate(2, (index) => BlogPostSection(index: index)));
+    });
+  }
+}
+
+class BlogPostSection extends StatefulWidget {
+  final int index;
+
+  const BlogPostSection({this.index = 0});
+
+  @override
+  State<BlogPostSection> createState() => _BlogPostSectionState();
+}
+
+class _BlogPostSectionState extends State<BlogPostSection> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
@@ -190,6 +231,8 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
           future: info.postData,
           builder: (context, db) {
             if (db.hasData) {
+              info.arePostsLoaded = true;
+
               List posts = (db.data as List).cast();
               // track post background color/image
               List<Color> backgroundColors = [
@@ -212,6 +255,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
+
                               info.postTags = posts[widget.index]["tags"];
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
@@ -286,7 +330,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0),
                                               child: Chip(
-                                                backgroundColor: lightPurple,
+                                                backgroundColor: purpleAccent,
                                                 label: Text(
                                                   posts[widget.index]["tags"]
                                                       [tagIndex],
@@ -369,7 +413,7 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 5.0),
                                               child: Chip(
-                                                backgroundColor: lightPurple,
+                                                backgroundColor: purpleAccent,
                                                 label: Text(
                                                   posts[widget.index]["tags"]
                                                       [tagIndex],
@@ -394,7 +438,8 @@ class _RelevantBlogPostSectionState extends State<RelevantBlogPostSection> {
                           ),
                         ));
             } else {
-              return smallLoadingIndicator();
+              info.arePostsLoaded = false;
+              return widget.index == 0 ? smallLoadingIndicator() : Container();
             }
           });
     });

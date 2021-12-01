@@ -2,8 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:tst_app/styles.dart';
 import 'package:provider/provider.dart';
 import '../../data/teacher_bulletin_data.dart';
-import 'helper_functions.dart';
+import '../../helper_functions.dart';
 import '../../shared_components/widgets.dart';
+
+Widget bookmarkPostWidget({bool selected = false}) {
+  Color iconColor = Colors.white54;
+  Color backgroundColor = Colors.black54;
+  if (selected) {
+    iconColor = Colors.black;
+    backgroundColor = Colors.white;
+  } else {
+    iconColor = Colors.white54;
+    backgroundColor = Colors.black54;
+  }
+  return Padding(
+    padding: const EdgeInsets.all(5.0),
+    child: Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5.0),
+        color: backgroundColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Icon(
+          Icons.bookmark,
+          color: iconColor,
+          size: 15.0,
+        ),
+      ),
+    ),
+  );
+}
 
 Widget likePostWidget({bool selected = false}) {
   Color iconColor = Colors.white54;
@@ -135,7 +164,7 @@ class _RelevantBlogPostsSectionState extends State<RelevantBlogPostsSection> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TBData>(builder: (context, info, child) {
-      return info.areRelevantPostsLoaded
+      return info.arePostsLoaded
           ? Column(
               children: List.generate(2, (index) => BlogPosts(index: index)))
           : smallLoadingIndicator();
@@ -160,7 +189,7 @@ class _BlogPostsState extends State<BlogPosts> {
           future: info.postData,
           builder: (context, db) {
             if (db.hasData) {
-              info.areRelevantPostsLoaded = true;
+              info.arePostsLoaded = true;
               List posts = (db.data as List).cast();
               // track post background color/image
               List<Color> backgroundColors = [
@@ -259,7 +288,7 @@ class _BlogPostsState extends State<BlogPosts> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 10.0),
                                               child: Chip(
-                                                backgroundColor: lightPurple,
+                                                backgroundColor: purpleAccent,
                                                 label: Text(
                                                   posts[widget.index]["tags"]
                                                       [tagIndex],
@@ -343,7 +372,7 @@ class _BlogPostsState extends State<BlogPosts> {
                                                   const EdgeInsets.symmetric(
                                                       horizontal: 5.0),
                                               child: Chip(
-                                                backgroundColor: lightPurple,
+                                                backgroundColor: purpleAccent,
                                                 label: Text(
                                                   posts[widget.index]["tags"]
                                                       [tagIndex],
@@ -368,7 +397,7 @@ class _BlogPostsState extends State<BlogPosts> {
                           ),
                         ));
             } else {
-              info.areRelevantPostsLoaded = false;
+              info.arePostsLoaded = false;
               return Container();
             }
           });
@@ -384,9 +413,6 @@ Widget backNavigationWidget() {
       color: mediumBrown,
       borderRadius: BorderRadius.circular(10.0),
     ),
-    child: const Padding(
-      padding: EdgeInsets.all(5.0),
-      child: Icon(Icons.arrow_back, color: Colors.white70),
-    ),
+    child: const Icon(Icons.arrow_left, color: Colors.white70, size: 40.0),
   );
 }

@@ -50,5 +50,14 @@ TODO: get information from firebase
 18-11
 - talk to Tristan/Victor about..
    - creating landing screen logo (just needs to be set up)
-   -
+   - TODO: fin "on first run"
+   - do featured section
+- TODO: fix running app from first install
 
+30-11
+
+- TODO: add a 'my posts' section before 'relevant section'
+   - should be horizontally scrollable
+- TODO: change relevant to recent. keep tab
+    - maybe set up SQLite>
+- TODO: fix bugs

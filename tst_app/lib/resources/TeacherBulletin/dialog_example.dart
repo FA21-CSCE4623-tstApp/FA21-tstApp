@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:tst_app/resources/TeacherBulletin/teacher_bulletin_widgets.dart';
 
 import '../../data/teacher_bulletin_data.dart';
-import 'helper_functions.dart';
+import '../../helper_functions.dart';
 import '../../styles.dart';
 import '../../shared_components/widgets.dart';
 
