@@ -287,6 +287,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                   Text(posts[widget.index]["title"],
                                       style: const TextStyle(
                                           fontSize: 17.0,
+                                          color: defaultTextColor,
                                           fontWeight: FontWeight.w600)),
                                   const SizedBox(height: 10.0),
                                   Row(
@@ -302,6 +303,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                         child: Text(
                                           "submitted by: ",
                                           style: TextStyle(
+                                              color: defaultTextColor,
                                               fontSize: 10.0,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -312,6 +314,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                             formatName(
                                                 posts[widget.index]["author"]),
                                             style: const TextStyle(
+                                                color: defaultTextColor,
                                                 fontSize: 10.0)),
                                       ),
                                     ],
@@ -370,6 +373,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                   Text(posts[widget.index]["title"],
                                       style: const TextStyle(
                                           fontSize: 17.0,
+                                          color: defaultTextColor,
                                           fontWeight: FontWeight.w600)),
                                   const SizedBox(height: 10.0),
                                   Row(
@@ -386,6 +390,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                           "submitted by: ",
                                           style: TextStyle(
                                               fontSize: 10.0,
+                                              color: defaultTextColor,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -395,6 +400,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                             formatName(
                                                 posts[widget.index]["author"]),
                                             style: const TextStyle(
+                                                color: defaultTextColor,
                                                 fontSize: 10.0)),
                                       ),
                                     ],
