@@ -45,6 +45,7 @@ dependencies:
   cloud_firestore: ^2.5.4
   basic_utils: ^3.8.2 # currently used for string formatting
   shared_preferences: ^2.0.8 # used to check if app run is the first run
+  url_launcher: ^6.0.0 # used for url launching
 
 dev_dependencies:
   flutter_test:
@@ -74,6 +75,7 @@ flutter:
    - assets/quotes.txt
    - assets/images/board/
    - assets/images/teacher_bulletin/
+   - assets/images/ConnectWithUs.JPG
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
