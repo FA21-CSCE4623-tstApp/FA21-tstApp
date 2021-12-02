@@ -4,6 +4,7 @@ import '../../styles.dart';
 import 'package:provider/provider.dart';
 import '../../shared_components/widgets.dart';
 
+import 'blog_screen.dart';
 import 'teacher_bulletin_widgets.dart';
 
 import 'post_dialog.dart';
@@ -116,7 +117,12 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                           fontSize: 25.0,
                                           color: defaultTextColor)),
                                   const Expanded(child: SizedBox(width: 10.0)),
-                                  Container(
+                                  GestureDetector(
+                                    onTap: () => setState(() {
+                                      info.setShowScreen = true;
+                                      info.clearFields();
+                                    }),
+                                  child: Container(
                                     decoration: defaultRoundedCorners(),
                                     child: const Padding(
                                       padding: const EdgeInsets.all(8.0),
@@ -128,6 +134,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                         ),
                                       ),
                                     ),
+                                  ),
                                   ),
                                 ],
                               ),
@@ -191,6 +198,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
               ),
             ),
           ),
+          BlogScreen(),
         ],
       );
     });
