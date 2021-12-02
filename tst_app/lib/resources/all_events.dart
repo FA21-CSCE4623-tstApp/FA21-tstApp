@@ -16,6 +16,7 @@ class Event {
   String toString() => this.title;
 }
 
+
 class AllEvents extends StatelessWidget {
   static const route = 'all_events_screen';
   DateFormat plainDate = DateFormat("yyyy-MM-dd'T'H:m:sZ");
@@ -24,6 +25,360 @@ class AllEvents extends StatelessWidget {
   final List prevEvents = [];
   final List upcEvents = [];
 
+  Widget getUPCListWidget(List events){
+    if(events.isNotEmpty){
+      return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: upcEvents.length,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,
+              int index) {
+              return Container(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment
+                      .spaceBetween,
+                  children: [
+                    Flexible(child:Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text((upcEvents[index]["title"] != null) ? upcEvents[index]["title"] : "Untitled Event",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.left,
+                            softWrap: false,
+                            style: const TextStyle(
+                                fontSize: 20,
+                                color: Colors.black
+                            )),
+                        Text((upcEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(upcEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
+                      ],
+                    )),
+                    GestureDetector(
+                        onTap: () =>
+                            showDialog(
+                              context: context,
+                              builder: (
+                                  BuildContext dialogContext) {
+                                return Dialog(
+                                    backgroundColor: appBackground,
+                                    shape: const RoundedRectangleBorder(
+                                        borderRadius: BorderRadius
+                                            .all(
+                                            Radius
+                                                .circular(
+                                                15))),
+                                    child:
+                                    Container(
+                                        height: 450,
+                                        child: ClipRRect(borderRadius: BorderRadius.circular(15), child:SingleChildScrollView(child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
+                                          children: [
+                                            Container(
+                                              padding: const EdgeInsets
+                                                  .only(
+                                                  top: 10.0,
+                                                  right: 10.0),
+                                              height: 430,
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                        //TODO: Add picture for null case
+                                                          upcEvents[index]["main_picture"]),
+                                                      fit: BoxFit
+                                                          .fill),
+                                                  borderRadius: const BorderRadius
+                                                      .vertical(
+                                                    top: Radius
+                                                        .circular(
+                                                        15),
+                                                  ),
+                                                  gradient: const LinearGradient(
+                                                      begin: Alignment
+                                                          .topCenter,
+                                                      end: Alignment
+                                                          .bottomCenter,
+                                                      colors: [
+                                                        lightBrown,
+                                                        appBackground
+                                                      ],
+                                                      stops: [
+                                                        0.4,
+                                                        0.4
+                                                      ]
+                                                  )
+                                              ),
+                                              child: Align(
+                                                alignment: Alignment
+                                                    .topRight,
+                                                child: GestureDetector(
+                                                    onTap: () =>
+                                                        Navigator.of(context, rootNavigator: true).pop(),
+                                                    child:Container(
+                                                      child:
+                                                      const Padding(padding: EdgeInsets.all(5),
+                                                          child: Icon(
+                                                              Icons.close,
+                                                              color: Colors.white70)
+                                                      ),
+                                                      decoration: BoxDecoration(
+                                                          color: mediumBrown,
+                                                          borderRadius: BorderRadius.circular(10)
+                                                      ),
+                                                    )
+                                                ),
+                                              ),
+                                            ),
+                                            Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                                (upcEvents[index]["title"] != null) ? upcEvents[index]["title"] : "Untitled Event",
+                                                style: const TextStyle(
+                                                    fontSize: 22))),
+                                            const SizedBox(height: 5),
+                                            Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                                (upcEvents[index]["event_location"] != null) ? upcEvents[index]["event_location"] : "Virtual Event",
+                                                style: const TextStyle(
+                                                    fontSize: 16))),
+                                            const SizedBox(height: 5),
+                                            Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                                (upcEvents[index]["date_time"] != null) ? exactDate.format(plainDate.parse(upcEvents[index]["date_time"])).toString() : "Today",
+                                                style: const TextStyle(
+                                                    fontSize: 14)
+                                            )),
+                                            const SizedBox(
+                                                height: 20),
+                                            Container(padding: const EdgeInsets.only(left:8,right:8), child: Text(
+                                                (upcEvents[index]["event_description"] != null) ? upcEvents[index]["event_description"].replaceAll("  ", "\n\n") : "",
+                                                style: const TextStyle(
+                                                    fontSize: 14,
+                                                    color: defaultTextColor))),
+                                            const SizedBox(height: 20),
+                                            Padding(
+                                                padding: const EdgeInsets.only(left: 60, right: 60),
+                                                child:
+                                                Container(
+                                                  alignment: Alignment.center,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(3.0),
+                                                    color: lightBrown,
+                                                  ),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: const <Widget>[
+                                                      Text(
+                                                        'Register Now',
+                                                        style: TextStyle(
+                                                          fontSize: 22.0,
+                                                          fontWeight: FontWeight.w300,
+                                                          color: defaultTextColor,
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  // width: screenWidth - 100,
+                                                  height: 40.0,
+                                                )
+                                            ),
+                                            const SizedBox(height: 10)
+                                          ],
+                                        )))
+                                    )
+                                );
+                              },
+                            ),
+                        child:
+                        const Icon(
+                            Icons.arrow_forward_ios,
+                            color: accentColor,
+                            size: 18.0)
+                    )
+                  ],
+                ),
+              );
+          }
+      );
+    }
+    else{
+      return Text("No Upcoming Events", style: TextStyle(fontSize: 20));
+    }
+  }
+
+  Widget getPrevListWidget(List events){
+    if(events.isNotEmpty){
+      return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: prevEvents.length,
+          shrinkWrap: true,
+          itemBuilder: (BuildContext context,
+              int index) {
+            return Container(
+              padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .spaceBetween,
+                children: [
+                  Flexible(child:Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text((prevEvents[index]["title"] != null) ? prevEvents[index]["title"] : "Untitled Event",
+                          overflow: TextOverflow.ellipsis,
+                          textAlign: TextAlign.left,
+                          softWrap: false,
+                          style: const TextStyle(
+                              fontSize: 20,
+                              color: Colors.black
+                          )),
+                      Text((prevEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(prevEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
+                    ],
+                  )),
+                  GestureDetector(
+                      onTap: () =>
+                          showDialog(
+                            context: context,
+                            builder: (
+                                BuildContext dialogContext) {
+                              return Dialog(
+                                  backgroundColor: appBackground,
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius
+                                          .all(
+                                          Radius
+                                              .circular(
+                                              15))),
+                                  child:
+                                  Container(
+                                      height: 450,
+                                      child: ClipRRect(borderRadius: BorderRadius.circular(15), child:SingleChildScrollView(child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment
+                                            .start,
+                                        children: [
+                                          Container(
+                                            padding: const EdgeInsets
+                                                .only(
+                                                top: 10.0,
+                                                right: 10.0),
+                                            height: 430,
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                      //TODO: Add picture for null case
+                                                        prevEvents[index]["main_picture"]),
+                                                    fit: BoxFit
+                                                        .fill),
+                                                borderRadius: const BorderRadius
+                                                    .vertical(
+                                                  top: Radius
+                                                      .circular(
+                                                      15),
+                                                ),
+                                                gradient: const LinearGradient(
+                                                    begin: Alignment
+                                                        .topCenter,
+                                                    end: Alignment
+                                                        .bottomCenter,
+                                                    colors: [
+                                                      lightBrown,
+                                                      appBackground
+                                                    ],
+                                                    stops: [
+                                                      0.4,
+                                                      0.4
+                                                    ]
+                                                )
+                                            ),
+                                            child: Align(
+                                              alignment: Alignment
+                                                  .topRight,
+                                              child: GestureDetector(
+                                                  onTap: () =>
+                                                      Navigator.of(context, rootNavigator: true).pop(),
+                                                  child:Container(
+                                                    child:
+                                                    const Padding(padding: EdgeInsets.all(5),
+                                                        child: Icon(
+                                                            Icons.close,
+                                                            color: Colors.white70)
+                                                    ),
+                                                    decoration: BoxDecoration(
+                                                        color: mediumBrown,
+                                                        borderRadius: BorderRadius.circular(10)
+                                                    ),
+                                                  )
+                                              ),
+                                            ),
+                                          ),
+                                          Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                              (prevEvents[index]["title"] != null) ? prevEvents[index]["title"] : "Untitled Event",
+                                              style: const TextStyle(
+                                                  fontSize: 22))),
+                                          const SizedBox(height: 5),
+                                          Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                              (prevEvents[index]["event_location"] != null) ? prevEvents[index]["event_location"] : "Virtual Event",
+                                              style: const TextStyle(
+                                                  fontSize: 16))),
+                                          const SizedBox(height: 5),
+                                          Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
+                                              (prevEvents[index]["date_time"] != null) ? exactDate.format(plainDate.parse(prevEvents[index]["date_time"])).toString() : "Today",
+                                              style: const TextStyle(
+                                                  fontSize: 14)
+                                          )),
+                                          const SizedBox(
+                                              height: 20),
+                                          Container(padding: const EdgeInsets.only(left:8,right:8), child: Text(
+                                              (prevEvents[index]["event_description"] != null) ? prevEvents[index]["event_description"].replaceAll("  ", "\n\n") : "",
+                                              style: const TextStyle(
+                                                  fontSize: 14,
+                                                  color: defaultTextColor))),
+                                          const SizedBox(height: 20),
+                                          Padding(
+                                              padding: const EdgeInsets.only(left: 60, right: 60),
+                                              child:
+                                              Container(
+                                                alignment: Alignment.center,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(3.0),
+                                                  color: lightBrown,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  children: const <Widget>[
+                                                    Text(
+                                                      'Register Now',
+                                                      style: TextStyle(
+                                                        fontSize: 22.0,
+                                                        fontWeight: FontWeight.w300,
+                                                        color: defaultTextColor,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                // width: screenWidth - 100,
+                                                height: 40.0,
+                                              )
+                                          ),
+                                          const SizedBox(height: 10)
+                                        ],
+                                      )))
+                                  )
+                              );
+                            },
+                          ),
+                      child:
+                      const Icon(
+                          Icons.arrow_forward_ios,
+                          color: accentColor,
+                          size: 18.0)
+                  )
+                ],
+              ),
+            );
+          }
+      );
+    }
+    else{
+      return Text("No Upcoming Events", style: TextStyle(fontSize: 20));
+    }
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Consumer<AEData>(builder: (context, info, child) {
@@ -34,7 +389,6 @@ class AllEvents extends StatelessWidget {
             if (db.hasData) {
               List eventData = data as List;
               int numEvents = eventData.length;
-              final screenWidth = MediaQuery.of(context).size.width;
 
 
               //Populate lists with database data
@@ -76,177 +430,8 @@ class AllEvents extends StatelessWidget {
                                   ),
                                 ),
                                 children: [
-                                  ListView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount: upcEvents.length,
-                                      shrinkWrap: true,
-                                      itemBuilder: (BuildContext context,
-                                          int index) {
-                                        return Container(
-                                          width: screenWidth,
-                                          padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment
-                                                .spaceBetween,
-                                            children: [
-                                              Flexible(child:Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text((upcEvents[index]["title"] != null) ? upcEvents[index]["title"] : "Untitled Event",
-                                                      overflow: TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      softWrap: false,
-                                                      style: const TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.black
-                                                      )),
-                                                  Text((upcEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(upcEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
-                                                ],
-                                              )),
-                                              GestureDetector(
-                                                  onTap: () =>
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (
-                                                            BuildContext dialogContext) {
-                                                          return Dialog(
-                                                              backgroundColor: appBackground,
-                                                              shape: const RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius
-                                                                      .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                          15))),
-                                                              child:
-                                                              Container(
-                                                                  height: 450,
-                                                                  child: ClipRRect(borderRadius: BorderRadius.circular(15), child:SingleChildScrollView(child: Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment
-                                                                        .start,
-                                                                    children: [
-                                                                      Container(
-                                                                        padding: const EdgeInsets
-                                                                            .only(
-                                                                            top: 10.0,
-                                                                            right: 10.0),
-                                                                        height: 430,
-                                                                        width: screenWidth,
-                                                                        decoration: BoxDecoration(
-                                                                            image: DecorationImage(
-                                                                                image: NetworkImage(
-                                                                                  //TODO: Add picture for null case
-                                                                                    upcEvents[index]["main_picture"]),
-                                                                                fit: BoxFit
-                                                                                    .fill),
-                                                                            borderRadius: const BorderRadius
-                                                                                .vertical(
-                                                                                top: Radius
-                                                                                    .circular(
-                                                                                    15),
-                                                                                ),
-                                                                            gradient: const LinearGradient(
-                                                                                begin: Alignment
-                                                                                    .topCenter,
-                                                                                end: Alignment
-                                                                                    .bottomCenter,
-                                                                                colors: [
-                                                                                  lightBrown,
-                                                                                  appBackground
-                                                                                ],
-                                                                                stops: [
-                                                                                  0.4,
-                                                                                  0.4
-                                                                                ]
-                                                                            )
-                                                                        ),
-                                                                        child: Align(
-                                                                          alignment: Alignment
-                                                                              .topRight,
-                                                                          child: GestureDetector(
-                                                                              onTap: () =>
-                                                                                  Navigator.of(context, rootNavigator: true).pop(),
-                                                                              child:Container(
-                                                                                child:
-                                                                                const Padding(padding: EdgeInsets.all(5),
-                                                                                    child: Icon(
-                                                                                        Icons.close,
-                                                                                        color: Colors.white70)
-                                                                                ),
-                                                                                decoration: BoxDecoration(
-                                                                                    color: mediumBrown,
-                                                                                    borderRadius: BorderRadius.circular(10)
-                                                                                ),
-                                                                              )
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (upcEvents[index]["title"] != null) ? upcEvents[index]["title"] : "Untitled Event",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 22))),
-                                                                      const SizedBox(height: 5),
-                                                                      Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (upcEvents[index]["event_location"] != null) ? upcEvents[index]["event_location"] : "Virtual Event",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 16))),
-                                                                      const SizedBox(height: 5),
-                                                                      Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (upcEvents[index]["date_time"] != null) ? exactDate.format(plainDate.parse(upcEvents[index]["date_time"])).toString() : "Today",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14)
-                                                                      )),
-                                                                      const SizedBox(
-                                                                          height: 20),
-                                                                      Container(padding: const EdgeInsets.only(left:8,right:8), child: Text(
-                                                                          (upcEvents[index]["event_description"] != null) ? upcEvents[index]["event_description"].replaceAll("  ", "\n\n") : "",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              color: defaultTextColor))),
-                                                                      const SizedBox(height: 20),
-                                                                      Padding(
-                                                                          padding: const EdgeInsets.only(left: 60, right: 60),
-                                                                          child:
-                                                                          Container(
-                                                                            alignment: Alignment.center,
-                                                                            decoration: BoxDecoration(
-                                                                              borderRadius: BorderRadius.circular(3.0),
-                                                                              color: lightBrown,
-                                                                            ),
-                                                                            child: Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: const <Widget>[
-                                                                                Text(
-                                                                                  'Register Now',
-                                                                                  style: TextStyle(
-                                                                                    fontSize: 22.0,
-                                                                                    fontWeight: FontWeight.w300,
-                                                                                    color: defaultTextColor,
-                                                                                  ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            // width: screenWidth - 100,
-                                                                            height: 40.0,
-                                                                          )
-                                                                      ),
-                                                                      const SizedBox(height: 10)
-                                                                    ],
-                                                                  )))
-                                                              )
-                                                          );
-                                                        },
-                                                      ),
-                                                  child:
-                                                  const Icon(
-                                                      Icons.arrow_forward_ios,
-                                                      color: accentColor,
-                                                      size: 18.0)
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      }
-                                  ),
+                                  getUPCListWidget(upcEvents),
+                                  const SizedBox(height: 10)
                                 ]
                             ),
                           ),
@@ -265,177 +450,8 @@ class AllEvents extends StatelessWidget {
                                   ),
                                 ),
                                 children: [
-                                  ListView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      itemCount: prevEvents.length,
-                                      shrinkWrap: true,
-                                      itemBuilder: (BuildContext context,
-                                          int index) {
-                                        return Container(
-                                          width: screenWidth,
-                                          padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 10.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment
-                                                .spaceBetween,
-                                            children: [
-                                              Flexible(child:Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text((prevEvents[index]["title"] != null) ? prevEvents[index]["title"] : "Untitled Event",
-                                                      overflow: TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      softWrap: false,
-                                                      style: const TextStyle(
-                                                          fontSize: 20,
-                                                          color: Colors.black
-                                                      )),
-                                                  Text((prevEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(prevEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
-                                                ],
-                                              )),
-                                              GestureDetector(
-                                                  onTap: () =>
-                                                      showDialog(
-                                                        context: context,
-                                                        builder: (
-                                                            BuildContext dialogContext) {
-                                                          return Dialog(
-                                                              backgroundColor: appBackground,
-                                                              shape: const RoundedRectangleBorder(
-                                                                  borderRadius: BorderRadius
-                                                                      .all(
-                                                                      Radius
-                                                                          .circular(
-                                                                          15))),
-                                                              child:
-                                                              Container(
-                                                                  height: 450,
-                                                                  child: ClipRRect(borderRadius: BorderRadius.circular(15), child:SingleChildScrollView(child: Column(
-                                                                    crossAxisAlignment: CrossAxisAlignment
-                                                                        .start,
-                                                                    children: [
-                                                                      Container(
-                                                                        padding: const EdgeInsets
-                                                                            .only(
-                                                                            top: 10.0,
-                                                                            right: 10.0),
-                                                                        height: 430,
-                                                                        width: screenWidth,
-                                                                        decoration: BoxDecoration(
-                                                                            image: DecorationImage(
-                                                                                image: NetworkImage(
-                                                                                  //TODO: Add picture for null case
-                                                                                    prevEvents[index]["main_picture"]),
-                                                                                fit: BoxFit
-                                                                                    .fill),
-                                                                            borderRadius: const BorderRadius
-                                                                                .vertical(
-                                                                                top: Radius
-                                                                                    .circular(
-                                                                                    15),
-                                                                            ),
-                                                                            gradient: const LinearGradient(
-                                                                                begin: Alignment
-                                                                                    .topCenter,
-                                                                                end: Alignment
-                                                                                    .bottomCenter,
-                                                                                colors: [
-                                                                                  lightBrown,
-                                                                                  appBackground
-                                                                                ],
-                                                                                stops: [
-                                                                                  0.4,
-                                                                                  0.4
-                                                                                ]
-                                                                            )
-                                                                        ),
-                                                                        child: Align(
-                                                                          alignment: Alignment
-                                                                              .topRight,
-                                                                          child: GestureDetector(
-                                                                            onTap: () =>
-                                                                                Navigator.of(context, rootNavigator: true).pop(),
-                                                                            child:Container(
-                                                                              child:
-                                                                                const Padding(padding: EdgeInsets.all(5),
-                                                                                child: Icon(
-                                                                                Icons.close,
-                                                                                color: Colors.white70)
-                                                                                ),
-                                                                              decoration: BoxDecoration(
-                                                                                color: mediumBrown,
-                                                                                borderRadius: BorderRadius.circular(10)
-                                                                              ),
-                                                                            )
-                                                                          ),
-                                                                        ),
-                                                                      ),
-                                                                      Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (prevEvents[index]["title"] != null) ? prevEvents[index]["title"] : "Untitled Event",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 22))),
-                                                                      const SizedBox(height: 5),
-                                                                  Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (prevEvents[index]["event_location"] != null) ? prevEvents[index]["event_location"] : "Virtual Event",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 16))),
-                                                                      const SizedBox(height: 5),
-                                                                  Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
-                                                                          (prevEvents[index]["date_time"] != null) ? exactDate.format(plainDate.parse(prevEvents[index]["date_time"])).toString() : "Today",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14)
-                                                                      )),
-                                                                      const SizedBox(
-                                                                          height: 20),
-                                                                  Container(padding: const EdgeInsets.only(left:8,right:8), child: Text(
-                                                                          (prevEvents[index]["event_description"] != null) ? prevEvents[index]["event_description"].replaceAll("  ", "\n\n") : "",
-                                                                          style: const TextStyle(
-                                                                              fontSize: 14,
-                                                                              color: defaultTextColor))),
-                                                                      const SizedBox(height: 20),
-                                                                      Padding(
-                                                                          padding: const EdgeInsets.only(left: 60, right: 60),
-                                                                          child:
-                                                                        Container(
-                                                                          alignment: Alignment.center,
-                                                                          decoration: BoxDecoration(
-                                                                            borderRadius: BorderRadius.circular(3.0),
-                                                                            color: lightBrown,
-                                                                          ),
-                                                                          child: Row(
-                                                                            mainAxisAlignment: MainAxisAlignment.center,
-                                                                            children: const <Widget>[
-                                                                              Text(
-                                                                                'Register Now',
-                                                                                style: TextStyle(
-                                                                                  fontSize: 22.0,
-                                                                                  fontWeight: FontWeight.w300,
-                                                                                  color: defaultTextColor,
-                                                                                ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          // width: screenWidth - 100,
-                                                                          height: 40.0,
-                                                                        )
-                                                                      ),
-                                                                      const SizedBox(height: 10)
-                                                                    ],
-                                                                  )))
-                                                              )
-                                                          );
-                                                        },
-                                                      ),
-                                                  child:
-                                                  const Icon(
-                                                      Icons.arrow_forward_ios,
-                                                      color: accentColor,
-                                                      size: 18.0)
-                                              )
-                                            ],
-                                          ),
-                                        );
-                                      }
-                                  ),
+                                  getPrevListWidget(prevEvents),
+                                  const SizedBox(height: 10)
                                 ]
                             ),
                           ),
