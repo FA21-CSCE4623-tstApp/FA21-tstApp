@@ -65,14 +65,14 @@ class AllEvents extends StatelessWidget {
                             padding:
                             const EdgeInsets.only(top: 20.0, right: 20.0),
                             child: ExpansionTile(
-                                iconColor: lightPurple,
-                                collapsedIconColor: darkPurple,
+                                iconColor: accentColor,
+                                collapsedIconColor: accentColor,
                                 title: const Text(
                                   'Upcoming Events',
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: defaultTextColor,
-                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 children: [
@@ -98,8 +98,8 @@ class AllEvents extends StatelessWidget {
                                                       softWrap: false,
                                                       style: const TextStyle(
                                                           fontSize: 20,
-                                                          fontWeight: FontWeight
-                                                              .bold)),
+                                                          color: Colors.black
+                                                      )),
                                                   Text((upcEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(upcEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
                                                 ],
                                               )),
@@ -143,7 +143,7 @@ class AllEvents extends StatelessWidget {
                                                                                 top: Radius
                                                                                     .circular(
                                                                                     15),
-                                                                                bottom: Radius.circular(15)),
+                                                                                ),
                                                                             gradient: const LinearGradient(
                                                                                 begin: Alignment
                                                                                     .topCenter,
@@ -164,9 +164,7 @@ class AllEvents extends StatelessWidget {
                                                                               .topRight,
                                                                           child: GestureDetector(
                                                                               onTap: () =>
-                                                                                  Navigator
-                                                                                      .pop(
-                                                                                      context),
+                                                                                  Navigator.of(context, rootNavigator: true).pop(),
                                                                               child:Container(
                                                                                 child:
                                                                                 const Padding(padding: EdgeInsets.all(5),
@@ -185,7 +183,7 @@ class AllEvents extends StatelessWidget {
                                                                       Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
                                                                           (upcEvents[index]["title"] != null) ? upcEvents[index]["title"] : "Untitled Event",
                                                                           style: const TextStyle(
-                                                                              fontSize: 18))),
+                                                                              fontSize: 22))),
                                                                       const SizedBox(height: 5),
                                                                       Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
                                                                           (upcEvents[index]["event_location"] != null) ? upcEvents[index]["event_location"] : "Virtual Event",
@@ -204,7 +202,7 @@ class AllEvents extends StatelessWidget {
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               color: defaultTextColor))),
-                                                                      const SizedBox(height: 10),
+                                                                      const SizedBox(height: 20),
                                                                       Padding(
                                                                           padding: const EdgeInsets.only(left: 60, right: 60),
                                                                           child:
@@ -241,7 +239,7 @@ class AllEvents extends StatelessWidget {
                                                   child:
                                                   const Icon(
                                                       Icons.arrow_forward_ios,
-                                                      color: darkPurple,
+                                                      color: accentColor,
                                                       size: 18.0)
                                               )
                                             ],
@@ -256,14 +254,14 @@ class AllEvents extends StatelessWidget {
                             padding:
                             const EdgeInsets.only(top: 20.0, right: 20.0),
                             child: ExpansionTile(
-                                iconColor: lightPurple,
-                                collapsedIconColor: darkPurple,
+                                iconColor: accentColor,
+                                collapsedIconColor: accentColor,
                                 title: const Text(
                                   'Previous Events',
                                   style: TextStyle(
                                     fontSize: 25.0,
-                                    color: defaultTextColor,
-                                    fontWeight: FontWeight.w300,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 children: [
@@ -289,8 +287,8 @@ class AllEvents extends StatelessWidget {
                                                       softWrap: false,
                                                       style: const TextStyle(
                                                           fontSize: 20,
-                                                          fontWeight: FontWeight
-                                                              .bold)),
+                                                          color: Colors.black
+                                                      )),
                                                   Text((prevEvents[index]["date_time"] != null) ? headerDate.format(DateTime.parse(prevEvents[index]["date_time"])).toString() : "Today", textAlign: TextAlign.left,)
                                                 ],
                                               )),
@@ -334,7 +332,7 @@ class AllEvents extends StatelessWidget {
                                                                                 top: Radius
                                                                                     .circular(
                                                                                     15),
-                                                                                bottom: Radius.circular(15)),
+                                                                            ),
                                                                             gradient: const LinearGradient(
                                                                                 begin: Alignment
                                                                                     .topCenter,
@@ -355,9 +353,7 @@ class AllEvents extends StatelessWidget {
                                                                               .topRight,
                                                                           child: GestureDetector(
                                                                             onTap: () =>
-                                                                                Navigator
-                                                                                    .pop(
-                                                                                    context),
+                                                                                Navigator.of(context, rootNavigator: true).pop(),
                                                                             child:Container(
                                                                               child:
                                                                                 const Padding(padding: EdgeInsets.all(5),
@@ -376,7 +372,7 @@ class AllEvents extends StatelessWidget {
                                                                       Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
                                                                           (prevEvents[index]["title"] != null) ? prevEvents[index]["title"] : "Untitled Event",
                                                                           style: const TextStyle(
-                                                                              fontSize: 18))),
+                                                                              fontSize: 22))),
                                                                       const SizedBox(height: 5),
                                                                   Container(padding: const EdgeInsets.only(left:4,right:8), child: Text(
                                                                           (prevEvents[index]["event_location"] != null) ? prevEvents[index]["event_location"] : "Virtual Event",
@@ -395,7 +391,7 @@ class AllEvents extends StatelessWidget {
                                                                           style: const TextStyle(
                                                                               fontSize: 14,
                                                                               color: defaultTextColor))),
-                                                                      const SizedBox(height: 10),
+                                                                      const SizedBox(height: 20),
                                                                       Padding(
                                                                           padding: const EdgeInsets.only(left: 60, right: 60),
                                                                           child:
@@ -432,7 +428,7 @@ class AllEvents extends StatelessWidget {
                                                   child:
                                                   const Icon(
                                                       Icons.arrow_forward_ios,
-                                                      color: darkPurple,
+                                                      color: accentColor,
                                                       size: 18.0)
                                               )
                                             ],
@@ -443,6 +439,7 @@ class AllEvents extends StatelessWidget {
                                 ]
                             ),
                           ),
+                          const SizedBox(height: 20),
                           Padding(
                             padding:
                             const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0, bottom: 20.0),
@@ -457,6 +454,7 @@ class AllEvents extends StatelessWidget {
                                 width: double.infinity,
                                 child: TableCalendar(
                                   calendarStyle: const CalendarStyle(
+                                    markerDecoration: BoxDecoration(color:accentColor, shape: BoxShape.circle),
                                     todayDecoration:
                                     BoxDecoration(color: accentColor, shape: BoxShape.circle),
                                     weekendTextStyle: TextStyle(
