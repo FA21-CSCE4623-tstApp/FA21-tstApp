@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:tst_app/home/calendar.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../styles.dart';
+import 'in_app_web.dart';
 
 
 class DonationPage extends StatelessWidget {
@@ -48,36 +51,35 @@ class DonationPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 40.0),
-            child: Container(),
-            // RaisedButton(
-            //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-            //   elevation: 10.0,
-            //   color: accentColor,
-            //   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 70.0),
-            //   onPressed: () {
-            //     setPageInfo('Cash App', 'https://cash.app/%24TST2019');
-            //     Navigator.pushNamed(context, AppWebView.route);
-            //   },
-            //   child: Text(
-            //     'Give via CashApp',
-            //     style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300, color: backgroundColor),
-            //   ),
-            // ),
+             child: RaisedButton(
+               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+               elevation: 10.0,
+               color: Colors.green,
+               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 70.0),
+               onPressed: () {
+                 const url = 'https://cash.app/%24TST2019';
+                 launch(url);
+               },
+               child: Text(
+                'Give via CashApp',
+                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w300, color: backgroundColor),
+               ),
+             ),
           ),
-          // RaisedButton(
-          //   color: accentColor,
-          //   elevation: 8.0,
-          //    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
-          //   padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
-          //   onPressed: () {
-          //     setPageInfo('PayPal', 'https://www.paypal.me/TST2020');
-          //     Navigator.pushNamed(context, AppWebView.route);
-          //   },
-          //   child: Text(
-          //     'Give via PayPal',
-          //     style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w300, color: backgroundColor),
-          //   ),
-          // ),
+           RaisedButton(
+             color: Colors.blueAccent,
+             elevation: 8.0,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0),),
+             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 80.0),
+             onPressed: () {
+               const url = 'https://www.paypal.me/TST2020';
+               launch(url);
+             },
+             child: Text(
+               'Give via PayPal',
+               style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.w300, color: backgroundColor),
+             ),
+           ),
         ],
       ),
     );
