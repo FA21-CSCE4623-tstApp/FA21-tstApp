@@ -4,6 +4,7 @@ import '../home/page_components.dart';
 import '../resources/all_events.dart';
 import 'TeacherBulletin/teacher_bulletin.dart';
 import '../resources/teacher_hacks.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../styles.dart';
 // TODO: create a file to house inspire me section
 
@@ -236,15 +237,21 @@ class ResourcesScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                //shows the user TST photos/posts
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 80.0),
-                  child: Container(
-                      color: Colors.blue,
-                      height: 230.0,
-                      width: double.infinity),
+               //shows the user TST photos/posts
+                GestureDetector(
+                  onTap: () {
+                    const url = 'https://wesupportteachers.com/contact-us';
+                    launch(url);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 40.0),
+                    child: Image.asset('assets/images/ConnectWithUs.JPG'),
+                  ),
                 ),
-                ContactWidget(),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 5),
+                  child: ContactWidget(),
+                ),
               ],
             ),
           ),
