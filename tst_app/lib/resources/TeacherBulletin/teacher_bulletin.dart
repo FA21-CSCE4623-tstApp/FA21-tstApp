@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:tst_app/data/teacher_bulletin_data.dart';
 import '../../styles.dart';
@@ -55,7 +56,9 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         ),
 
                         // 1st column ... "I want to focus on..."
-                        const Text("I want blogs that focus on..."),
+                        const Text("I want blogs that focus on...", style: TextStyle(
+                          color: defaultTextColor,
+                        ),),
                         const SizedBox(height: 10.0),
                         const Align(
                           alignment: Alignment.topLeft,
@@ -69,7 +72,9 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         ),
                         const SizedBox(height: 20.0),
                         // 2nd row "I want to see blogs that..."
-                        const Text("I want to see blogs that..."),
+                        const Text("I want to see blogs that...", style: TextStyle(
+                          color: defaultTextColor,),
+                        ),
                         const SizedBox(width: 1.0),
                         const Align(
                           alignment: Alignment.topLeft,
@@ -83,7 +88,8 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         ),
                         const SizedBox(height: 20.0),
                         // 3rd row "I would like to see posts that... "
-                        const Text("I want blogs that focus on..."),
+                        const Text("I want blogs that focus on...",style: TextStyle(
+                          color: defaultTextColor,), ),
                         const SizedBox(width: 10.0),
                         SizedBox(
                             height: 50.0,
@@ -240,7 +246,6 @@ class _BlogPostSectionState extends State<BlogPostSection> {
           builder: (context, db) {
             if (db.hasData) {
               info.arePostsLoaded = true;
-
               List posts = (db.data as List).cast();
               // track post background color/image
               List<Color> backgroundColors = [
@@ -263,12 +268,11 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
-
                               info.postTags = posts[widget.index]["tags"];
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
                               info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
+                                  posts[widget.index]["created_date"] ?? Timestamp.now());
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
                               info.postTitle =
@@ -292,7 +296,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               const SizedBox(width: 20.0),
                               Expanded(
                                 child: Column(children: [
-                                  Text(posts[widget.index]["title"],
+                                  Text(formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           color: defaultTextColor,
@@ -312,7 +316,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                           "submitted by: ",
                                           style: TextStyle(
                                               color: defaultTextColor,
-                                              fontSize: 10.0,
+                                              fontSize: 12.0,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -323,7 +327,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                                 posts[widget.index]["author"]),
                                             style: const TextStyle(
                                                 color: defaultTextColor,
-                                                fontSize: 10.0)),
+                                                fontSize: 12.0)),
                                       ),
                                     ],
                                   ),
@@ -366,7 +370,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
                               info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"]);
+                                  posts[widget.index]["created_date"] ?? Timestamp.now());
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
                               info.postTitle =
@@ -378,7 +382,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                             children: [
                               Expanded(
                                 child: Column(children: [
-                                  Text(posts[widget.index]["title"],
+                                  Text(formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           color: defaultTextColor,
