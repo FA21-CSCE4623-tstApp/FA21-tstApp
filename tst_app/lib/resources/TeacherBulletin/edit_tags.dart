@@ -115,7 +115,7 @@ class _EditTagsDialogState extends State<EditTagsDialog> {
                                     firstSelected = List.filled(length, false);
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text("clear",
                                         style: TextStyle(
                                             color: defaultTextColor,
@@ -132,7 +132,7 @@ class _EditTagsDialogState extends State<EditTagsDialog> {
                                     info.setEditTagDialog = false;
                                   },
                                   child: Padding(
-                                    padding: const EdgeInsets.all(4.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     child: Text("done",
                                         style: TextStyle(
                                             color: defaultTextColor,

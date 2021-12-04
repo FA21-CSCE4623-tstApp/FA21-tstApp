@@ -72,10 +72,13 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                   info.setEditTagDialog = true;
                                 });
                               },
-                              child: Text("+ edit",
-                                  style: TextStyle(
-                                      color: defaultTextColor,
-                                      fontWeight: FontWeight.w700)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text("+ edit",
+                                    style: TextStyle(
+                                        color: defaultTextColor,
+                                        fontWeight: FontWeight.w700)),
+                              ),
                             )
                           ],
                         ),
