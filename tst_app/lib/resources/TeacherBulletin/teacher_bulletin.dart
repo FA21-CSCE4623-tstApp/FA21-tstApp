@@ -353,80 +353,94 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                       child: Container(
                                           height: 100.0,
                                           child: Image.asset(
-                                            images[item],
+                                            images[item % images.length],
                                             fit: BoxFit.cover,
                                           ),
                                           decoration: defaultRoundedCorners(
-                                              background:
-                                                  backgroundColors[item])),
+                                              background: backgroundColors[
+                                                  item %
+                                                      backgroundColors
+                                                          .length])),
                                     ),
                                     const SizedBox(width: 20.0),
                                     Expanded(
-                                      child: Column(children: [
-                                        Text(formatTitle(posts[item]["title"]),
-                                            style: const TextStyle(
-                                                fontSize: 17.0,
-                                                color: defaultTextColor,
-                                                fontWeight: FontWeight.w600)),
-                                        const SizedBox(height: 10.0),
-                                        Row(
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Container(
-                                              height: 10.0,
-                                              width: 10.0,
-                                              decoration:
-                                                  defaultRoundedCorners(),
-                                            ),
-                                            const SizedBox(width: 10.0),
-                                            const Expanded(
-                                              flex: 5,
                                               child: Text(
-                                                "submitted by: ",
-                                                style: TextStyle(
-                                                    color: defaultTextColor,
-                                                    fontSize: 12.0,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Expanded(
-                                              flex: 4,
-                                              child: Text(
-                                                  formatName(
-                                                      posts[item]["author"]),
+                                                  formatTitle(
+                                                      posts[item]["title"]),
                                                   style: const TextStyle(
+                                                      fontSize: 17.0,
                                                       color: defaultTextColor,
-                                                      fontSize: 14.0)),
+                                                      fontWeight:
+                                                          FontWeight.w600)),
                                             ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 10.0),
-                                        SizedBox(
-                                            height: 30.0,
-                                            child: ListView.builder(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                itemCount: (posts[item]["tags"])
-                                                    .length,
-                                                itemBuilder:
-                                                    (context, tagIndex) {
-                                                  return Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 10.0),
-                                                    child: Chip(
-                                                      backgroundColor:
-                                                          purpleAccent,
-                                                      label: Text(
-                                                        posts[item]["tags"]
-                                                            [tagIndex],
-                                                        style:
-                                                            defaultChipTextStyle,
-                                                      ),
-                                                    ),
-                                                  );
-                                                })),
-                                      ]),
+                                            const SizedBox(height: 10.0),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 10.0,
+                                                  width: 10.0,
+                                                  decoration:
+                                                      defaultRoundedCorners(),
+                                                ),
+                                                const SizedBox(width: 10.0),
+                                                const Expanded(
+                                                  flex: 5,
+                                                  child: Text(
+                                                    "submitted by: ",
+                                                    style: TextStyle(
+                                                        color: defaultTextColor,
+                                                        fontSize: 12.0,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Text(
+                                                      formatName(posts[item]
+                                                          ["author"]),
+                                                      style: const TextStyle(
+                                                          color:
+                                                              defaultTextColor,
+                                                          fontSize: 14.0)),
+                                                ),
+                                              ],
+                                            ),
+                                            const SizedBox(height: 10.0),
+                                            SizedBox(
+                                                height: 30.0,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: (posts[item]
+                                                            ["tags"])
+                                                        .length,
+                                                    itemBuilder:
+                                                        (context, tagIndex) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    10.0),
+                                                        child: Chip(
+                                                          backgroundColor:
+                                                              purpleAccent,
+                                                          label: Text(
+                                                            posts[item]["tags"]
+                                                                [tagIndex],
+                                                            style:
+                                                                defaultChipTextStyle,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    })),
+                                          ]),
                                     ),
                                   ],
                                 ),
@@ -454,71 +468,81 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                 child: Row(
                                   children: [
                                     Expanded(
-                                      child: Column(children: [
-                                        Text(formatTitle(posts[item]["title"]),
-                                            style: const TextStyle(
-                                                fontSize: 17.0,
-                                                color: defaultTextColor,
-                                                fontWeight: FontWeight.w600)),
-                                        const SizedBox(height: 10.0),
-                                        Row(
+                                      child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           children: [
-                                            Container(
-                                              height: 10.0,
-                                              width: 10.0,
-                                              decoration:
-                                                  defaultRoundedCorners(),
-                                            ),
-                                            const SizedBox(width: 10.0),
-                                            const Expanded(
-                                              flex: 5,
-                                              child: Text(
-                                                "submitted by: ",
-                                                style: TextStyle(
-                                                    fontSize: 12.0,
+                                            Text(
+                                                formatTitle(
+                                                    posts[item]["title"]),
+                                                style: const TextStyle(
+                                                    fontSize: 17.0,
                                                     color: defaultTextColor,
                                                     fontWeight:
-                                                        FontWeight.bold),
-                                              ),
+                                                        FontWeight.w600)),
+                                            const SizedBox(height: 10.0),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  height: 10.0,
+                                                  width: 10.0,
+                                                  decoration:
+                                                      defaultRoundedCorners(),
+                                                ),
+                                                const SizedBox(width: 10.0),
+                                                const Expanded(
+                                                  flex: 5,
+                                                  child: Text(
+                                                    "submitted by: ",
+                                                    style: TextStyle(
+                                                        fontSize: 12.0,
+                                                        color: defaultTextColor,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 4,
+                                                  child: Text(
+                                                      formatName(posts[item]
+                                                          ["author"]),
+                                                      style: const TextStyle(
+                                                          color:
+                                                              defaultTextColor,
+                                                          fontSize: 14.0)),
+                                                ),
+                                              ],
                                             ),
-                                            Expanded(
-                                              flex: 4,
-                                              child: Text(
-                                                  formatName(
-                                                      posts[item]["author"]),
-                                                  style: const TextStyle(
-                                                      color: defaultTextColor,
-                                                      fontSize: 14.0)),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(height: 10.0),
-                                        SizedBox(
-                                            height: 30.0,
-                                            child: ListView.builder(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                itemCount: (posts[item]["tags"])
-                                                    .length,
-                                                itemBuilder:
-                                                    (context, tagIndex) {
-                                                  return Padding(
-                                                    padding: const EdgeInsets
-                                                            .symmetric(
-                                                        horizontal: 5.0),
-                                                    child: Chip(
-                                                      backgroundColor:
-                                                          purpleAccent,
-                                                      label: Text(
-                                                        posts[item]["tags"]
-                                                            [tagIndex],
-                                                        style:
-                                                            defaultChipTextStyle,
-                                                      ),
-                                                    ),
-                                                  );
-                                                })),
-                                      ]),
+                                            const SizedBox(height: 10.0),
+                                            SizedBox(
+                                                height: 30.0,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: (posts[item]
+                                                            ["tags"])
+                                                        .length,
+                                                    itemBuilder:
+                                                        (context, tagIndex) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .symmetric(
+                                                                horizontal:
+                                                                    5.0),
+                                                        child: Chip(
+                                                          backgroundColor:
+                                                              purpleAccent,
+                                                          label: Text(
+                                                            posts[item]["tags"]
+                                                                [tagIndex],
+                                                            style:
+                                                                defaultChipTextStyle,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    })),
+                                          ]),
                                     ),
                                     const SizedBox(width: 20.0),
                                     Expanded(

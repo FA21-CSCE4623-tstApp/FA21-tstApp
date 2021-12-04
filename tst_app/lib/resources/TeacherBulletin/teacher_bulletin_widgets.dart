@@ -241,11 +241,14 @@ class _BlogPostsState extends State<BlogPosts> {
                               const SizedBox(width: 20.0),
                               Expanded(
                                 child: Column(children: [
-                                  Text(
-                                      formatTitle(posts[widget.index]["title"]),
-                                      style: const TextStyle(
-                                          fontSize: 17.0,
-                                          fontWeight: FontWeight.w600)),
+                                  Container(
+                                    child: Text(
+                                        formatTitle(
+                                            posts[widget.index]["title"]),
+                                        style: const TextStyle(
+                                            fontSize: 17.0,
+                                            fontWeight: FontWeight.w600)),
+                                  ),
                                   const SizedBox(height: 10.0),
                                   Row(
                                     children: [
