@@ -51,15 +51,14 @@ class AllEvents extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 20, color: defaultTextColor)),
                       Text(
-                        (upcEvents[index]["date_time"] != null)
-                            ? headerDate
-                                .format(DateTime.parse(
-                                    upcEvents[index]["date_time"]))
-                                .toString()
-                            : "Today",
-                        textAlign: TextAlign.left,style: const TextStyle(
-                          color: defaultTextColor)
-                      )
+                          (upcEvents[index]["date_time"] != null)
+                              ? headerDate
+                                  .format(DateTime.parse(
+                                      upcEvents[index]["date_time"]))
+                                  .toString()
+                              : "Today",
+                          textAlign: TextAlign.left,
+                          style: const TextStyle(color: defaultTextColor))
                     ],
                   )),
                   GestureDetector(
@@ -164,8 +163,9 @@ class AllEvents extends StatelessWidget {
                                                               ["event_location"]
                                                           : "Virtual Event",
                                                       style: const TextStyle(
-                                                          fontSize: 16, color:
-                                                      defaultTextColor))),
+                                                          fontSize: 16,
+                                                          color:
+                                                              defaultTextColor))),
                                               const SizedBox(height: 8),
                                               Container(
                                                   padding:
@@ -184,8 +184,9 @@ class AllEvents extends StatelessWidget {
                                                               .toString()
                                                           : "Today",
                                                       style: const TextStyle(
-                                                          fontSize: 14, color:
-                                                      defaultTextColor))),
+                                                          fontSize: 14,
+                                                          color:
+                                                              defaultTextColor))),
                                               const SizedBox(height: 20),
                                               Container(
                                                   padding:
@@ -249,7 +250,8 @@ class AllEvents extends StatelessWidget {
             );
           });
     } else {
-      return Text("No Upcoming Events", style: TextStyle(fontSize: 20, color:defaultTextColor));
+      return Text("No Upcoming Events",
+          style: TextStyle(fontSize: 20, color: defaultTextColor));
     }
   }
 
@@ -280,15 +282,14 @@ class AllEvents extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 20, color: defaultTextColor)),
                       Text(
-                        (prevEvents[index]["date_time"] != null)
-                            ? headerDate
-                                .format(DateTime.parse(
-                                    prevEvents[index]["date_time"]))
-                                .toString()
-                            : "Today",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(color: defaultTextColor)
-                      )
+                          (prevEvents[index]["date_time"] != null)
+                              ? headerDate
+                                  .format(DateTime.parse(
+                                      prevEvents[index]["date_time"]))
+                                  .toString()
+                              : "Today",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(color: defaultTextColor))
                     ],
                   )),
                   GestureDetector(
@@ -394,7 +395,8 @@ class AllEvents extends StatelessWidget {
                                                           : "Virtual Event",
                                                       style: const TextStyle(
                                                           fontSize: 16,
-                                                          color: defaultTextColor))),
+                                                          color:
+                                                              defaultTextColor))),
                                               const SizedBox(height: 8),
                                               Container(
                                                   padding:
@@ -414,7 +416,8 @@ class AllEvents extends StatelessWidget {
                                                           : "Today",
                                                       style: const TextStyle(
                                                           fontSize: 14,
-                                                          color: defaultTextColor))),
+                                                          color:
+                                                              defaultTextColor))),
                                               const SizedBox(height: 20),
                                               Container(
                                                   padding:
@@ -478,7 +481,8 @@ class AllEvents extends StatelessWidget {
             );
           });
     } else {
-      return Text("No Upcoming Events", style: TextStyle(fontSize: 20, color:defaultTextColor));
+      return Text("No Upcoming Events",
+          style: TextStyle(fontSize: 20, color: defaultTextColor));
     }
   }
 
@@ -611,86 +615,91 @@ class AllEvents extends StatelessWidget {
                             children: <Widget>[
                               Padding(
                                 padding: const EdgeInsets.only(
-                                  top: 80.0,
-                                  left: 8.0,
+                                  top: 40.0,
+                                  bottom: 20.0,
+                                  left: 23.0,
                                 ),
                                 child: Text(
-                                  'Event of the Month',
-                                  style:
-                                  TextStyle(color: defaultTextColor, fontSize: 23.0),
+                                  'Featured',
+                                  style: TextStyle(
+                                      color: defaultTextColor, fontSize: 25.0),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 8.0, bottom: 40.0),
+                                padding: const EdgeInsets.only(
+                                    top: 8.0, bottom: 40.0),
                                 child: Container(
                                   color: Colors.black87,
                                   height: 270.0,
                                   width: double.infinity,
                                   child: Stack(
-                                      children: <Widget>[
-                                        Container(
-                                          width: double.infinity,
-                                          height: 270.0,
-                                          child: Image.asset(
-                                            'assets/images/TeachersLounge.jpg',
-                                            fit: BoxFit.cover,
+                                    children: <Widget>[
+                                      Container(
+                                        width: double.infinity,
+                                        height: 270.0,
+                                        child: Image.asset(
+                                          'assets/images/TeachersLounge.jpg',
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Container(
+                                        height: 270.0,
+                                        width: double.infinity,
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaX: 2, sigmaY: 3),
+                                          child: Container(
+                                            color: Colors.black54,
                                           ),
                                         ),
-                                        Container(
-                                          height: 270.0,
-                                          width: double.infinity,
-                                          child: BackdropFilter(
-                                            filter:
-                                            ImageFilter.blur(sigmaX: 2, sigmaY: 3),
-                                            child: Container(
-                                              color: Colors.black54,
+                                      ),
+                                      Positioned(
+                                        left: 12.0,
+                                        top: 8.0,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            Text(
+                                              'July 30',
+                                              style: TextStyle(
+                                                fontSize: 40.0,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w200,
+                                              ),
                                             ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 12.0,
-                                          top: 8.0,
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: <Widget>[
-                                              Text(
-                                                'July 30',
-                                                style: TextStyle(
-                                                  fontSize: 40.0,
-                                                  color: Colors.white,
-                                                  fontWeight: FontWeight.w200,
-                                                ),
+                                            SizedBox(
+                                              height: 85.0,
+                                            ),
+                                            Text(
+                                              'Let\'s Chat',
+                                              style: TextStyle(
+                                                fontSize: 50.0,
+                                                color: Colors.white,
+                                                fontWeight: FontWeight.w300,
                                               ),
-                                              SizedBox(
-                                                height: 85.0,
-                                              ),
-                                              Text(
-                                                'Let\'s Chat',
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: Text(
+                                                'We have partnered with local licensed counselor Makesha Parrish',
                                                 style: TextStyle(
-                                                  fontSize: 50.0,
+                                                  fontSize: 17.0,
                                                   color: Colors.white,
                                                   fontWeight: FontWeight.w300,
+                                                  fontStyle: FontStyle.italic,
                                                 ),
                                               ),
-                                              Container(
-                                                width: MediaQuery.of(context).size.width,
-                                                child: Text(
-                                                  'We have partnered with local licensed counselor Makesha Parrish',
-                                                  style: TextStyle(
-                                                    fontSize: 17.0,
-                                                    color: Colors.white,
-                                                    fontWeight: FontWeight.w300,
-                                                    fontStyle: FontStyle.italic,
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                            ),
+                                          ],
                                         ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
+                              ),
                             ],
                           )
                         ],

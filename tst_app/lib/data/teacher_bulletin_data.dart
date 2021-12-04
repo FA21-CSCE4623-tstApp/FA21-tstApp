@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TBData extends ChangeNotifier {
   final CollectionReference blogPost =
-      FirebaseFirestore.instance.collection('Blog_Posts');
+      FirebaseFirestore.instance.collection('Posts');
 
   Future _getBlogPosts() async {
     // get document from firebase
@@ -19,6 +19,7 @@ class TBData extends ChangeNotifier {
       if (docSnapshot.docs.isNotEmpty) {
         List postListData = [];
         docSnapshot.docs.forEach((doc) => {postListData.add(doc.data())});
+        print("PRINT BLOG POSTS: ${postListData.length}");
         return postListData;
       }
     } catch (e) {
@@ -49,17 +50,26 @@ class TBData extends ChangeNotifier {
     print(postData);
     print('button clicked');
     //change vvv to post so in one collection
-    return blogPost
-        .doc()
-        .set({
-          'title': getTitle(),
-          'body': getBody(),
-          'created_time': Timestamp.now(),
-          'tags': getTags(),
-          'author': getAuthor(),
-        })
-        .then((value) => print("Added"))
-        .catchError((error) => print("Failed to add user: $error"));
+    if (getTitle().length == 0 ||
+        getBody().length == 0 ||
+        getAuthor().length == 0) {
+      print("post not added");
+      isBlogSuccess = false;
+      return null;
+    }
+    return blogPost.doc().set({
+      'title': getTitle(),
+      'body': getBody(),
+      'created_time': Timestamp.now(),
+      'tags': getTags(),
+      'author': getAuthor(),
+    }).then((value) {
+      print("Added");
+      isBlogSuccess = true;
+    }).catchError((error) {
+      print("Failed to add user: $error");
+      isBlogSuccess = false;
+    });
   }
 
   List<String> fields = ['blogTitle', 'blogAuthor', 'blogBody'];
@@ -115,6 +125,7 @@ class TBData extends ChangeNotifier {
   String blogTitle = "";
   String blogBody = "";
   bool choice = false; // for "set show screen"
+  bool isBlogSuccess = false;
 
   //  getters and setters
   Future get postData => _getBlogPosts();
@@ -124,6 +135,7 @@ class TBData extends ChangeNotifier {
   bool get showEditTagDialog => showEditTag;
   List get getFocusTags => focusTags;
   bool get getAreRelevantPostsLoaded => arePostsLoaded;
+  bool get getIsBlogSuccess => isBlogSuccess;
 
   void set setShowScreen(bool show) {
     choice = show;

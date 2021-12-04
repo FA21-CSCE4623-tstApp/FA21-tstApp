@@ -27,8 +27,8 @@ class ResourcesScreen extends StatelessWidget {
       'Teacher Hacks',
       'Lunch Ideas',
       'Holiday Season',
-      'Decoration Ideas'
-          "K4",
+      'Decoration Ideas',
+      "K4",
     ];
 
     final screenWidth = MediaQuery.of(context).size.width;

@@ -34,8 +34,8 @@ List<String> tagSuggestions = <String>[
   'Teacher Hacks',
   'Lunch Ideas',
   'Holiday Season',
-  'Decoration Ideas'
-      "K4",
+  'Decoration Ideas',
+  "K4",
 ];
 List firstSelected = List.filled(tagSuggestions.length, false);
 var length = tagSuggestions.length;

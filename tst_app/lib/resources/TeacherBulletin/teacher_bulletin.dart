@@ -252,7 +252,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                   ],
                                 ),
                               ),
-                              BlogPosts(),
+                              BlogPostSection(),
                             ],
                           ),
                         )
@@ -271,22 +271,22 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
   }
 }
 
-class BlogPosts extends StatefulWidget {
-  const BlogPosts({Key? key}) : super(key: key);
-
-  @override
-  _BlogPostsState createState() => _BlogPostsState();
-}
-
-class _BlogPostsState extends State<BlogPosts> {
-  @override
-  Widget build(BuildContext context) {
-    return Consumer<TBData>(builder: (context, info, child) {
-      return Column(
-          children: List.generate(2, (index) => BlogPostSection(index: index)));
-    });
-  }
-}
+// class BlogPosts extends StatefulWidget {
+//   const BlogPosts({Key? key}) : super(key: key);
+//
+//   @override
+//   _BlogPostsState createState() => _BlogPostsState();
+// }
+//
+// class _BlogPostsState extends State<BlogPosts> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Consumer<TBData>(builder: (context, info, child) {
+//       return Column(
+//           children: List.generate(2, (index) => BlogPostSection(index: index)));
+//     });
+//   }
+// }
 
 class BlogPostSection extends StatefulWidget {
   final int index;
@@ -316,210 +316,229 @@ class _BlogPostSectionState extends State<BlogPostSection> {
               List<String> images = [
                 "assets/images/teacher_bulletin/apple.png",
                 "assets/images/teacher_bulletin/block.png",
-                "pencil_crayon.png"
+                "assets/images/teacher_bulletin/pencil_crayon.png"
               ];
-              return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 40.0),
-                  child: (widget.index % 2) == 0
-                      ? GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              info.postBackgroundColor =
-                                  backgroundColors[widget.index];
-                              info.postImagePath = images[widget.index];
-                              info.postTags = posts[widget.index]["tags"];
-                              info.postAuthor =
-                                  formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"] ??
-                                      Timestamp.now());
-                              info.postBody = formatTextWithParagraphs(
-                                  posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
-                              Navigator.pushNamed(context, DialogScreen.route);
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                    height: 100.0,
-                                    child: Image.asset(
-                                      images[widget.index],
-                                      fit: BoxFit.cover,
+              return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  itemCount: posts.length - 1,
+                  itemBuilder: (context, item) {
+                    return Padding(
+                        padding: EdgeInsets.only(top: 20.0, bottom: 40.0),
+                        child: (item % 2) == 0
+                            ? GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    info.postBackgroundColor =
+                                        backgroundColors[item];
+                                    info.postImagePath = images[item];
+                                    info.postTags = posts[item]["tags"];
+                                    info.postAuthor =
+                                        formatName(posts[item]["author"]);
+                                    info.postDate = timestampToDateFormat(
+                                        posts[item]["created_date"] ??
+                                            Timestamp.now());
+                                    info.postBody = formatTextWithParagraphs(
+                                        posts[item]["body"]);
+                                    info.postTitle =
+                                        formatTitle(posts[item]["title"]);
+                                    Navigator.pushNamed(
+                                        context, DialogScreen.route);
+                                  });
+                                },
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Container(
+                                          height: 100.0,
+                                          child: Image.asset(
+                                            images[item],
+                                            fit: BoxFit.cover,
+                                          ),
+                                          decoration: defaultRoundedCorners(
+                                              background:
+                                                  backgroundColors[item])),
                                     ),
-                                    decoration: defaultRoundedCorners(
-                                        background:
-                                            backgroundColors[widget.index])),
-                              ),
-                              const SizedBox(width: 20.0),
-                              Expanded(
-                                child: Column(children: [
-                                  Text(
-                                      formatTitle(posts[widget.index]["title"]),
-                                      style: const TextStyle(
-                                          fontSize: 17.0,
-                                          color: defaultTextColor,
-                                          fontWeight: FontWeight.w600)),
-                                  const SizedBox(height: 10.0),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 10.0,
-                                        width: 10.0,
-                                        decoration: defaultRoundedCorners(),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      const Expanded(
-                                        flex: 5,
-                                        child: Text(
-                                          "submitted by: ",
-                                          style: TextStyle(
-                                              color: defaultTextColor,
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Text(
-                                            formatName(
-                                                posts[widget.index]["author"]),
+                                    const SizedBox(width: 20.0),
+                                    Expanded(
+                                      child: Column(children: [
+                                        Text(formatTitle(posts[item]["title"]),
                                             style: const TextStyle(
+                                                fontSize: 17.0,
                                                 color: defaultTextColor,
-                                                fontSize: 14.0)),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10.0),
-                                  SizedBox(
-                                      height: 30.0,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: (posts[widget.index]
-                                                  ["tags"])
-                                              .length,
-                                          itemBuilder: (context, tagIndex) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 10.0),
-                                              child: Chip(
-                                                backgroundColor: purpleAccent,
-                                                label: Text(
-                                                  posts[widget.index]["tags"]
-                                                      [tagIndex],
-                                                  style: defaultChipTextStyle,
-                                                ),
+                                                fontWeight: FontWeight.w600)),
+                                        const SizedBox(height: 10.0),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              height: 10.0,
+                                              width: 10.0,
+                                              decoration:
+                                                  defaultRoundedCorners(),
+                                            ),
+                                            const SizedBox(width: 10.0),
+                                            const Expanded(
+                                              flex: 5,
+                                              child: Text(
+                                                "submitted by: ",
+                                                style: TextStyle(
+                                                    color: defaultTextColor,
+                                                    fontSize: 12.0,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
-                                            );
-                                          })),
-                                ]),
-                              ),
-                            ],
-                          ),
-                        )
-                      : GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              info.postBackgroundColor =
-                                  backgroundColors[widget.index];
-                              info.postImagePath = images[widget.index];
-                              info.postTags = posts[widget.index]["tags"];
-                              info.postAuthor =
-                                  formatName(posts[widget.index]["author"]);
-                              info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"] ??
-                                      Timestamp.now());
-                              info.postBody = formatTextWithParagraphs(
-                                  posts[widget.index]["body"]);
-                              info.postTitle =
-                                  formatTitle(posts[widget.index]["title"]);
-                              Navigator.pushNamed(context, DialogScreen.route);
-                            });
-                          },
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Column(children: [
-                                  Text(
-                                      formatTitle(posts[widget.index]["title"]),
-                                      style: const TextStyle(
-                                          fontSize: 17.0,
-                                          color: defaultTextColor,
-                                          fontWeight: FontWeight.w600)),
-                                  const SizedBox(height: 10.0),
-                                  Row(
-                                    children: [
-                                      Container(
-                                        height: 10.0,
-                                        width: 10.0,
-                                        decoration: defaultRoundedCorners(),
-                                      ),
-                                      const SizedBox(width: 10.0),
-                                      const Expanded(
-                                        flex: 5,
-                                        child: Text(
-                                          "submitted by: ",
-                                          style: TextStyle(
-                                              fontSize: 12.0,
-                                              color: defaultTextColor,
-                                              fontWeight: FontWeight.bold),
+                                            ),
+                                            Expanded(
+                                              flex: 4,
+                                              child: Text(
+                                                  formatName(
+                                                      posts[item]["author"]),
+                                                  style: const TextStyle(
+                                                      color: defaultTextColor,
+                                                      fontSize: 14.0)),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                      Expanded(
-                                        flex: 4,
-                                        child: Text(
-                                            formatName(
-                                                posts[widget.index]["author"]),
+                                        const SizedBox(height: 10.0),
+                                        SizedBox(
+                                            height: 30.0,
+                                            child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: (posts[item]["tags"])
+                                                    .length,
+                                                itemBuilder:
+                                                    (context, tagIndex) {
+                                                  return Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 10.0),
+                                                    child: Chip(
+                                                      backgroundColor:
+                                                          purpleAccent,
+                                                      label: Text(
+                                                        posts[item]["tags"]
+                                                            [tagIndex],
+                                                        style:
+                                                            defaultChipTextStyle,
+                                                      ),
+                                                    ),
+                                                  );
+                                                })),
+                                      ]),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    info.postBackgroundColor =
+                                        backgroundColors[item];
+                                    info.postImagePath = images[item];
+                                    info.postTags = posts[item]["tags"];
+                                    info.postAuthor =
+                                        formatName(posts[item]["author"]);
+                                    info.postDate = timestampToDateFormat(
+                                        posts[item]["created_date"] ??
+                                            Timestamp.now());
+                                    info.postBody = formatTextWithParagraphs(
+                                        posts[item]["body"]);
+                                    info.postTitle =
+                                        formatTitle(posts[item]["title"]);
+                                    Navigator.pushNamed(
+                                        context, DialogScreen.route);
+                                  });
+                                },
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Column(children: [
+                                        Text(formatTitle(posts[item]["title"]),
                                             style: const TextStyle(
+                                                fontSize: 17.0,
                                                 color: defaultTextColor,
-                                                fontSize: 14.0)),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 10.0),
-                                  SizedBox(
-                                      height: 30.0,
-                                      child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          itemCount: (posts[widget.index]
-                                                  ["tags"])
-                                              .length,
-                                          itemBuilder: (context, tagIndex) {
-                                            return Padding(
-                                              padding:
-                                                  const EdgeInsets.symmetric(
-                                                      horizontal: 5.0),
-                                              child: Chip(
-                                                backgroundColor: purpleAccent,
-                                                label: Text(
-                                                  posts[widget.index]["tags"]
-                                                      [tagIndex],
-                                                  style: defaultChipTextStyle,
-                                                ),
+                                                fontWeight: FontWeight.w600)),
+                                        const SizedBox(height: 10.0),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              height: 10.0,
+                                              width: 10.0,
+                                              decoration:
+                                                  defaultRoundedCorners(),
+                                            ),
+                                            const SizedBox(width: 10.0),
+                                            const Expanded(
+                                              flex: 5,
+                                              child: Text(
+                                                "submitted by: ",
+                                                style: TextStyle(
+                                                    fontSize: 12.0,
+                                                    color: defaultTextColor,
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
-                                            );
-                                          })),
-                                ]),
-                              ),
-                              const SizedBox(width: 20.0),
-                              Expanded(
-                                child: Container(
-                                    height: 100.0,
-                                    decoration: defaultRoundedCorners(
-                                        background:
-                                            backgroundColors[widget.index]),
-                                    child: Image.asset(images[widget.index],
-                                        fit: BoxFit.cover)),
-                              ),
-                            ],
-                          ),
-                        ));
+                                            ),
+                                            Expanded(
+                                              flex: 4,
+                                              child: Text(
+                                                  formatName(
+                                                      posts[item]["author"]),
+                                                  style: const TextStyle(
+                                                      color: defaultTextColor,
+                                                      fontSize: 14.0)),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 10.0),
+                                        SizedBox(
+                                            height: 30.0,
+                                            child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: (posts[item]["tags"])
+                                                    .length,
+                                                itemBuilder:
+                                                    (context, tagIndex) {
+                                                  return Padding(
+                                                    padding: const EdgeInsets
+                                                            .symmetric(
+                                                        horizontal: 5.0),
+                                                    child: Chip(
+                                                      backgroundColor:
+                                                          purpleAccent,
+                                                      label: Text(
+                                                        posts[item]["tags"]
+                                                            [tagIndex],
+                                                        style:
+                                                            defaultChipTextStyle,
+                                                      ),
+                                                    ),
+                                                  );
+                                                })),
+                                      ]),
+                                    ),
+                                    const SizedBox(width: 20.0),
+                                    Expanded(
+                                      child: Container(
+                                          height: 100.0,
+                                          decoration: defaultRoundedCorners(
+                                              background: backgroundColors[
+                                                  item %
+                                                      backgroundColors.length]),
+                                          child: Image.asset(
+                                              images[item % images.length],
+                                              fit: BoxFit.cover)),
+                                    ),
+                                  ],
+                                ),
+                              ));
+                  });
             } else {
               info.arePostsLoaded = false;
-              return widget.index == 0 ? smallLoadingIndicator() : Container();
+              return smallLoadingIndicator();
             }
           });
     });
