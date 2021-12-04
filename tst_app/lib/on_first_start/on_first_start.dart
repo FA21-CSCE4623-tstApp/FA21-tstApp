@@ -60,13 +60,12 @@ class _PageOneState extends State<PageOne> {
             children: [
               Expanded(
                 flex: 8,
-                child: Image.asset(
-                    'assets/images/teacher_bulletin/pencil_crayon.png'),
+                child: Image.asset('assets/images/teacher_bulletin/apple.png'),
               ),
               const Expanded(
                 flex: 1,
                 child: Text(
-                  "see what we do and find encouragement",
+                  "See what we do and find encouragement",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: defaultTextColor,
@@ -80,7 +79,7 @@ class _PageOneState extends State<PageOne> {
                   "We love to share all of the things we've been up to."
                   " If you're new to Teachers Support Teachers, "
                   "want to learn more about us, or see how we work with educators,"
-                  " our Home screen is a a great place to start",
+                  " our Home screen is a a great place to start.",
                   style: TextStyle(color: defaultTextColor, fontSize: 15.0),
                   textAlign: TextAlign.center,
                 ),
@@ -194,13 +193,12 @@ class _PageTwoState extends State<PageTwo> {
             children: [
               Expanded(
                 flex: 8,
-                child: Image.asset(
-                    'assets/images/teacher_bulletin/pencil_crayon.png'),
+                child: Image.asset('assets/images/teacher_bulletin/apple.png'),
               ),
               const Expanded(
                 flex: 1,
                 child: Text(
-                  "get involved with us",
+                  "Get involved with us",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: defaultTextColor,
@@ -332,13 +330,12 @@ class _PageThreeState extends State<PageThree> {
             children: [
               Expanded(
                 flex: 8,
-                child: Image.asset(
-                    'assets/images/teacher_bulletin/pencil_crayon.png'),
+                child: Image.asset('assets/images/teacher_bulletin/apple.png'),
               ),
               const Expanded(
                 flex: 1,
                 child: Text(
-                  "we offer resources for educators",
+                  "We offer resources for educators",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: defaultTextColor,
@@ -409,7 +406,7 @@ class _PageThreeState extends State<PageThree> {
                         },
                         child: Container(
                           decoration: const BoxDecoration(
-                            color: mediumBrown,
+                            color: lightBrown,
                             borderRadius: BorderRadius.all(
                               Radius.circular(10.0),
                             ),
@@ -420,9 +417,9 @@ class _PageThreeState extends State<PageThree> {
                               "get started",
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600),
+                                fontSize: 20.0,
+                                color: defaultTextColor,
+                              ),
                             ),
                           ),
                         ),

@@ -5,14 +5,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TBData extends ChangeNotifier {
   final CollectionReference blogPost =
-  FirebaseFirestore.instance.collection('Blog_Posts');
-  
+      FirebaseFirestore.instance.collection('Blog_Posts');
+
   Future _getBlogPosts() async {
     // get document from firebase
     CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection('Posts');
-
-   
+        FirebaseFirestore.instance.collection('Posts');
 
     //return default value if error
 
@@ -38,95 +36,66 @@ class TBData extends ChangeNotifier {
     }
   }
 
-
-  Future createBlogPosts() async{
-    List postData = [{
-      'title': getTitle(),
-      'body': getBody(),
-      'created_time':  Timestamp.now(),
-      'tags': getTags(),
-      'author': getAuthor(),
-    }];
+  Future createBlogPosts() async {
+    List postData = [
+      {
+        'title': getTitle(),
+        'body': getBody(),
+        'created_time': Timestamp.now(),
+        'tags': getTags(),
+        'author': getAuthor(),
+      }
+    ];
     print(postData);
     print('button clicked');
     //change vvv to post so in one collection
     return blogPost
         .doc()
         .set({
-      'title': getTitle(),
-      'body': getBody(),
-      'created_time':  Timestamp.now(),
-      'tags': getTags(),
-      'author': getAuthor(),
-    })
+          'title': getTitle(),
+          'body': getBody(),
+          'created_time': Timestamp.now(),
+          'tags': getTags(),
+          'author': getAuthor(),
+        })
         .then((value) => print("Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
 
   List<String> fields = ['blogTitle', 'blogAuthor', 'blogBody'];
-  void clearFields(){
+  void clearFields() {
     fields.clear();
     notifyListeners();
   }
 
-  bool choice = false;
   bool getShowScreen() {
     return choice;
   }
 
-  List<String> userTags = [];
-  List<String> getTags(){
+  List<String> getTags() {
     return userTags;
   }
 
-  void set setTags(String choice){
-    // userTags.add(choice);
-    isDuplicate(choice);
-    notifyListeners();
-  }
-  void clearTags(){
+  void clearTags() {
     userTags.clear();
     notifyListeners();
   }
 
-  void clearTag(String choice){
+  void clearTag(String choice) {
     userTags.remove(choice);
     notifyListeners();
   }
 
-  String blogTitle = "";
-  String getTitle(){
-    return blogTitle;
-  }
-
-  void setTitle(String title){
-    blogTitle = title;
-  }
-
-
-  String blogBody = "";
-  String getBody(){
-    return blogBody;
-  }
-  void setBody(String body){
-    blogBody = body;
-  }
-
-  String blogAuthor = "";
-  String getAuthor(){
-    return blogAuthor;
-  }
-
-  void setAuthor(String author){
-    blogAuthor = author;
-  }
-
-  void isDuplicate(String choice){
-    if(!userTags.contains(choice)){
+  void isDuplicate(String choice) {
+    if (!userTags.contains(choice)) {
       userTags.add(choice);
     }
   }
-  
+
+  Future onRefreshTeacherBulletin() async {
+    //TODO: implement this
+    const Duration(seconds: 5);
+  }
 
   // used to display information on post dialog that pops up
   Color postBackgroundColor = Colors.transparent; // used to show post image
@@ -139,27 +108,71 @@ class TBData extends ChangeNotifier {
   String postDate = "";
   List postTags = [];
   bool arePostsLoaded = false;
-  bool get getAreRelevantPostsLoaded => arePostsLoaded;
-  void set setAreRelevantPostsLoaded(bool postsLoaded) {
-    arePostsLoaded = postsLoaded;
-    notifyListeners();
-  }
-
-  bool isFirstRun = false; // used to show "on first run"
+  List focusTags = ["Educators"]; // for "i want blogs that foucs on..."
+  bool isFirstRun = false; // used to show "on first run" screen
+  bool showEditTag = false;
+  List<String> userTags = [];
+  String blogTitle = "";
+  String blogBody = "";
+  bool choice = false; // for "set show screen"
 
   //  getters and setters
   Future get postData => _getBlogPosts();
-  bool get showScreen => getShowScreen();
+  bool get showScreen => choice;
   Future get blogData => createBlogPosts();
   List<String> get postTag => getTags();
+  bool get showEditTagDialog => showEditTag;
+  List get getFocusTags => focusTags;
+  bool get getAreRelevantPostsLoaded => arePostsLoaded;
 
   void set setShowScreen(bool show) {
     choice = show;
     notifyListeners();
   }
 
-  Future onRefreshTeacherBulletin() async {
-    //TODO: implement this
-    const Duration(seconds: 5);
+  void set setTags(String choice) {
+    // userTags.add(choice);
+    isDuplicate(choice);
+    notifyListeners();
+  }
+
+  String getTitle() {
+    return blogTitle;
+  }
+
+  String getBody() {
+    return blogBody;
+  }
+
+  String blogAuthor = "";
+  String getAuthor() {
+    return blogAuthor;
+  }
+
+  void setBody(String body) {
+    blogBody = body;
+  }
+
+  void setAuthor(String author) {
+    blogAuthor = author;
+  }
+
+  void set setEditTagDialog(bool show) {
+    showEditTag = show;
+    notifyListeners();
+  }
+
+  void setTitle(String title) {
+    blogTitle = title;
+  }
+
+  void set setAreRelevantPostsLoaded(bool postsLoaded) {
+    arePostsLoaded = postsLoaded;
+    notifyListeners();
+  }
+
+  void set setFocusTags(List choice) {
+    focusTags = choice;
+    notifyListeners();
   }
 }

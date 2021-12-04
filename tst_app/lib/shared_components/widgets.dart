@@ -71,9 +71,11 @@ Widget smallLoadingIndicator() {
 }
 
 Widget cancelWidget() {
-  return const Icon(
-    Icons.cancel,
-    color: darkBrown,
-    size: 38.0,
+  return Container(
+    child: const Padding(
+        padding: EdgeInsets.all(5),
+        child: Icon(Icons.close, color: Colors.white70)),
+    decoration: BoxDecoration(
+        color: mediumBrown, borderRadius: BorderRadius.circular(10)),
   );
 }

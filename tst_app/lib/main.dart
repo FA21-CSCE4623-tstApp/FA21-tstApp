@@ -9,7 +9,7 @@ import '../test.dart';
 import 'data/events_data.dart';
 import 'start_screen.dart';
 import 'home/home_screen.dart';
-import 'on_first_start/top_user_benefits.dart';
+import 'on_first_start/on_first_start.dart';
 import 'shared_components/learn_more.dart';
 import 'shared_components/login_page.dart';
 import 'shared_components/meet_our_board.dart';

@@ -4,6 +4,7 @@ import 'package:tst_app/data/teacher_bulletin_data.dart';
 import '../../styles.dart';
 import 'package:provider/provider.dart';
 import '../../shared_components/widgets.dart';
+import 'edit_tags.dart';
 
 import 'blog_screen.dart';
 import 'teacher_bulletin_widgets.dart';
@@ -48,7 +49,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                     delegate: SliverChildListDelegate(
                       [
                         const Padding(
-                          padding: EdgeInsets.only(bottom: 40.0),
+                          padding: EdgeInsets.symmetric(vertical: 40.0),
                           child: Text(
                             "Change What You See",
                             style: unselectedTabTextStyle,
@@ -56,56 +57,111 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                         ),
 
                         // 1st column ... "I want to focus on..."
-                        const Text("I want blogs that focus on...", style: TextStyle(
-                          color: defaultTextColor,
-                        ),),
-                        const SizedBox(height: 10.0),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Chip(
-                            backgroundColor: purpleAccent,
-                            label: Text(
-                              "Educators",
-                              style: defaultChipTextStyle,
+                        Row(
+                          children: [
+                            const Text(
+                              "I want blogs that focus on...",
+                              style: TextStyle(
+                                color: defaultTextColor,
+                              ),
                             ),
-                          ),
+                            const Expanded(child: SizedBox(width: 1.0)),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  info.setEditTagDialog = true;
+                                });
+                              },
+                              child: Text("+ edit",
+                                  style: TextStyle(
+                                      color: defaultTextColor,
+                                      fontWeight: FontWeight.w700)),
+                            )
+                          ],
                         ),
                         const SizedBox(height: 20.0),
+                        Container(
+                          height: 30.0,
+                          child: info.getFocusTags.length == 0
+                              ? Center(
+                                  child: Text(
+                                  "choose a tag to get started",
+                                  style: TextStyle(
+                                      color: defaultTextColor,
+                                      fontStyle: FontStyle.italic,
+                                      fontWeight: FontWeight.w600),
+                                ))
+                              : ListView.builder(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: info.getFocusTags.length,
+                                  itemBuilder: (context, itemCount) {
+                                    return Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10.0),
+                                      child: Chip(
+                                        backgroundColor: purpleAccent,
+                                        label: Text(
+                                          info.getFocusTags[itemCount],
+                                          style: defaultChipTextStyle,
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                        ),
+                        // const Align(
+                        //   alignment: Alignment.topLeft,
+                        //   child: Chip(
+                        //     backgroundColor: purpleAccent,
+                        //     label: Text(
+                        //       "Educators",
+                        //       style: defaultChipTextStyle,
+                        //     ),
+                        //   ),
+                        // ),
+                        const SizedBox(height: 50.0),
                         // 2nd row "I want to see blogs that..."
-                        const Text("I want to see blogs that...", style: TextStyle(
-                          color: defaultTextColor,),
-                        ),
-                        const SizedBox(width: 1.0),
-                        const Align(
-                          alignment: Alignment.topLeft,
-                          child: Chip(
-                            backgroundColor: purpleAccent,
-                            label: Text(
-                              "K4",
-                              style: defaultChipTextStyle,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 20.0),
-                        // 3rd row "I would like to see posts that... "
-                        const Text("I want blogs that focus on...",style: TextStyle(
-                          color: defaultTextColor,), ),
-                        const SizedBox(width: 10.0),
-                        SizedBox(
-                            height: 50.0,
-                            child: ListView.builder(
-                                scrollDirection: Axis.horizontal,
-                                itemCount: 2,
-                                itemBuilder: (BuildContext context, int index) {
-                                  List tags = ["Inspiration", "K5"];
-                                  return Chip(
-                                    backgroundColor: purpleAccent,
-                                    label: Text(
-                                      tags[index],
-                                      style: defaultChipTextStyle,
-                                    ),
-                                  );
-                                })),
+                        // const Text(
+                        //   "I want to see blogs that...",
+                        //   style: TextStyle(
+                        //     color: defaultTextColor,
+                        //   ),
+                        // ),
+                        // const SizedBox(width: 1.0),
+                        // const Align(
+                        //   alignment: Alignment.topLeft,
+                        //   child: Chip(
+                        //     backgroundColor: purpleAccent,
+                        //     label: Text(
+                        //       "K4",
+                        //       style: defaultChipTextStyle,
+                        //     ),
+                        //   ),
+                        // ),
+                        // const SizedBox(height: 20.0),
+                        // // 3rd row "I would like to see posts that... "
+                        // const Text(
+                        //   "I want blogs that focus on...",
+                        //   style: TextStyle(
+                        //     color: defaultTextColor,
+                        //   ),
+                        // ),
+                        // const SizedBox(width: 10.0),
+                        // SizedBox(
+                        //     height: 50.0,
+                        //     child: ListView.builder(
+                        //         scrollDirection: Axis.horizontal,
+                        //         itemCount: 2,
+                        //         itemBuilder: (BuildContext context, int index) {
+                        //           List tags = ["Inspiration", "K5"];
+                        //           return Chip(
+                        //             backgroundColor: purpleAccent,
+                        //             label: Text(
+                        //               tags[index],
+                        //               style: defaultChipTextStyle,
+                        //             ),
+                        //           );
+                        //         })),
 
                         Padding(
                           padding: defaultSectionPadding,
@@ -128,19 +184,19 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
                                       info.setShowScreen = true;
                                       info.clearFields();
                                     }),
-                                  child: Container(
-                                    decoration: defaultRoundedCorners(),
-                                    child: const Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        "add",
-                                        style: TextStyle(
-                                          color: lightTextColor,
-                                          fontSize: 20.0,
+                                    child: Container(
+                                      decoration: defaultRoundedCorners(),
+                                      child: const Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text(
+                                          "add",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 20.0,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
                                   ),
                                 ],
                               ),
@@ -205,6 +261,7 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
             ),
           ),
           BlogScreen(),
+          EditTagsDialog()
         ],
       );
     });
@@ -264,7 +321,6 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                       ? GestureDetector(
                           onTap: () {
                             setState(() {
-                              print("show dialog screen");
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
@@ -272,7 +328,8 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
                               info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"] ?? Timestamp.now());
+                                  posts[widget.index]["created_date"] ??
+                                      Timestamp.now());
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
                               info.postTitle =
@@ -296,7 +353,8 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               const SizedBox(width: 20.0),
                               Expanded(
                                 child: Column(children: [
-                                  Text(formatTitle(posts[widget.index]["title"]),
+                                  Text(
+                                      formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           color: defaultTextColor,
@@ -327,7 +385,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                                 posts[widget.index]["author"]),
                                             style: const TextStyle(
                                                 color: defaultTextColor,
-                                                fontSize: 12.0)),
+                                                fontSize: 14.0)),
                                       ),
                                     ],
                                   ),
@@ -362,7 +420,6 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                       : GestureDetector(
                           onTap: () {
                             setState(() {
-                              print("show dialog screen");
                               info.postBackgroundColor =
                                   backgroundColors[widget.index];
                               info.postImagePath = images[widget.index];
@@ -370,7 +427,8 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                               info.postAuthor =
                                   formatName(posts[widget.index]["author"]);
                               info.postDate = timestampToDateFormat(
-                                  posts[widget.index]["created_date"] ?? Timestamp.now());
+                                  posts[widget.index]["created_date"] ??
+                                      Timestamp.now());
                               info.postBody = formatTextWithParagraphs(
                                   posts[widget.index]["body"]);
                               info.postTitle =
@@ -382,7 +440,8 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                             children: [
                               Expanded(
                                 child: Column(children: [
-                                  Text(formatTitle(posts[widget.index]["title"]),
+                                  Text(
+                                      formatTitle(posts[widget.index]["title"]),
                                       style: const TextStyle(
                                           fontSize: 17.0,
                                           color: defaultTextColor,
@@ -401,7 +460,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                         child: Text(
                                           "submitted by: ",
                                           style: TextStyle(
-                                              fontSize: 10.0,
+                                              fontSize: 12.0,
                                               color: defaultTextColor,
                                               fontWeight: FontWeight.bold),
                                         ),
@@ -413,7 +472,7 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                                                 posts[widget.index]["author"]),
                                             style: const TextStyle(
                                                 color: defaultTextColor,
-                                                fontSize: 10.0)),
+                                                fontSize: 14.0)),
                                       ),
                                     ],
                                   ),

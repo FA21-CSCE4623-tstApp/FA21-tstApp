@@ -8,7 +8,7 @@ const Color mediumBrown = Color(0xffab906e);
 const Color darkBrown = Color(0xff443727);
 
 Color c = Colors.deepPurpleAccent;
-const Color purpleAccent = Color(0xff7C4DFF);
+const Color purpleAccent = Color(0xffb388ff);
 const Color lightPurple = Color(0xffB39DDB);
 const Color mediumPurple = Color(0xff7f6493);
 const Color darkPurple = Color(0xff4527A0);
@@ -21,7 +21,8 @@ const Color defaultTextColor = Colors.black54;
 const Color lightTextColor = Colors.white70;
 const Color defaultIconColor = Colors.black54;
 
-const EdgeInsets defaultScreenPadding = EdgeInsets.all(20.0);
+const EdgeInsets defaultScreenPadding =
+    EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0);
 const EdgeInsets defaultSectionPadding = EdgeInsets.symmetric(vertical: 20.0);
 const EdgeInsets defaultTextPadding = EdgeInsets.only(top: 10.0, bottom: 10.0);
 
@@ -45,6 +46,6 @@ BoxDecoration defaultRoundedCorners({Color background = purpleAccent}) {
 }
 
 const TextStyle defaultChipTextStyle = TextStyle(
-  color: lightTextColor,
+  color: Colors.white,
   fontSize: 12.0,
 );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tst_app/data/teacher_bulletin_data.dart';
-import 'package:tst_app/on_first_start/top_user_benefits.dart';
+import 'package:tst_app/on_first_start/on_first_start.dart';
 // import 'package:tst_app/give/give_screen.dart';
 // import 'package:tst_app/home/calendar.dart';
 // import 'package:tst_app/shared_components/learn_more.dart';

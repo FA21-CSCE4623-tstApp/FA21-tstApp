@@ -56,8 +56,25 @@ TODO: get information from firebase
 
 30-11
 
-- TODO: add a 'my posts' section before 'relevant section'
+- TODO: add a 'my posts' section before 'relevant section' +
    - should be horizontally scrollable
-- TODO: change relevant to recent. keep tab
+- TODO: change relevant to recent. keep tab +
     - maybe set up SQLite>
-- TODO: fix bugs
+- TODO: fix bugs +
+- TODO: switch featured to Recent and show last three actions by user
+
+1-12
+- TODO: make text resizable based on reading preferences (no)
+- TODO: give user option to update tag ?
+
+2-12
+- do recent section (set up db)
+- do drawing for TST page
+- add edit to tags+
+- center title on android (or set  all alignments same on iOS/Android?
+- change i want blogs that focus on to different bits/questions+
+- do for both in blogpostssection widget+
+    on recent section, add space bt tags, submitted by = 12 font, author = 14 font+
+- shorten distance between title and top of pic to match distance bt author and body+
+- change on first start button to match victor's+
+- center pic in "on first start" screen+

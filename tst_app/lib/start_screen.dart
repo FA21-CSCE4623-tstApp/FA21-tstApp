@@ -8,7 +8,7 @@ import 'package:tst_app/styles.dart';
 import 'data/teacher_bulletin_data.dart';
 import 'give/give_screen.dart';
 import 'home/home_screen.dart';
-import 'on_first_start/top_user_benefits.dart';
+import 'on_first_start/on_first_start.dart';
 
 class StartScreen extends StatefulWidget {
   const StartScreen({Key? key}) : super(key: key);
