@@ -51,200 +51,216 @@ class _BlogScreenState extends State<BlogScreen> {
       return !info.showScreen
           ? Container()
           : Scaffold(
-              backgroundColor: Colors.transparent,
-              body: Stack(children: [
-                Container(
-                  color: Colors.black54,
-                ),
-                SafeArea(
-                    child: Center(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      //clipBehavior: Clip.hardEdge,
-                      color: appBackground,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      // child: ListView(shrinkWrap: true,
-                      //   children: [
-                      //     Text("Please Fix Yourself")
-                      //   ],
-                      // ),
-                      child: ListView(
-                        shrinkWrap: true,
-                        //crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: GestureDetector(
-                                onTap: () {
-                                  info.setShowScreen = false;
-                                  bodyController.text = "";
-                                  titleController.text = "";
-                                  authorController.text = "";
-                                  info.clearTags();
-                                },
-                                child: cancelWidget()),
+        backgroundColor: Colors.transparent,
+        body: Stack(children: [
+          Container(
+            color: Colors.black54,
+          ),
+          SafeArea(
+              child: Center(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20.0),
+                    //clipBehavior: Clip.hardEdge,
+                    color: appBackground,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    // child: ListView(shrinkWrap: true,
+                    //   children: [
+                    //     Text("Please Fix Yourself")
+                    //   ],
+                    // ),
+                    child: ListView(
+                      shrinkWrap: true,
+                      //crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: GestureDetector(
+                              onTap: () {
+                                info.setShowScreen = false;
+                                bodyController.text = "";
+                                titleController.text = "";
+                                authorController.text = "";
+                                info.clearTags();
+                              },
+                              child: Container(
+                                child: const Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Icon(Icons.close,
+                                        color: Colors.white70
+                                    )
+                                ),
+                                decoration: BoxDecoration(
+                                    color: mediumBrown,
+                                    borderRadius: BorderRadius.circular(10)),
+                              )
                           ),
-                          TextField(
-                              maxLines: 1,
-                              maxLength: 30,
-                              controller: titleController,
-                              decoration: InputDecoration(
-                                border: InputBorder.none,
-                                hintText: "Title",
-                                //  focusedErrorBorder:
-                                //title empty then set color to red.
-                              ),
-                              style: TextStyle(
-                                  color: defaultTextColor, fontSize: 24)),
-                          Row(
-                            children: [
-                              Builder(builder: (context) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      Scaffold.of(context).showBottomSheet(
-                                    (context) => TagSelectionScreen(),
-                                    shape: BeveledRectangleBorder(
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(20),
-                                          topRight: Radius.circular(20)),
+                        ),
+                        TextField(
+                            maxLines: 1,
+                            controller: titleController,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Add a title",
+                              //  focusedErrorBorder:
+                              //title empty then set color to red.
+                            ),
+                            style: TextStyle(
+                                color: defaultTextColor, fontSize: 24)),
+                        Row(
+                          children: [
+                            Builder(builder: (context) {
+                              return GestureDetector(
+                                onTap: () =>
+                                    Scaffold.of(context).showBottomSheet(
+                                          (context) => TagSelectionScreen(),
+                                      shape: BeveledRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topLeft: Radius.circular(20),
+                                            topRight: Radius.circular(20)),
+                                      ),
                                     ),
-                                  ),
-                                  child: Icon(Icons.add_circle_outlined),
-                                );
-                              }),
-                              Expanded(
+                                child: Icon(Icons.add_circle_outline),
+                              );
+                            }),
+
+                            // Change icon color
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 2.0),
                                 child: Container(
                                     height: 30.0,
                                     alignment: Alignment.centerLeft,
                                     child: userTags.length == 0
                                         ? Text(
-                                            "Add a tag",
-                                            style: TextStyle(
-                                                color: defaultTextColor),
-                                          )
+                                      "Add a tag",
+                                      style: TextStyle(
+                                          color: defaultTextColor),
+                                    )
                                         : ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount: userTags.length,
-                                            //(info.postTags.length),
-                                            itemBuilder: (context, tagIndex) {
-                                              debugPrint("USERTAG LENGTH:" +
-                                                  userTags.length.toString());
-                                              return Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 2.0),
-                                                child: Chip(
-                                                  backgroundColor: lightPurple,
-                                                  label: Text(
-                                                    info.userTags[tagIndex],
-                                                    //info.postTags[widget.index][tagIndex],
-                                                    style: defaultChipTextStyle,
-                                                  ),
-                                                ),
-                                              );
-                                            })),
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: userTags.length,
+                                        //(info.postTags.length),
+                                        itemBuilder: (context, tagIndex) {
+                                          debugPrint("USERTAG LENGTH:" +
+                                              userTags.length.toString());
+                                          return Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 2.0),
+                                            child: Chip(
+                                              backgroundColor: lightPurple,
+                                              label: Text(
+                                                info.userTags[tagIndex],
+                                                //info.postTags[widget.index][tagIndex],
+                                                style: defaultChipTextStyle,
+                                              ),
+                                            ),
+                                          );
+                                        })),
                               ),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Container(
-                                height: 30.0,
-                                width: 30.0,
-                                decoration: BoxDecoration(
-                                  color: mediumBrown,
-                                  borderRadius: BorderRadius.circular(30.0),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 30.0,
+                              width: 30.0,
+                              decoration: BoxDecoration(
+                                color: mediumBrown,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: const Icon(Icons.person,
+                                  color: appBackground),
+                            ),
+                            Expanded(
+                              child: Center(
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 2.0),
+                                  child: TextFormField(
+                                      controller: authorController,
+                                      decoration: const InputDecoration(
+                                        hintText: "Add a author",
+                                        border: InputBorder.none,
+                                      ),
+                                      style: TextStyle(
+                                          fontSize: 14, color: defaultTextColor)),
                                 ),
-                                child: const Icon(Icons.person,
-                                    color: appBackground),
                               ),
-                              Expanded(
-                                child: TextFormField(
-                                    controller: authorController,
-                                    decoration: const InputDecoration(
-                                      hintText: "Author",
-                                      border: InputBorder.none,
-                                    ),
-                                    style: TextStyle(
-                                        fontSize: 16, color: defaultTextColor)),
-                              )
-                            ],
+                            )
+                          ],
+                        ),
+                        Text(formattedDate,
+                            style: TextStyle(
+                                fontSize: 12, color: defaultTextColor)),
+                        TextFormField(
+                          maxLines: 10,
+                          maxLength: 440,
+                          controller: bodyController,
+                          decoration: InputDecoration(
+                            // BODY
+                            hintText:
+                            "Add a body",
+                            // add hint text instead of hard code.
+                            border: InputBorder.none,
                           ),
-                          Text(formattedDate,
-                              style: TextStyle(
-                                  fontSize: 12, color: defaultTextColor)),
-                          TextFormField(
-                            maxLines: 10,
-                            controller: bodyController,
-                            decoration: InputDecoration(
-                              // BODY
-                              hintText:
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, "
-                                  "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-                                  "Consectetur libero id faucibus nisl tincidunt. Suspendisse faucibus "
-                                  "interdum posuere lorem ipsum dolor sit amet. Diam sit amet nisl suscipit adipiscing bibendum. "
-                                  "Orci a scelerisque purus semper eget duis at tellus at. Ornare suspendisse sed nisi lacus. "
-                                  "Mattis vulputate enim nulla aliquet porttitor lacus luctus accumsan tortor.",
-                              // add hint text instead of hard code.
-                              border: InputBorder.none,
-                            ),
-                            style: const TextStyle(
-                              overflow: TextOverflow.clip,
-                              fontSize: 16,
-                              color: defaultTextColor,
-                            ),
+                          style: const TextStyle(
+                            overflow: TextOverflow.clip,
+                            fontSize: 16,
+                            color: defaultTextColor,
                           ),
-                          // creates blog post
-                          Align(
-                            alignment: Alignment.bottomRight,
-                            child: GestureDetector(
-                              onTap: () {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: const Text(
-                                    "   Blog Posted!   ",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  duration: const Duration(milliseconds: 1500),
-                                  backgroundColor: Colors.black45,
-                                  width: 130,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0,
-                                  ),
-                                  behavior: SnackBarBehavior.floating,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(60.0),
-                                  ),
-                                ));
-                                info.setBody(bodyController.text);
-                                info.setTitle(titleController.text);
-                                info.setAuthor(authorController.text);
-                                //info.createBlogPosts();
-                                Timer(Duration(milliseconds: 1600), () {
-                                  info.setShowScreen = false;
-                                  bodyController.text = "";
-                                  titleController.text = "";
-                                  authorController.text = "";
-                                  info.clearTags();
-                                });
-                              },
-                              child: Icon(
-                                Icons.post_add_sharp,
-                              ),
+                        ),
+                        // creates blog post
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: GestureDetector(
+                            onTap: () {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: const Text(
+                                  "   Blog Posted!  ",
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                duration: const Duration(milliseconds: 1500),
+                                backgroundColor: Colors.black45,
+                                width: 130,
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 8.0,
+                                ),
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(60.0),
+                                ),
+                              ));
+                              info.setBody(bodyController.text);
+                              info.setTitle(titleController.text);
+                              info.setAuthor(authorController.text);
+                              info.createBlogPosts();
+                              Timer(Duration(milliseconds: 1600), () {
+                                info.setShowScreen = false;
+                                bodyController.text = "";
+                                titleController.text = "";
+                                authorController.text = "";
+                                info.clearTags();
+                              });
+                            },
+                            child: Icon(
+                              Icons.post_add_rounded,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ))
-              ]),
-            );
+                ),
+              ))
+        ]),
+      );
     });
   }
 }
