@@ -50,11 +50,12 @@ class TBData extends ChangeNotifier {
     print(postData);
     print('button clicked');
     //change vvv to post so in one collection
-    if (getTitle().length == 0 ||
-        getBody().length == 0 ||
-        getAuthor().length == 0) {
+    if (getTitle().length <= 0 ||
+        getBody().length <= 0 ||
+        getAuthor().length <= 0) {
       print("post not added");
-      isBlogSuccess = false;
+      print(getTitle().length);
+      //blogSuccess = false;
       return null;
     }
     return blogPost.doc().set({
@@ -65,11 +66,20 @@ class TBData extends ChangeNotifier {
       'author': getAuthor(),
     }).then((value) {
       print("Added");
-      isBlogSuccess = true;
+      //blogSuccess = true;
+      print(getTitle().length);
+      notifyListeners();
     }).catchError((error) {
       print("Failed to add user: $error");
-      isBlogSuccess = false;
+      print(getTitle().length);
+      notifyListeners();
+      //blogSuccess = false;
     });
+  }
+
+  void set blogSuccess(bool b){
+    isBlogSuccess = b;
+    notifyListeners();
   }
 
   List<String> fields = ['blogTitle', 'blogAuthor', 'blogBody'];
@@ -125,7 +135,7 @@ class TBData extends ChangeNotifier {
   String blogTitle = "";
   String blogBody = "";
   bool choice = false; // for "set show screen"
-  bool isBlogSuccess = false;
+  bool isBlogSuccess = false; // for "blog post fail/success
 
   //  getters and setters
   Future get postData => _getBlogPosts();
@@ -163,10 +173,12 @@ class TBData extends ChangeNotifier {
 
   void setBody(String body) {
     blogBody = body;
+    notifyListeners();
   }
 
   void setAuthor(String author) {
     blogAuthor = author;
+    notifyListeners();
   }
 
   void set setEditTagDialog(bool show) {
@@ -176,6 +188,7 @@ class TBData extends ChangeNotifier {
 
   void setTitle(String title) {
     blogTitle = title;
+    notifyListeners();
   }
 
   void set setAreRelevantPostsLoaded(bool postsLoaded) {
