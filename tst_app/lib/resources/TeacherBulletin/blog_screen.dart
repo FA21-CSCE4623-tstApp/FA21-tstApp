@@ -1,16 +1,10 @@
-import 'dart:async';
 import 'dart:ui';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:tst_app/resources/TeacherBulletin/tag_selection.dart';
-import 'package:tst_app/resources/TeacherBulletin/teacher_bulletin.dart';
-import 'package:tst_app/resources/TeacherBulletin/teacher_bulletin_widgets.dart';
 import '../../data/teacher_bulletin_data.dart';
-import 'package:tst_app/helper_functions.dart';
 import '../../styles.dart';
-import '../../shared_components/widgets.dart';
 
 // TODO: start here. create a popup dialog
 
@@ -95,7 +89,14 @@ class _BlogScreenState extends State<BlogScreen> {
                                       borderRadius: BorderRadius.circular(10)),
                                 )),
                           ),
-                          TextField(
+                          TextFormField(
+                              validator: (title){
+                                if(title!.isEmpty){
+                                  info.blogSuccess = false;
+                                }
+                                else
+                                  info.blogSuccess = true;
+                              },
                               maxLines: 1,
                               controller: titleController,
                               decoration: InputDecoration(
@@ -181,6 +182,13 @@ class _BlogScreenState extends State<BlogScreen> {
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 2.0),
                                     child: TextFormField(
+                                        validator: (author){
+                                          if(author!.isEmpty){
+                                            info.blogSuccess = false;
+                                          }
+                                          else
+                                            info.blogSuccess = true;
+                                        },
                                         controller: authorController,
                                         decoration: const InputDecoration(
                                           hintText: "Add a author",
@@ -198,6 +206,14 @@ class _BlogScreenState extends State<BlogScreen> {
                               style: TextStyle(
                                   fontSize: 12, color: defaultTextColor)),
                           TextFormField(
+                            validator: (body){
+                              if(body!.isEmpty){
+                                info.blogSuccess = false;
+                              }
+                              else
+                                info.blogSuccess = true;
+                                //info.setisBlogSuccess = false;
+                            },
                             maxLines: 10,
                             maxLength: 440,
                             controller: bodyController,
@@ -218,13 +234,23 @@ class _BlogScreenState extends State<BlogScreen> {
                             alignment: Alignment.bottomRight,
                             child: GestureDetector(
                               onTap: () {
-                                info.isBlogSuccess
-                                    ? ScaffoldMessenger.of(context)
+                                print(info.getIsBlogSuccess);
+                                if(bodyController.text.isEmpty ||
+                                    titleController.text.isEmpty ||
+                                    authorController.text.isEmpty){
+                                  info.blogSuccess = false;
+                                }
+                                else
+                                  info.blogSuccess = true;
+                                print(info.getIsBlogSuccess);
+                                info.getIsBlogSuccess
+                                    ?
+                                 ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
                                         content: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: const Text(
-                                            "   Blog Posted!  ",
+                                            "   Blog Posted!",
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 color: Colors.white,
@@ -234,7 +260,7 @@ class _BlogScreenState extends State<BlogScreen> {
                                         duration:
                                             const Duration(milliseconds: 1500),
                                         backgroundColor: Colors.black45,
-                                        width: 130,
+                                        width: 150,
                                         padding: const EdgeInsets.symmetric(
                                           horizontal: 8.0,
                                         ),
@@ -248,7 +274,7 @@ class _BlogScreenState extends State<BlogScreen> {
                                         .showSnackBar(SnackBar(
                                         content: Padding(
                                           padding: const EdgeInsets.all(8.0),
-                                          child: const Text(
+                                          child: Text(
                                             "Trouble Posting Blog",
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
@@ -274,13 +300,13 @@ class _BlogScreenState extends State<BlogScreen> {
                                 info.setTitle(titleController.text);
                                 info.setAuthor(authorController.text);
                                 info.createBlogPosts();
-                                Timer(Duration(milliseconds: 1600), () {
-                                  info.setShowScreen = false;
-                                  bodyController.text = "";
-                                  titleController.text = "";
-                                  authorController.text = "";
-                                  info.clearTags();
-                                });
+                                // Timer(Duration(milliseconds: 1600), () {
+                                //   info.setShowScreen = false;
+                                //   bodyController.text = "";
+                                //   titleController.text = "";
+                                //   authorController.text = "";
+                                //   info.clearTags();
+                                // });
                               },
                               child: Icon(
                                 Icons.post_add_rounded,
