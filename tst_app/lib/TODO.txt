@@ -78,3 +78,6 @@ TODO: get information from firebase
 - shorten distance between title and top of pic to match distance bt author and body+
 - change on first start button to match victor's+
 - center pic in "on first start" screen+
+
+5-12
+- add title in teacher's bulletin blogs (teacher, paraprofessional, etc.)
