@@ -95,6 +95,7 @@ class _TSTAppState extends State<TSTApp> {
         ChangeNotifierProvider(create: (_) => AEData()),
       ],
       child: MaterialApp(
+          debugShowCheckedModeBanner: false, //removes debug banner at top right
           theme: ThemeData(
               colorScheme:
                   ColorScheme.fromSwatch().copyWith(secondary: lightPurple)),

@@ -28,7 +28,7 @@ class _StartScreenState extends State<StartScreen> {
       isFirstRun = prefs.getBool('isFirstRun') ?? true;
     });
 
-    if (!isFirstRun) prefs.setBool('isFirstRun', true);
+    if (isFirstRun) prefs.setBool('isFirstRun', false);
     print("first run? $isFirstRun");
   }
 

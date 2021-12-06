@@ -21,6 +21,7 @@ class _OnFirstRunState extends State<OnFirstRun> {
   Widget build(BuildContext context) {
     final PageController controller = PageController(initialPage: 0);
     return MaterialApp(
+      debugShowCheckedModeBanner: false, //removes debug banner at top right
       home: Material(
         child: PageView(
           scrollDirection: Axis.horizontal,
