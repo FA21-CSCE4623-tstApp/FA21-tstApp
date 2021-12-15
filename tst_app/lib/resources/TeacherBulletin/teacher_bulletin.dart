@@ -271,23 +271,6 @@ class _TeacherBulletinState extends State<TeacherBulletin> {
   }
 }
 
-// class BlogPosts extends StatefulWidget {
-//   const BlogPosts({Key? key}) : super(key: key);
-//
-//   @override
-//   _BlogPostsState createState() => _BlogPostsState();
-// }
-//
-// class _BlogPostsState extends State<BlogPosts> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Consumer<TBData>(builder: (context, info, child) {
-//       return Column(
-//           children: List.generate(2, (index) => BlogPostSection(index: index)));
-//     });
-//   }
-// }
-
 class BlogPostSection extends StatefulWidget {
   final int index;
 
@@ -330,9 +313,10 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                             ? GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    info.postBackgroundColor =
-                                        backgroundColors[item];
-                                    info.postImagePath = images[item];
+                                    info.postBackgroundColor = backgroundColors[
+                                        item % backgroundColors.length];
+                                    info.postImagePath =
+                                        images[item % images.length];
                                     info.postTags = posts[item]["tags"];
                                     info.postAuthor =
                                         formatName(posts[item]["author"]);
@@ -448,9 +432,10 @@ class _BlogPostSectionState extends State<BlogPostSection> {
                             : GestureDetector(
                                 onTap: () {
                                   setState(() {
-                                    info.postBackgroundColor =
-                                        backgroundColors[item];
-                                    info.postImagePath = images[item];
+                                    info.postBackgroundColor = backgroundColors[
+                                        item % backgroundColors.length];
+                                    info.postImagePath =
+                                        images[item % images.length];
                                     info.postTags = posts[item]["tags"];
                                     info.postAuthor =
                                         formatName(posts[item]["author"]);

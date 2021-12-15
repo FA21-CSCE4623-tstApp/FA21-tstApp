@@ -153,7 +153,8 @@ Widget reportPostWidget({bool selected = false}) {
 }
 
 class RelevantBlogPostsSection extends StatefulWidget {
-  const RelevantBlogPostsSection({Key? key}) : super(key: key);
+  int numPosts = 0;
+  RelevantBlogPostsSection({Key? key, int numPosts = 0}) : super(key: key);
 
   @override
   _RelevantBlogPostsSectionState createState() =>
